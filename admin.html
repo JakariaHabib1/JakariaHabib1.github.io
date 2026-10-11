@@ -847,7 +847,7 @@
         <div style="margin-bottom: 1.25rem; text-align: left;">
           <label style="display: block; font-size: 0.8rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #cbd5e1; margin-bottom: 0.5rem;">Admin Security Key</label>
           <div style="position: relative;">
-            <input type="password" id="admin-key-input" placeholder="Enter password (default: jakaria2026)" style="width: 100%; padding: 0.85rem 1rem 0.85rem 2.5rem; background: #091a2c; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; color: #fff; font-size: 0.95rem; font-family: inherit; outline: none; box-sizing: border-box;" required autofocus>
+            <input type="password" id="admin-key-input" placeholder="••••••••••••" style="width: 100%; padding: 0.85rem 1rem 0.85rem 2.5rem; background: #091a2c; border: 1px solid rgba(255,255,255,0.18); border-radius: 8px; color: #fff; font-size: 0.95rem; font-family: inherit; outline: none; box-sizing: border-box;" required autofocus>
             <i class="fa-solid fa-key" style="position: absolute; left: 0.95rem; top: 50%; transform: translateY(-50%); color: #64748b; font-size: 0.9rem;"></i>
           </div>
           <div id="auth-error-msg" style="color: #f87171; font-size: 0.82rem; margin-top: 0.6rem; display: none;">
@@ -2268,9 +2268,17 @@
       if (e.key === 'Escape') closeModal();
     });
     // ========================================================================
-    // 14. Access Control & Security Key Handling
+    // 14. Access Control & SHA-256 Cryptographic Security Key Handling
     // ========================================================================
-    const DEFAULT_CMS_PASS = 'jakaria2026';
+    // Stored as a one-way cryptographic SHA-256 digest (plaintext is never stored)
+    const DEFAULT_CMS_HASH = '85c7a2338f818dd8c60596b476efb5e58604bf5dca84093d417293726e656713';
+
+    async function sha256(message) {
+      const msgBuffer = new TextEncoder().encode(message);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
 
     function checkAuthOnLoad() {
       const isAuth = sessionStorage.getItem('JH_CMS_AUTH');
@@ -2284,14 +2292,17 @@
       }
     }
 
-    function handleAuthSubmit(e) {
+    async function handleAuthSubmit(e) {
       if (e) e.preventDefault();
       const input = document.getElementById('admin-key-input');
       const errorMsg = document.getElementById('auth-error-msg');
       const entered = input ? input.value.trim() : '';
-      const storedPass = localStorage.getItem('JH_CMS_PASSWORD') || DEFAULT_CMS_PASS;
+      if (!entered) return;
 
-      if (entered === storedPass) {
+      const inputHash = await sha256(entered);
+      const storedHash = localStorage.getItem('JH_CMS_HASH') || DEFAULT_CMS_HASH;
+
+      if (inputHash === storedHash) {
         sessionStorage.setItem('JH_CMS_AUTH', 'true');
         const overlay = document.getElementById('admin-auth-overlay');
         if (overlay) overlay.style.display = 'none';
