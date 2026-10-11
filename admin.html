@@ -1028,8 +1028,14 @@
             <input type="text" id="p-apsMemberId">
           </div>
           <div class="form-group">
-            <label>Profile Image File</label>
-            <input type="text" id="p-profileImage">
+            <label>Profile Image (File path, URL, or Direct Upload)</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <input type="text" id="p-profileImage" style="flex: 1;" placeholder="profile.png or https://...">
+              <label class="btn-primary" style="margin: 0; padding: 0.55rem 0.9rem; cursor: pointer; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; border-radius: 6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'p-profileImage')">
+              </label>
+            </div>
           </div>
           <div class="form-group">
             <label>CV PDF File</label>
@@ -1785,7 +1791,16 @@
             <div class="form-group"><label>Category Tag (e.g. Robotics Hardware)</label><input type="text" id="m-proj-tag" value="Robotics Hardware Prototype"></div>
             <div class="form-group"><label>Icon (e.g. fa-robot, fa-dna)</label><input type="text" id="m-proj-icon" value="fa-robot"></div>
           </div>
-          <div class="form-group"><label>Image Path</label><input type="text" id="m-proj-image" value="assets/projects_img_2.jpg"></div>
+          <div class="form-group">
+            <label>Image Path, URL, or Direct Upload</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <input type="text" id="m-proj-image" value="assets/projects_img_2.jpg" style="flex:1;">
+              <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-proj-image')">
+              </label>
+            </div>
+          </div>
           <div class="form-group"><label>Description</label><textarea id="m-proj-desc" rows="3"></textarea></div>
           <div class="form-group"><label>Key Highlights (1 item per line)</label><textarea id="m-proj-highlights" rows="3"></textarea></div>
           <div class="form-group"><label>Tech Stack Pills (comma-separated)</label><input type="text" id="m-proj-tech" value="Python, PyTorch, ROS"></div>
@@ -1804,7 +1819,16 @@
             <div class="form-group"><label>Grade / Score</label><input type="text" id="m-cert-grade"></div>
           </div>
           <div class="form-group"><label>Verification ID</label><input type="text" id="m-cert-id"></div>
-          <div class="form-group"><label>Image File Path</label><input type="text" id="m-cert-image" value="assets/certificates_img_5.jpg"></div>
+          <div class="form-group">
+            <label>Image File Path, URL, or Direct Upload</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <input type="text" id="m-cert-image" value="assets/certificates_img_5.jpg" style="flex:1;">
+              <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-cert-image')">
+              </label>
+            </div>
+          </div>
           <div class="form-group"><label>Description</label><textarea id="m-cert-desc" rows="3"></textarea></div>
         `;
       } else if (type === 'pillar') {
@@ -1890,7 +1914,16 @@
             <div class="form-group"><label>Category Tag</label><input type="text" id="m-proj-tag" value="${escapeHtml(item.categoryTag || '')}"></div>
             <div class="form-group"><label>Icon (e.g. fa-robot)</label><input type="text" id="m-proj-icon" value="${escapeHtml(item.tagIcon || '')}"></div>
           </div>
-          <div class="form-group"><label>Image Path</label><input type="text" id="m-proj-image" value="${escapeHtml(item.image || '')}"></div>
+          <div class="form-group">
+            <label>Image Path, URL, or Direct Upload</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <input type="text" id="m-proj-image" value="${escapeHtml(item.image || '')}" style="flex:1;">
+              <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-proj-image')">
+              </label>
+            </div>
+          </div>
           <div class="form-group"><label>Description</label><textarea id="m-proj-desc" rows="3">${escapeHtml(item.desc || '')}</textarea></div>
           <div class="form-group"><label>Key Highlights (1 item per line)</label><textarea id="m-proj-highlights" rows="4">${escapeHtml((item.highlights || []).join('\n'))}</textarea></div>
           <div class="form-group"><label>Tech Stack Pills (comma-separated)</label><input type="text" id="m-proj-tech" value="${escapeHtml((item.techPills || []).join(', '))}"></div>
@@ -1910,7 +1943,16 @@
             <div class="form-group"><label>Grade / Score</label><input type="text" id="m-cert-grade" value="${escapeHtml(item.grade || '')}"></div>
           </div>
           <div class="form-group"><label>Verification ID</label><input type="text" id="m-cert-id" value="${escapeHtml(item.credentialId || '')}"></div>
-          <div class="form-group"><label>Image File Path</label><input type="text" id="m-cert-image" value="${escapeHtml(item.image || '')}"></div>
+          <div class="form-group">
+            <label>Image File Path, URL, or Direct Upload</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <input type="text" id="m-cert-image" value="${escapeHtml(item.image || '')}" style="flex:1;">
+              <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-cert-image')">
+              </label>
+            </div>
+          </div>
           <div class="form-group"><label>Description</label><textarea id="m-cert-desc" rows="3">${escapeHtml(item.desc || '')}</textarea></div>
         `;
       } else if (type === 'pillar') {
@@ -2146,6 +2188,25 @@
         toast.classList.add('show');
         setTimeout(() => toast.classList.remove('show'), 4000);
       }
+    }
+
+    // 13. Direct Image Upload Handler (Converts selected file to Data URL)
+    function handleImageUpload(e, targetId) {
+      const file = e.target.files && e.target.files[0];
+      if (!file) return;
+      if (file.size > 5 * 1024 * 1024) {
+        alert('Image is larger than 5MB. Please choose a smaller image or compress it.');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = function(evt) {
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.value = evt.target.result;
+          showToast('Image loaded directly! Click Save to apply.');
+        }
+      };
+      reader.readAsDataURL(file);
     }
 
     function escapeHtml(str) {
