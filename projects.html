@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Experimental Systems &amp; Robotics Projects | Jakaria Habib</title>
+    <meta name="description" content="Robotics hardware prototypes, biomechanical simulation engines, and AI software frameworks developed by Jakaria Habib at Pabna University of Science & Technology.">
+    <meta name="author" content="Jakaria Habib">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=2.2">
+    <style>
+        /* Firefox & Safari critical fallback resets */
+        img { max-width: 100%; height: auto; }
+        .brand-pust-logo { height: 42px !important; max-height: 42px !important; width: auto !important; }
+        .brand-dept-logo { width: 38px !important; height: 38px !important; max-width: 38px !important; max-height: 38px !important; object-fit: cover !important; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <!-- Academic Navigation Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/pust_logo.png" alt="PUST Logo" class="brand-pust-logo" width="42" height="42" style="max-height: 42px; width: auto; display: block;" title="Pabna University of Science and Technology">
+                <img src="assets/ice_logo.jpg" alt="ICE Dept Logo" class="brand-dept-logo" width="38" height="38" style="max-width: 38px; max-height: 38px; width: 38px; height: 38px; object-fit: cover; display: block;" title="Department of Information &amp; Communication Engineering">
+                <div class="brand-text-group">
+                    <span class="brand-name">Jakaria Habib</span>
+                    <span class="brand-affiliation">PUST · Department of ICE</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="research.html">Research</a></li>
+                <li class="nav-item"><a href="projects.html" class="active">Projects</a></li>
+                <li class="nav-item"><a href="education.html">Education</a></li>
+                <li class="nav-item"><a href="certificates.html">Certificates</a></li>
+                <li class="nav-item"><a href="cv.html">CV</a></li>
+                <li class="nav-item"><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn-cv-pill btn-open-cv-modal" title="View CV Online (No Download Required)">
+                    <i class="fa-solid fa-eye"></i> <span>View CV</span>
+                </button>
+                <a href="CV_Jakaria_Habib.pdf" class="btn-cv-pill" target="_blank" download title="Download CV (PDF)">
+                    <i class="fa-solid fa-download"></i> <span>PDF</span>
+                </a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Reading Theme" title="Toggle Academic Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-nav-toggle" aria-label="Open Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Page Header Block -->
+        <div class="page-title-block">
+            <div class="page-kicker">
+                <i class="fa-solid fa-microchip"></i> Engineering Systems &amp; Software Artifacts
+            </div>
+            <h1 class="page-title">Experimental Systems &amp; Robotics Projects</h1>
+            <p class="page-subtitle">
+                Hardware prototypes, physics simulation engines, multi-agent frameworks, and computational pipelines developed during undergraduate research at PUST.
+            </p>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+
+            <!-- 1. Real 3D Printed Robot Build -->
+            <div class="project-card">
+                <div class="project-image-box">
+                    <img src="assets/projects_img_2.jpg" alt="Autonomous Rear-Wheel Drive Mobile Robot Prototype">
+                    <span class="project-tag-overlay"><i class="fa-solid fa-robot"></i> Robotics Hardware Prototype</span>
+                </div>
+                <div class="project-body">
+                    <h2 class="project-title">Vision-Guided Autonomous Inspection Mobile Robot</h2>
+                    <p class="project-desc">
+                        Designed, 3D-modeled, and fabricated a physical rear-wheel drive mobile robotic platform featuring front-wheel Ackermann steering geometry. Integrated embedded microcontroller hardware with an onboard camera to execute real-time YOLOv8 edge structural defect detection and autonomous path tracking.
+                    </p>
+                    <div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+                        <strong style="color: var(--text-main);">Key Highlights:</strong>
+                        <ul style="margin: 0.35rem 0 0 1.2rem; padding: 0;">
+                            <li>Custom 3D-printed chassis engineered for balanced center-of-gravity and steering stability.</li>
+                            <li>Embedded microcontrollers interfacing high-torque steering servos with PWM motor control.</li>
+                            <li>Real-time edge computer vision inference for surface crack identification.</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech-pills">
+                        <span class="project-pill">3D Mechanical CAD</span>
+                        <span class="project-pill">Ackermann Steering</span>
+                        <span class="project-pill">Embedded C++</span>
+                        <span class="project-pill">YOLOv8 Edge Vision</span>
+                        <span class="project-pill">ROS</span>
+                    </div>
+                    <div style="margin-top: 1.15rem;">
+                        <a href="https://www.researchsquare.com/article/rs-9996410/v1" target="_blank" rel="noopener" class="btn-primary-academic" style="padding: 0.48rem 0.95rem; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.45rem;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Research Preprint (Research Square) ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. OpenSim Neuromechanics Thesis -->
+            <div class="project-card">
+                <div class="project-image-box">
+                    <img src="assets/img_education_3.png" alt="OpenSim Biomechanical Dynamic Gait Kinematics Plot">
+                    <span class="project-tag-overlay"><i class="fa-solid fa-dna"></i> Physics Simulation Engine</span>
+                </div>
+                <div class="project-body">
+                    <h2 class="project-title">Neuromech-Sim: OpenSim Python Biomechanical Simulation Pipeline</h2>
+                    <p class="project-desc">
+                        An automated computational physics pipeline interfacing Python directly with Stanford University's OpenSim musculoskeletal simulation engine. Formulated an inverse neuromuscular modeling protocol over a 45,445-sample synthetic dynamic gait dataset to predict latent motor reflex delays.
+                    </p>
+                    <div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+                        <strong style="color: var(--text-main);">Key Highlights:</strong>
+                        <ul style="margin: 0.35rem 0 0 1.2rem; padding: 0;">
+                            <li>Direct Python C-bindings communicating with OpenSim kinematic and dynamic solver.</li>
+                            <li>Automated generation of 45,445 gait trials with parameterized muscular activation delays.</li>
+                            <li>Machine learning regression achieving high delay prediction fidelity (R² &gt; 0.98) with SHAP interpretability.</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech-pills">
+                        <span class="project-pill">Stanford OpenSim API</span>
+                        <span class="project-pill">Python C-Bindings</span>
+                        <span class="project-pill">Random Forest Regression</span>
+                        <span class="project-pill">SHAP Interpretability</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. GeoMind Multi-Agent Spatial Reasoning Framework -->
+            <div class="project-card">
+                <div class="project-image-box" style="background: #ffffff; padding: 1rem; position: relative;">
+                    <img src="assets/img_research_13.png" alt="GeoMind Multi-Agent Architecture Pipeline Diagram" style="object-fit: contain;">
+                    <span class="project-tag-overlay" style="background: rgba(19, 34, 56, 0.92); border-left: 3px solid var(--univ-gold);">
+                        <i class="fa-solid fa-network-wired"></i> Multi-Agent Architecture
+                    </span>
+                </div>
+                <div class="project-body">
+                    <h2 class="project-title">GeoMind Core: Multi-Agent Geospatial Reasoning Engine</h2>
+                    <p class="project-desc">
+                        An autonomous cooperative LLM multi-agent framework designed for verified spatial query execution and automated remote sensing analysis. Combines planning agents, code synthesis agents, and verification arbiters with a secure Python execution sandbox.
+                    </p>
+                    <div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+                        <strong style="color: var(--text-main);">Key Highlights:</strong>
+                        <ul style="margin: 0.35rem 0 0 1.2rem; padding: 0;">
+                            <li>Autonomous agent ensemble coordinating multi-spectral raster parsing with GeoPandas and GDAL.</li>
+                            <li>Iterative consensus verification protocol checking spatial topology constraints before code execution.</li>
+                            <li>Sandboxed Python execution environment preventing destructive geospatial operations.</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech-pills">
+                        <span class="project-pill">Multi-Agent Systems</span>
+                        <span class="project-pill">Large Language Models</span>
+                        <span class="project-pill">GeoPandas / GDAL</span>
+                        <span class="project-pill">Sandboxed Execution</span>
+                    </div>
+                    <div style="margin-top: 1.15rem;">
+                        <a href="https://assets-eu.researchsquare.com/files/rs-10034367/v1/cc97377b-ff1b-4ddb-b034-70ffe7101400.pdf" target="_blank" rel="noopener" class="btn-primary-academic" style="padding: 0.48rem 0.95rem; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.45rem;">
+                            <i class="fa-solid fa-file-pdf"></i> Read Research Preprint (PDF) ↗
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. DeepVision-Defect: High-Resolution Structural Damage Inspection Benchmark -->
+            <div class="project-card">
+                <div class="project-image-box">
+                    <img src="assets/research_img_2.jpg" alt="DeepVision High-Resolution Damage Segmentation">
+                    <span class="project-tag-overlay"><i class="fa-solid fa-satellite"></i> Vision &amp; Remote Sensing</span>
+                </div>
+                <div class="project-body">
+                    <h2 class="project-title">DeepVision-Defect: High-Resolution Structural Damage Segmentation Benchmark</h2>
+                    <p class="project-desc">
+                        A modular computer vision benchmark implementing hybrid Vision Transformer (ViT-B32) and convolutional neural networks for fine-grained structural anomaly detection across complex post-disaster satellite imagery.
+                    </p>
+                    <div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+                        <strong style="color: var(--text-main);">Key Highlights:</strong>
+                        <ul style="margin: 0.35rem 0 0 1.2rem; padding: 0;">
+                            <li>Self-attention rollout visualization mapping global transformer token interactions to localized building footprints.</li>
+                            <li>Robust focal loss formulation overcoming severe class imbalance between intact and collapsed structures.</li>
+                            <li>97.85% validation accuracy with high generalization across varying atmospheric conditions.</li>
+                        </ul>
+                    </div>
+                    <div class="project-tech-pills">
+                        <span class="project-pill">PyTorch</span>
+                        <span class="project-pill">Vision Transformers</span>
+                        <span class="project-pill">Attention Rollout</span>
+                        <span class="project-pill">Satellite Remote Sensing</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- University Institutional Footer -->
+    <footer class="univ-footer">
+        <div class="univ-footer-container">
+            <div class="footer-col">
+                <h4>Jakaria Habib — Academic Portfolio</h4>
+                <p>
+                    Department of Information &amp; Communication Engineering (ICE)<br>
+                    Pabna University of Science &amp; Technology (PUST)<br>
+                    Pabna-6300, Bangladesh.
+                </p>
+                <p>
+                    <strong style="color: #ffffff;">Institutional Email:</strong><br>
+                    <a href="mailto:jakaria.210618@s.pust.ac.bd" class="footer-contact-link"><i class="fa-solid fa-envelope"></i> jakaria.210618@s.pust.ac.bd</a>
+                </p>
+                <p>
+                    <strong style="color: #ffffff;">Primary / Research Email:</strong><br>
+                    <a href="mailto:jakariahabibjim2@gmail.com" class="footer-contact-link"><i class="fa-regular fa-envelope"></i> jakariahabibjim2@gmail.com</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Portfolio Navigation</h4>
+                <div class="footer-nav-list">
+                    <a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a>
+                    <a href="research.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Research &amp; Publications</a>
+                    <a href="projects.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Experimental Systems &amp; Robotics</a>
+                    <a href="education.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curriculum &amp; Coursework</a>
+                    <a href="certificates.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Verified Credentials</a>
+                    <a href="cv.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curriculum Vitae (PDF)</a>
+                    <a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Contact &amp; Correspondence</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Academic Profiles</h4>
+                <div class="footer-nav-list">
+                    <a href="https://scholar.google.com/citations?user=2GSC8CkAAAAJ" target="_blank" rel="noopener"><i class="fa-brands fa-google-scholar"></i> Google Scholar Profile</a>
+                    <a href="https://openreview.net/profile?id=~JAKARIA_HABIB1" target="_blank" rel="noopener"><i class="fa-solid fa-book-open"></i> OpenReview Profile</a>
+                    <a href="https://orcid.org/0009-0009-6954-0367" target="_blank" rel="noopener"><i class="fa-brands fa-orcid"></i> ORCID Identifier</a>
+                    <a href="https://www.researchgate.net/profile/Jakaria-Habib-2" target="_blank" rel="noopener"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
+                    <a href="https://www.linkedin.com/in/jakaria-habib1/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn Network</a>
+                </div>
+            </div>
+        </div>
+        <div class="univ-bottom-bar">
+            <span>&copy; 2026 Jakaria Habib · Pabna University of Science &amp; Technology</span>
+            <span>All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Client Script -->
+    <script src="script.js?v=2.2"></script>
+
+    <!-- Interactive Full-Screen CV Modal Viewer (No Download Required) -->
+    <div id="cv-modal-overlay" class="cv-modal-overlay" role="dialog" aria-modal="true" aria-label="Curriculum Vitae Viewer">
+        <div class="cv-modal-window">
+            <div class="cv-modal-topbar">
+                <div class="cv-modal-title">
+                    <i class="fa-solid fa-file-lines" style="color: var(--univ-gold);"></i>
+                    <span>Jakaria Habib — Curriculum Vitae</span>
+                </div>
+                <div class="cv-modal-actions">
+                    <a href="CV_Jakaria_Habib.pdf" target="_blank" class="cv-modal-btn" title="Open in New Tab">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab
+                    </a>
+                    <a href="CV_Jakaria_Habib.pdf" download class="cv-modal-btn" title="Download PDF File">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
+                    <button id="cv-modal-close-btn" class="cv-modal-close" aria-label="Close CV Viewer" title="Close (Esc)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="cv-modal-body">
+                <iframe src="CV_Jakaria_Habib.pdf#toolbar=1" title="Jakaria Habib CV Document"></iframe>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

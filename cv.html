@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curriculum Vitae | Jakaria Habib</title>
+    <meta name="description" content="Academic Curriculum Vitae of Jakaria Habib - B.Sc. Candidate in Information & Communication Engineering, PUST. First-author Springer Nature (Scopus Q1, IF: 4.2), CGPA: 3.08 / 4.00.">
+    <meta name="author" content="Jakaria Habib">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=2.2">
+    <style>
+        /* Firefox & Safari critical fallback resets */
+        img { max-width: 100%; height: auto; }
+        .brand-pust-logo { height: 42px !important; max-height: 42px !important; width: auto !important; }
+        .brand-dept-logo { width: 38px !important; height: 38px !important; max-width: 38px !important; max-height: 38px !important; object-fit: cover !important; border-radius: 4px; }
+        .cv-category-title {
+            font-size: 1.15rem;
+            color: var(--univ-navy);
+            margin: 1.25rem 0 0.75rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cv-paper-item {
+            margin-bottom: 1.2rem;
+            padding-left: 0.5rem;
+            border-left: 3px solid var(--border-light);
+            transition: var(--transition);
+        }
+        .cv-paper-item:hover {
+            border-left-color: var(--univ-gold);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Academic Navigation Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/pust_logo.png" alt="PUST Logo" class="brand-pust-logo" width="42" height="42" style="max-height: 42px; width: auto; display: block;" title="Pabna University of Science and Technology">
+                <img src="assets/ice_logo.jpg" alt="ICE Dept Logo" class="brand-dept-logo" width="38" height="38" style="max-width: 38px; max-height: 38px; width: 38px; height: 38px; object-fit: cover; display: block;" title="Department of Information &amp; Communication Engineering">
+                <div class="brand-text-group">
+                    <span class="brand-name">Jakaria Habib</span>
+                    <span class="brand-affiliation">PUST · Department of ICE</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="research.html">Research</a></li>
+                <li class="nav-item"><a href="projects.html">Projects</a></li>
+                <li class="nav-item"><a href="education.html">Education</a></li>
+                <li class="nav-item"><a href="certificates.html">Certificates</a></li>
+                <li class="nav-item"><a href="cv.html" class="active">CV</a></li>
+                <li class="nav-item"><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn-cv-pill btn-open-cv-modal" title="View CV Online (No Download Required)">
+                    <i class="fa-solid fa-eye"></i> <span>View CV</span>
+                </button>
+                <a href="CV_Jakaria_Habib.pdf" class="btn-cv-pill" target="_blank" download title="Download CV (PDF)">
+                    <i class="fa-solid fa-download"></i> <span>PDF</span>
+                </a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Reading Theme" title="Toggle Academic Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-nav-toggle" aria-label="Open Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Page Header Block -->
+        <div class="page-title-block" style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1.5rem;">
+            <div>
+                <div class="page-kicker">
+                    <i class="fa-solid fa-file-lines"></i> Formal Academic Curriculum Vitae
+                </div>
+                <h1 class="page-title">Curriculum Vitae</h1>
+                <p class="page-subtitle">
+                    Comprehensive academic curriculum vitae detailing research publications, engineering systems, coursework rigor, verified credentials, and technical proficiencies.
+                </p>
+            </div>
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+                <button class="btn-primary-academic btn-open-cv-modal" title="Open Fullscreen Interactive Viewer">
+                    <i class="fa-solid fa-eye"></i> View PDF In Browser
+                </button>
+                <a href="CV_Jakaria_Habib.pdf" class="btn-secondary-academic" target="_blank" download>
+                    <i class="fa-solid fa-download"></i> Download PDF
+                </a>
+            </div>
+        </div>
+
+        <!-- Live Embedded PDF Viewer (View without Downloading) -->
+        <div style="margin-bottom: 2.5rem; background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--shadow-card);">
+            <div style="background: var(--univ-navy); color: #ffffff; padding: 0.75rem 1.25rem; display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-weight: 700; font-size: 0.95rem;"><i class="fa-solid fa-file-pdf"></i> Official Academic Curriculum Vitae (Live Document Preview)</span>
+                <div style="display: flex; gap: 0.5rem;">
+                    <a href="CV_Jakaria_Habib.pdf" target="_blank" class="cv-modal-btn" style="font-size: 0.8rem; padding: 0.25rem 0.65rem;">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Fullscreen ↗
+                    </a>
+                    <a href="CV_Jakaria_Habib.pdf" download class="cv-modal-btn" style="font-size: 0.8rem; padding: 0.25rem 0.65rem;">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
+                </div>
+            </div>
+            <object data="CV_Jakaria_Habib.pdf#toolbar=1" type="application/pdf" style="width: 100%; height: 950px; border: none; display: block;" title="Curriculum Vitae Live PDF">
+                <iframe src="CV_Jakaria_Habib.pdf#toolbar=1" style="width: 100%; height: 950px; border: none; display: block;" title="Curriculum Vitae Live PDF">
+                    <div style="padding: 2.5rem; text-align: center; background: var(--bg-subtle);">
+                        <p style="font-size: 1.05rem; color: var(--text-main); margin-bottom: 1rem;">
+                            <i class="fa-solid fa-file-pdf" style="color: #d9383a; font-size: 2rem; display: block; margin-bottom: 0.5rem;"></i>
+                            Previewing PDF directly in this browser frame is not supported on your mobile device.
+                        </p>
+                        <a href="CV_Jakaria_Habib.pdf" target="_blank" class="btn-primary-academic" style="display: inline-flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open CV Document In Browser
+                        </a>
+                    </div>
+                </iframe>
+            </object>
+        </div>
+
+        <!-- Academic CV Structure (Complete Transcript from Official CV) -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-light); border-top: 4px solid var(--univ-blue); border-radius: var(--radius-sm); padding: 2.5rem; box-shadow: var(--shadow-card);">
+
+            <!-- Header Info -->
+            <div style="border-bottom: 2px solid var(--border-light); padding-bottom: 1.5rem; margin-bottom: 2rem;">
+                <h2 style="font-size: 1.85rem; color: var(--univ-navy); margin: 0 0 0.35rem 0; font-family: var(--font-serif);">JAKARIA HABIB</h2>
+                <div style="font-size: 1rem; color: var(--text-main); font-weight: 600; margin-bottom: 0.5rem;">
+                    Department of Information and Communication Engineering (ICE) · Pabna University of Science and Technology (PUST), Bangladesh
+                </div>
+                <div style="display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem; font-size: 0.9rem; color: var(--text-muted);">
+                    <span><i class="fa-regular fa-envelope"></i> <a href="mailto:jakariahabibjim2@gmail.com">jakariahabibjim2@gmail.com</a></span>
+                    <span><i class="fa-solid fa-phone"></i> +880 1921273377</span>
+                    <span><i class="fa-brands fa-google-scholar"></i> <a href="https://scholar.google.com/citations?user=2GSC8CkAAAAJ" target="_blank" rel="noopener">Google Scholar</a></span>
+                    <span><i class="fa-solid fa-book-open"></i> <a href="https://openreview.net/profile?id=~JAKARIA_HABIB1" target="_blank" rel="noopener">OpenReview: ~JAKARIA_HABIB1</a></span>
+                    <span><i class="fa-brands fa-orcid"></i> <a href="https://orcid.org/0009-0009-6954-0367" target="_blank" rel="noopener">ORCID: 0009-0009-6954-0367</a></span>
+                    <span><i class="fa-brands fa-linkedin"></i> <a href="https://www.linkedin.com/in/jakaria-habib1/" target="_blank" rel="noopener">LinkedIn: jakaria-habib1</a></span>
+                    <span><i class="fa-solid fa-id-badge"></i> APS Member ID: #62251156</span>
+                </div>
+            </div>
+
+            <!-- Research Interests -->
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-size: 1.35rem; color: var(--univ-blue); border-bottom: 1.5px solid var(--border-light); padding-bottom: 0.4rem; margin-bottom: 1rem;">
+                    <i class="fa-solid fa-compass"></i> Research Interests
+                </h2>
+                <ul style="padding-left: 1.25rem; color: var(--text-main); font-size: 0.95rem; line-height: 1.75; list-style: disc;">
+                    <li><strong>Physics-Informed AI &amp; Medical Perception:</strong> Biomechanical Neuromuscular Simulation, Vision Transformers in Healthcare &amp; Remote Sensing.</li>
+                    <li><strong>Foundation Models &amp; Learning Dynamics:</strong> Continual Reinforcement Learning, Faithfulness in Reasoning, Geometric Deep Learning.</li>
+                    <li><strong>Embodied AI &amp; Robotics:</strong> Action-Conditioned World Models, Safe Robot Perception, Path Planning, Digital Twins.</li>
+                </ul>
+            </section>
+
+            <!-- 1. Education -->
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-size: 1.35rem; color: var(--univ-blue); border-bottom: 1.5px solid var(--border-light); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-graduation-cap"></i> Education
+                </h2>
+                <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; margin-bottom: 0.5rem; gap: 0.5rem;">
+                    <div>
+                        <strong style="font-size: 1.1rem; color: var(--text-main);">Bachelor of Science (Engineering) in Information and Communication Engineering</strong><br>
+                        <em>Pabna University of Science and Technology (PUST), Pabna, Bangladesh</em>
+                    </div>
+                    <div style="text-align: right;">
+                        <span style="font-weight: 700; color: var(--univ-navy);">2022 – 2026</span><br>
+                        <span style="font-weight: 700; color: var(--univ-gold); font-size: 1rem;">CGPA: 3.08 / 4.00</span>
+                    </div>
+                </div>
+                <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.7; list-style: disc;">
+                    <li>
+                        <strong>Undergraduate Research Thesis:</strong> <em>“Physics-Based Inverse Modeling for Sub-Millisecond Neural Delay Estimation in Human Locomotion”</em> (Advisor: Md. Imran Hossain, Faculty, Dept. of ICE, PUST).<br>
+                        Formulated an end-to-end OpenSim pipeline inverting Hill-type activation ODEs across 45,445 synthetic gait trials, estimating latent delays with MAE = 0.10 ms and R² = 0.998. Validated that 93.6% of timing information resides in muscle activation versus 6.4% in kinematics; verified structural stability under +7% femoral mass perturbation.
+                    </li>
+                    <li>
+                        <strong>Curriculum Rigor &amp; Advanced Thematic Coursework (Mapped from Official ICE Degree Syllabus):</strong>
+                        <ul style="padding-left: 1.25rem; margin-top: 0.35rem; list-style: circle;">
+                            <li><strong>Math &amp; Statistics:</strong> Linear Algebra (Math-2101), Complex Variables &amp; Transforms (Math-2201), Calculus, Differential Equations, Statistics, Probability &amp; Hypothesis Testing.</li>
+                            <li><strong>AI, Perception &amp; Signals:</strong> Neural Networks (ICE-4205), Computer Vision (ICE-4214), AI &amp; Robotics (ICE-3101), Digital Image Processing (ICE-3207), DSP (ICE-3109), Signals &amp; Systems (ICE-2205).</li>
+                            <li><strong>Algorithms &amp; Systems Architecture:</strong> Data Structures &amp; Algorithms (ICE-2201), Discrete Math (ICE-2105), OOP (ICE-2103), Computer Architecture &amp; Microcontrollers.</li>
+                        </ul>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- 2. Research Publications (All 10 verified papers in 5 distinct categories) -->
+            <section style="margin-bottom: 2.5rem;">
+                <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; border-bottom: 1.5px solid var(--border-light); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">
+                    <h2 style="font-size: 1.35rem; color: var(--univ-blue); margin: 0;">
+                        <i class="fa-solid fa-book-bookmark"></i> Research Publications (10)
+                    </h2>
+                    <span style="font-size: 0.85rem; color: var(--text-muted); font-style: italic;">* Equal contribution / core researcher; bold indicates self</span>
+                </div>
+
+                <!-- Category 1: Peer-Reviewed SCI-Indexed Journal Articles -->
+                <div class="cv-category-title">
+                    <i class="fa-solid fa-circle-check" style="color: var(--univ-green); font-size: 0.9rem;"></i> Peer-Reviewed SCI-Indexed Journal Articles
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">1. Jakaria Habib</strong>, Imran Hossain, Md. Basim Al Zabir Shammo, Taz Warul Mulk, Estiyak Rubaiat. (2026).<br>
+                    <strong>“Vision Transformer-Based Damage Assessment from Post-Disaster Satellite Imagery: An Applied Study on Hurricane Harvey.”</strong><br>
+                    <em>Earth Science Informatics</em>, Springer Nature. <span class="badge-first-author">First Author</span><br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">[Springer Nature | SCI-Expanded | Scopus Q1 (SJR: 0.761) | Impact Factor: 4.2] · <a href="https://link.springer.com/article/10.1007/s12145-026-02142-6" target="_blank" rel="noopener">DOI: 10.1007/s12145-026-02142-6 ↗</a></span>
+                </div>
+
+                <!-- Category 2: Top-Tier (A*) Conference Manuscripts -->
+                <div class="cv-category-title">
+                    <i class="fa-solid fa-hourglass-half" style="color: var(--univ-gold); font-size: 0.9rem;"></i> Top-Tier (A*) Conference Manuscripts
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">2.</strong> Noor Islam S. Mohammad, <strong>Jakaria Habib</strong>, Md. Basim Al Zabir Shammo. (2026).<br>
+                    <strong>“Specialist Drift: Continual RL for Capability-Preserving Foundation Model Post-Training.”</strong><br>
+                    <em>Under Review at International Conference on Learning Representations (ICLR 2027)</em>.<br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">OpenReview Submission ID: Specialist-Drift-Continual-RL.</span>
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">3.</strong> Noor Islam S. Mohammad, Md. Basim Al Zabir Shammo, Hasan Siddiki, Mahmudul Hasan, Md. Faisal Sheikh, <strong>Jakaria Habib</strong>. (2026).<br>
+                    <strong>“SIFT: Robust Meta-Faithfulness Verification of Chain-of-Thought Reasoning Under Distribution Shift.”</strong><br>
+                    <em>Under Review at International Conference on Learning Representations (ICLR 2027)</em>.<br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">OpenReview Submission ID: SIFT-Verification.</span>
+                </div>
+
+                <!-- Category 3: Peer-Reviewed Workshop Proceedings at Premier International Venues (NeurIPS 2026) -->
+                <div class="cv-category-title">
+                    <i class="fa-solid fa-award" style="color: var(--univ-blue); font-size: 0.9rem;"></i> Peer-Reviewed Workshop Proceedings at Premier International Venues (NeurIPS 2026)
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">4. Jakaria Habib</strong>, et al. (2026).<br>
+                    <strong>“The Symmetry Budget: How Much Group Structure Should a Network Architecture Assume?”</strong><br>
+                    <em>NeurIPS 2026 Workshop on Symmetry and Geometry in Neural Representations (NeurReps)</em>.<br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">[NeurIPS 2026 | Accepted Proceedings Track | To Appear in PMLR] · <a href="https://openreview.net/forum?id=anU8qWr9og" target="_blank" rel="noopener">OpenReview Forum ↗</a></span>
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">5. Jakaria Habib</strong>, et al. (2026).<br>
+                    <strong>“HALT: Certifying Trust Horizons in Action-Conditioned Robotic World Models.”</strong><br>
+                    <em>NeurIPS 2026 Robotics World Modeling Workshop (RWM)</em>.<br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">[NeurIPS 2026 | Accepted Workshop Poster]</span>
+                </div>
+
+                <!-- Category 4: Peer-Reviewed International Conference Proceedings (Published & Indexed) -->
+                <div class="cv-category-title">
+                    <i class="fa-solid fa-circle-check" style="color: var(--univ-green); font-size: 0.9rem;"></i> Peer-Reviewed International Conference Proceedings (Published &amp; Indexed)
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">6. Jakaria Habib</strong>, et al. (2026).<br>
+                    <strong>“A Hybrid CNN–Transformer Framework for Automated Poultry Disease Classification Using Fecal Images.”</strong><br>
+                    In <em>Proceedings of the 2026 IEEE International Conference on Power, Electronics, Communications, Computing, and Intelligent Infrastructure (PECCII 2026)</em>, IEEE Xplore. <span class="badge-first-author">First Author</span><br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">[Published &amp; Indexed in IEEE Xplore] · <a href="https://ieeexplore.ieee.org/abstract/document/11661870" target="_blank" rel="noopener">IEEE Xplore Record ↗</a></span>
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">7.</strong> Md. Rashed, Md. Basim Al Zabir Shammo, Md. Imran Hossain, Md. Anwar Hossain, Lamia Islam, <strong>Jakaria Habib</strong>. (2025).<br>
+                    <strong>“A Machine Learning Framework for Stress Detection Using Photoplethysmography (PPG) Signals.”</strong><br>
+                    In <em>Proceedings of the 2025 IEEE International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN 2025)</em>, IEEE Xplore. Paper ID: 1435.<br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">[Published &amp; Indexed in IEEE Xplore] · Oral Conference Presentation · <a href="https://ieeexplore.ieee.org/abstract/document/11171913" target="_blank" rel="noopener">IEEE Xplore Record ↗</a></span>
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">8. Jakaria Habib</strong>, et al. (2025).<br>
+                    <strong>“The Optimization of Violence Detection and Classification with Vision Transformer and ResNet18 Hybrid Model.”</strong><br>
+                    In <em>Proceedings of the 11th IEEE Women in Engineering Conference on Electrical and Computer Engineering (WIECON-ECE 2025)</em>, IEEE Xplore. <span class="badge-first-author">First Author</span><br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">[Published &amp; Indexed in IEEE Xplore] · <a href="https://ieeexplore.ieee.org/abstract/document/11526421" target="_blank" rel="noopener">IEEE Xplore Record ↗</a></span>
+                </div>
+
+                <!-- Category 5: Journal Manuscripts Under Active Peer Review -->
+                <div class="cv-category-title">
+                    <i class="fa-solid fa-clock" style="color: var(--univ-gold); font-size: 0.9rem;"></i> Journal Manuscripts Under Active Peer Review
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">9. Jakaria Habib</strong>, et al. (2026).<br>
+                    <strong>“GeoMind: An Autonomous Multi-Agent Framework for Verified Geospatial Analysis.”</strong><br>
+                    <em>Earth Science Informatics</em>, Springer Nature. <span class="badge-first-author">First Author</span><br>
+                    <span style="font-size: 0.88rem; color: var(--text-muted);">Preprint available: <a href="https://assets-eu.researchsquare.com/files/rs-10034367/v1/cc97377b-ff1b-4ddb-b034-70ffe7101400.pdf" target="_blank" rel="noopener">Research Square (PDF) ↗</a></span>
+                </div>
+                <div class="cv-paper-item">
+                    <strong style="color: var(--text-main); font-size: 1rem;">10. Jakaria Habib</strong>, et al. (2026).<br>
+                    <strong>“The Limits of Physics-Informed Digital Twins Under Transient Loads: An HIL Study for Micro-Mechatronics.”</strong><br>
+                    <em>Journal of Intelligent Manufacturing</em>, Springer Nature.
+                </div>
+            </section>
+
+            <!-- 3. Learned Societies, Scholarly Credentials & Presentations -->
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-size: 1.35rem; color: var(--univ-blue); border-bottom: 1.5px solid var(--border-light); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-award"></i> Learned Societies, Scholarly Credentials &amp; Presentations
+                </h2>
+                <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; list-style: disc;">
+                    <li><strong>American Physical Society (APS), USA:</strong> Active Professional Member (Account ID: 62251156, Term: Sept 2026 – Aug 2027).</li>
+                    <li><strong>Nature Masterclasses (Springer Nature):</strong> Certified in “Focus on Peer Review” (Signed by Dr. Magdalena Skipper, Editor-in-Chief, Nature), Issued May 2026. Rigorous training in scientific critique, peer-review methodology, and publication ethics.</li>
+                    <li><strong>Conference Oral Speaker, IEEE QPAIN 2025:</strong> Delivered official conference presentation for Paper ID 1435: “A Machine Learning Framework for Stress Detection Using Photoplethysmography (PPG) Signals”, BAUST, July 31 – Aug 2, 2025.</li>
+                    <li><strong>Student Member &amp; Volunteer, IEEE PUST Student Branch (2024 – Present):</strong> Organized and conducted student technical workshops on machine learning workflows and scientific computing with Python.</li>
+                </ul>
+            </section>
+
+            <!-- 4. Selected Research & Robotics Projects -->
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-size: 1.35rem; color: var(--univ-blue); border-bottom: 1.5px solid var(--border-light); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-robot"></i> Selected Research &amp; Robotics Projects
+                </h2>
+                <div style="margin-bottom: 1.2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+                        <strong style="color: var(--text-main); font-size: 1.05rem;">Vision-Guided Autonomous Inspection Mobile Robot</strong>
+                        <span style="font-weight: 600; color: var(--univ-navy); font-size: 0.9rem;">Embedded Hardware &amp; Vision</span>
+                    </div>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0.35rem 0 0 0; line-height: 1.6;">
+                        Engineered a custom 3D-printed chassis robot with Ackermann steering servos and camera perception; integrated deep learning crack segmentation with path coverage planning algorithms for automated structural inspection.
+                    </p>
+                </div>
+                <div style="margin-bottom: 1.2rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap;">
+                        <strong style="color: var(--text-main); font-size: 1.05rem;">OpenSim Biomechanical Neuromuscular Latency Estimator</strong>
+                        <span style="font-weight: 600; color: var(--univ-navy); font-size: 0.9rem;">Python / OpenSim API</span>
+                    </div>
+                    <p style="font-size: 0.92rem; color: var(--text-muted); margin: 0.35rem 0 0 0; line-height: 1.6;">
+                        Interfaced Python with OpenSim musculoskeletal physics simulation engine to extract high-dimensional joint torques and activations; implemented SHAP and gradient feature importance for interpretable latent delay modeling.
+                    </p>
+                </div>
+            </section>
+
+            <!-- 5. Verified Academic Benchmarks & Certifications -->
+            <section style="margin-bottom: 2.5rem;">
+                <h2 style="font-size: 1.35rem; color: var(--univ-blue); border-bottom: 1.5px solid var(--border-light); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-certificate"></i> Verified Academic Benchmarks &amp; Certifications
+                </h2>
+                <ul style="padding-left: 1.25rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.75; list-style: disc;">
+                    <li><strong>HarvardX (Harvard University):</strong> CS109x: Introduction to Data Science with Python (Course Director: Dr. Pavlos Protopapas, Scientific Program Director, Harvard), Issued Feb 2026. Verified ID: <code>61d90c194b97494ca85bc68f25086b53</code>.</li>
+                    <li><strong>Columbia University (Columbia+):</strong> Learning AI Through Visualization, Issued Aug 2025. Verified Performance: 83.00 / 84.00 (98.8% Grade). Credential ID: <code>158822783</code>.</li>
+                </ul>
+            </section>
+
+            <!-- 6. Technical Skills & Tooling -->
+            <section>
+                <h2 style="font-size: 1.35rem; color: var(--univ-blue); border-bottom: 1.5px solid var(--border-light); padding-bottom: 0.4rem; margin-bottom: 1.25rem;">
+                    <i class="fa-solid fa-code"></i> Technical Skills &amp; Tooling
+                </h2>
+                <div style="font-size: 0.95rem; line-height: 1.85; color: var(--text-muted);">
+                    <p><strong>Programming Languages:</strong> Python, MATLAB, C/C++, Bash, SQL.</p>
+                    <p><strong>Deep Learning &amp; Perception:</strong> PyTorch, Hugging Face Transformers, TensorFlow, Scikit-learn, OpenCV, Torchvision.</p>
+                    <p><strong>Physics, Robotics &amp; Simulation:</strong> OpenSim (Musculoskeletal Modeling), ROS (Robot Operating System), Gazebo.</p>
+                    <p><strong>Scientific Workflow &amp; Languages:</strong> Git, Linux/Unix, LaTeX, Weights &amp; Biases, VS Code | Bengali (Native), English (Fluent).</p>
+                </div>
+            </section>
+
+        </div>
+
+    </main>
+
+    <!-- University Institutional Footer -->
+    <footer class="univ-footer">
+        <div class="univ-footer-container">
+            <div class="footer-col">
+                <h4>Jakaria Habib — Academic Portfolio</h4>
+                <p>
+                    Department of Information &amp; Communication Engineering (ICE)<br>
+                    Pabna University of Science &amp; Technology (PUST)<br>
+                    Pabna-6300, Bangladesh.
+                </p>
+                <p>
+                    <strong style="color: #ffffff;">Institutional Email:</strong><br>
+                    <a href="mailto:jakaria.210618@s.pust.ac.bd" class="footer-contact-link"><i class="fa-solid fa-envelope"></i> jakaria.210618@s.pust.ac.bd</a>
+                </p>
+                <p>
+                    <strong style="color: #ffffff;">Primary / Research Email:</strong><br>
+                    <a href="mailto:jakariahabibjim2@gmail.com" class="footer-contact-link"><i class="fa-regular fa-envelope"></i> jakariahabibjim2@gmail.com</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Portfolio Navigation</h4>
+                <div class="footer-nav-list">
+                    <a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a>
+                    <a href="research.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Research &amp; Publications</a>
+                    <a href="projects.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Experimental Systems &amp; Robotics</a>
+                    <a href="education.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curriculum &amp; Coursework</a>
+                    <a href="certificates.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Verified Credentials</a>
+                    <a href="cv.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curriculum Vitae (PDF)</a>
+                    <a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Contact &amp; Correspondence</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Academic Profiles</h4>
+                <div class="footer-nav-list">
+                    <a href="https://scholar.google.com/citations?user=2GSC8CkAAAAJ" target="_blank" rel="noopener"><i class="fa-brands fa-google-scholar"></i> Google Scholar Profile</a>
+                    <a href="https://openreview.net/profile?id=~JAKARIA_HABIB1" target="_blank" rel="noopener"><i class="fa-solid fa-book-open"></i> OpenReview Profile</a>
+                    <a href="https://orcid.org/0009-0009-6954-0367" target="_blank" rel="noopener"><i class="fa-brands fa-orcid"></i> ORCID Identifier</a>
+                    <a href="https://www.researchgate.net/profile/Jakaria-Habib-2" target="_blank" rel="noopener"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
+                    <a href="https://www.linkedin.com/in/jakaria-habib1/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn Network</a>
+                </div>
+            </div>
+        </div>
+        <div class="univ-bottom-bar">
+            <span>&copy; 2026 Jakaria Habib · Pabna University of Science &amp; Technology</span>
+            <span>All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Client Script -->
+    <script src="script.js?v=2.2"></script>
+
+    <!-- Interactive Full-Screen CV Modal Viewer (No Download Required) -->
+    <div id="cv-modal-overlay" class="cv-modal-overlay" role="dialog" aria-modal="true" aria-label="Curriculum Vitae Viewer">
+        <div class="cv-modal-window">
+            <div class="cv-modal-topbar">
+                <div class="cv-modal-title">
+                    <i class="fa-solid fa-file-lines" style="color: var(--univ-gold);"></i>
+                    <span>Jakaria Habib — Curriculum Vitae</span>
+                </div>
+                <div class="cv-modal-actions">
+                    <a href="CV_Jakaria_Habib.pdf" target="_blank" class="cv-modal-btn" title="Open in New Tab">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab
+                    </a>
+                    <a href="CV_Jakaria_Habib.pdf" download class="cv-modal-btn" title="Download PDF File">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
+                    <button id="cv-modal-close-btn" class="cv-modal-close" aria-label="Close CV Viewer" title="Close (Esc)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="cv-modal-body">
+                <object data="CV_Jakaria_Habib.pdf#toolbar=1" type="application/pdf" style="width: 100%; height: 100%; border: none;">
+                    <iframe src="CV_Jakaria_Habib.pdf#toolbar=1" title="Jakaria Habib CV Document" style="width: 100%; height: 100%; border: none;">
+                        <p style="padding: 1.5rem; color: #ffffff; text-align: center;">
+                            Preview not supported on this device. <a href="CV_Jakaria_Habib.pdf" target="_blank" style="color: #60a5fa; text-decoration: underline;">Click here to open PDF directly</a>.
+                        </p>
+                    </iframe>
+                </object>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

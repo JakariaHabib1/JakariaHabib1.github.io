@@ -1,0 +1,2866 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NOIES Lab Manager — Visual Content Editor</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <style>
+    /* ==========================================================================
+       NOIES Visual Content Management System — Clean Dashboard UI
+       ========================================================================== */
+    :root {
+      --sidebar-bg: #0b1329;
+      --sidebar-text: #94a3b8;
+      --sidebar-hover: #1e293b;
+      --sidebar-active: #2563eb;
+      --main-bg: #f8fafc;
+      --card-bg: #ffffff;
+      --border-color: #e2e8f0;
+      --border-subtle: #edf2f7;
+      --text-dark: #0f172a;
+      --text-muted: #64748b;
+      --primary: #2563eb;
+      --primary-hover: #1d4ed8;
+      --success: #10b981;
+      --success-hover: #059669;
+      --danger: #ef4444;
+      --danger-hover: #dc2626;
+      --badge-blue-bg: #dbeafe;
+      --badge-blue-txt: #1e40af;
+      --badge-green-bg: #dcfce7;
+      --badge-green-txt: #166534;
+      --badge-purple-bg: #f3e8ff;
+      --badge-purple-txt: #6b21a8;
+      --badge-amber-bg: #fef3c7;
+      --badge-amber-txt: #92400e;
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background-color: var(--main-bg);
+      color: var(--text-dark);
+      line-height: 1.5;
+    }
+
+    body {
+      display: flex !important;
+      flex-direction: row !important;
+    }
+
+    /* Sidebar Navigation */
+    .admin-sidebar {
+      width: 280px;
+      min-width: 280px;
+      max-width: 280px;
+      background: var(--sidebar-bg);
+      color: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      height: 100vh;
+      overflow-y: auto;
+      box-shadow: 4px 0 20px rgba(0, 0, 0, 0.15);
+      z-index: 100;
+      user-select: none;
+    }
+
+    .admin-brand {
+      padding: 1.5rem 1.25rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .admin-brand-icon {
+      width: 42px;
+      height: 42px;
+      background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.3rem;
+      color: white;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+    }
+
+    .admin-brand-text h2 {
+      margin: 0;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .admin-brand-text span {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .admin-menu {
+      list-style: none;
+      padding: 1.25rem 0.85rem;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .admin-menu-item {
+      margin-bottom: 0.4rem;
+    }
+
+    .admin-menu-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.8rem 1rem;
+      color: var(--sidebar-text);
+      text-decoration: none;
+      border-radius: 8px;
+      font-size: 0.925rem;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .admin-menu-link .left-content {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+    }
+
+    .admin-menu-link i {
+      width: 20px;
+      text-align: center;
+      font-size: 1.05rem;
+    }
+
+    .admin-menu-link:hover {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+    }
+
+    .admin-menu-link.active {
+      background: var(--sidebar-active);
+      color: #ffffff;
+      font-weight: 600;
+      box-shadow: 0 2px 10px rgba(37, 99, 235, 0.4);
+    }
+
+    .menu-count-badge {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(255, 255, 255, 0.12);
+      color: #e2e8f0;
+      padding: 0.15rem 0.55rem;
+      border-radius: 9999px;
+    }
+
+    .admin-menu-link.active .menu-count-badge {
+      background: rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+    }
+
+    .admin-bottom-actions {
+      padding: 1.25rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-download-master {
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      box-shadow: 0 4px 12px rgba(16, 185, 129, 0.35);
+      transition: all 0.2s;
+    }
+
+    .btn-download-master:hover {
+      background: linear-gradient(135deg, #059669, #047857);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(16, 185, 129, 0.45);
+    }
+
+    .btn-preview-link {
+      background: rgba(255, 255, 255, 0.07);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 0.65rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-preview-link:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+
+    /* Main Content Area */
+    .admin-main {
+      flex: 1 1 0;
+      width: calc(100vw - 280px);
+      height: 100vh;
+      overflow-y: auto;
+      padding: 2.25rem 3.5rem;
+      background-color: var(--main-bg);
+      box-sizing: border-box;
+    }
+
+    /* Top Action Bar */
+    .view-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+      gap: 1.5rem;
+    }
+
+    .view-title h1 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.025em;
+      margin-bottom: 0.3rem;
+    }
+
+    .view-title p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .view-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.85rem;
+      flex-shrink: 0;
+    }
+
+    .btn-add-primary {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.35rem;
+      border-radius: 8px;
+      font-size: 0.925rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
+      transition: all 0.2s;
+    }
+
+    .btn-add-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 16px rgba(37, 99, 235, 0.35);
+    }
+
+    .btn-export-quick {
+      background: #10b981;
+      color: white;
+      border: none;
+      padding: 0.75rem 1.2rem;
+      border-radius: 8px;
+      font-size: 0.925rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+
+    .btn-export-quick:hover {
+      background: #059669;
+    }
+
+    /* Filter & Search Bar */
+    .search-filter-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      background: white;
+      padding: 0.85rem 1.25rem;
+      border-radius: 10px;
+      border: 1px solid var(--border-color);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+    }
+
+    .search-box {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-grow: 1;
+      max-width: 480px;
+    }
+
+    .search-box i {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .search-input {
+      width: 100%;
+      border: none;
+      font-family: inherit;
+      font-size: 0.925rem;
+      color: var(--text-dark);
+      outline: none;
+    }
+
+    .search-input::placeholder {
+      color: #94a3b8;
+    }
+
+    .filter-pills {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-pill {
+      background: #f1f5f9;
+      color: #475569;
+      border: 1px solid #e2e8f0;
+      padding: 0.35rem 0.85rem;
+      border-radius: 9999px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .filter-pill:hover {
+      background: #e2e8f0;
+      color: #1e293b;
+    }
+
+    .filter-pill.active {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+
+    /* Guidance Banner */
+    .guide-banner {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-left: 4px solid #2563eb;
+      padding: 0.95rem 1.25rem;
+      border-radius: 8px;
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .guide-banner-text {
+      font-size: 0.885rem;
+      color: #1e40af;
+      line-height: 1.5;
+    }
+
+    .guide-banner-text strong {
+      color: #1e3a8a;
+    }
+
+    /* List Item Cards (Modern Clean Table / List) */
+    .data-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.95rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .list-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1.5rem;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.15s;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    }
+
+    .list-card:hover {
+      border-color: #cbd5e1;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+      transform: translateY(-1px);
+    }
+
+    .list-card-main {
+      flex-grow: 1;
+      min-width: 0;
+    }
+
+    .list-card-title-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .list-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      text-decoration: none;
+      line-height: 1.35;
+    }
+
+    .list-card-badges {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      font-size: 0.725rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-blue { background: var(--badge-blue-bg); color: var(--badge-blue-txt); }
+    .badge-green { background: var(--badge-green-bg); color: var(--badge-green-txt); }
+    .badge-purple { background: var(--badge-purple-bg); color: var(--badge-purple-txt); }
+    .badge-amber { background: var(--badge-amber-bg); color: var(--badge-amber-txt); }
+    .badge-gray { background: #f1f5f9; color: #475569; }
+
+    .list-card-meta {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 0.35rem;
+    }
+
+    .list-card-tags {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .tag-item {
+      font-size: 0.75rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      color: #64748b;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+    }
+
+    .list-card-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      flex-shrink: 0;
+    }
+
+    .btn-action-edit {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      color: #1d4ed8;
+      padding: 0.5rem 0.95rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s;
+    }
+
+    .btn-action-edit:hover {
+      background: #dbeafe;
+      border-color: #93c5fd;
+      color: #1e40af;
+    }
+
+    .btn-action-delete {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      padding: 0.5rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s;
+    }
+
+    .btn-action-delete:hover {
+      background: #fee2e2;
+      border-color: #fca5a5;
+    }
+
+    /* Person Card Specials */
+    .person-row {
+      display: flex;
+      align-items: center;
+      gap: 1.15rem;
+    }
+
+    .person-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #3b82f6, #1e40af);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(37,99,235,0.25);
+    }
+
+    /* Tab switching display */
+    .tab-view {
+      display: none;
+    }
+
+    .tab-view.active {
+      display: block;
+      animation: fadeIn 0.18s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       MODAL DIALOG (Dedicated Clean Add/Edit Window)
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(15, 23, 42, 0.65);
+      backdrop-filter: blur(4px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1.5rem;
+    }
+
+    .modal-overlay.open {
+      display: flex;
+      animation: modalFadeIn 0.2s ease-out;
+    }
+
+    @keyframes modalFadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .modal-container {
+      background: white;
+      border-radius: 14px;
+      width: 100%;
+      max-width: 800px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+      animation: modalScaleUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    @keyframes modalScaleUp {
+      from { transform: scale(0.96); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 1.25rem 1.75rem;
+      border-bottom: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #ffffff;
+    }
+
+    .modal-header h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+    }
+
+    .btn-modal-close {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 0.4rem;
+      border-radius: 6px;
+      transition: all 0.15s;
+    }
+
+    .btn-modal-close:hover {
+      background: #f1f5f9;
+      color: var(--text-dark);
+    }
+
+    .modal-body {
+      padding: 1.75rem;
+      overflow-y: auto;
+      flex-grow: 1;
+      max-height: calc(90vh - 140px);
+    }
+
+    .modal-footer {
+      padding: 1.1rem 1.75rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.85rem;
+      background: #f8fafc;
+    }
+
+    .btn-modal-cancel {
+      background: white;
+      border: 1px solid var(--border-color);
+      color: var(--text-dark);
+      padding: 0.65rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-modal-cancel:hover {
+      background: #f1f5f9;
+    }
+
+    .btn-modal-submit {
+      background: var(--primary);
+      border: none;
+      color: white;
+      padding: 0.65rem 1.5rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+      transition: all 0.15s;
+    }
+
+    .btn-modal-submit:hover {
+      background: var(--primary-hover);
+    }
+
+    /* Modal Form Elements */
+    .modal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.25rem;
+    }
+
+    .grid-col-full {
+      grid-column: span 2;
+    }
+
+    .form-field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-field label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: #475569;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.4rem;
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      width: 100%;
+      padding: 0.65rem 0.9rem;
+      border: 1px solid #cbd5e1;
+      border-radius: 7px;
+      font-family: inherit;
+      font-size: 0.925rem;
+      color: var(--text-dark);
+      background: #ffffff;
+      box-sizing: border-box;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    /* ==========================================================================
+       MARKDOWN EDITOR WIDGET (TOOLBAR & PREVIEW)
+       ========================================================================== */
+    .md-editor-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    .md-editor-box:focus-within {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+    }
+
+    .md-toolbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #f8fafc;
+      padding: 0.4rem 0.65rem;
+      border-bottom: 1px solid #e2e8f0;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .md-tools {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+    }
+
+    .md-btn {
+      background: white;
+      border: 1px solid #e2e8f0;
+      color: #475569;
+      font-size: 0.8rem;
+      padding: 0.25rem 0.55rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.12s;
+      min-width: 26px;
+      text-align: center;
+    }
+
+    .md-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .md-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      background: #e2e8f0;
+      padding: 2px;
+      border-radius: 6px;
+    }
+
+    .md-tab {
+      background: transparent;
+      border: none;
+      font-size: 0.775rem;
+      font-weight: 600;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.12s;
+    }
+
+    .md-tab.active {
+      background: white;
+      color: #2563eb;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    }
+
+    .md-input {
+      width: 100%;
+      min-height: 110px;
+      padding: 0.75rem 0.9rem;
+      border: none;
+      font-family: inherit;
+      font-size: 0.925rem;
+      line-height: 1.5;
+      color: var(--text-dark);
+      background: white;
+      resize: vertical;
+      box-sizing: border-box;
+      outline: none;
+    }
+
+    .md-preview {
+      min-height: 110px;
+      padding: 0.75rem 0.9rem;
+      background: #f8fafc;
+      font-size: 0.925rem;
+      line-height: 1.6;
+      color: #1e293b;
+      box-sizing: border-box;
+      overflow-y: auto;
+    }
+
+    .md-preview strong { color: #0f172a; font-weight: 700; }
+    .md-preview em { font-style: italic; }
+    .md-preview a { color: #2563eb; text-decoration: underline; }
+    .md-preview code { background: #e2e8f0; padding: 2px 5px; border-radius: 4px; font-family: 'Fira Code', monospace; font-size: 0.85em; }
+    .md-preview ul { margin: 0.5rem 0 0.5rem 1.5rem; }
+    .md-preview blockquote { border-left: 3px solid #3b82f6; padding-left: 0.75rem; color: #475569; margin: 0.5rem 0; }
+
+    /* ==========================================================================
+       IMAGE UPLOADER & MANAGEMENT WIDGET (UPLOAD, PREVIEW, DELETE, URL)
+       ========================================================================== */
+    .image-uploader-box {
+      border: 1px solid #cbd5e1;
+      border-radius: 8px;
+      padding: 0.85rem;
+      background: #f8fafc;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .img-upload-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-file-upload {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      color: #334155;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.15s;
+    }
+
+    .btn-file-upload:hover {
+      background: #f1f5f9;
+      border-color: #94a3b8;
+      color: #0f172a;
+    }
+
+    .btn-img-delete {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      padding: 0.45rem 0.85rem;
+      border-radius: 6px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.15s;
+    }
+
+    .btn-img-delete:hover {
+      background: #fee2e2;
+      border-color: #f87171;
+    }
+
+    .img-url-input {
+      flex-grow: 1;
+      min-width: 180px;
+      padding: 0.45rem 0.75rem !important;
+      font-size: 0.85rem !important;
+      border: 1px solid #cbd5e1 !important;
+      border-radius: 6px !important;
+      background: #ffffff !important;
+    }
+
+    .img-preview-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.6rem 0.85rem;
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+    }
+
+    .img-preview-thumb {
+      width: 58px;
+      height: 58px;
+      border-radius: 6px;
+      object-fit: cover;
+      border: 1px solid #cbd5e1;
+      background: #f1f5f9;
+      flex-shrink: 0;
+    }
+
+    .img-preview-info {
+      font-size: 0.8rem;
+      color: #64748b;
+      line-height: 1.4;
+      flex-grow: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .img-preview-placeholder {
+      width: 58px;
+      height: 58px;
+      border-radius: 6px;
+      border: 1px dashed #cbd5e1;
+      background: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #94a3b8;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    /* ==========================================================================
+       MANUAL CODE & MARKDOWN EDITOR (FULL TAB)
+       ========================================================================== */
+    .manual-editor-card {
+      background: white;
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .manual-editor-nav {
+      background: #0f172a;
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1e293b;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    .manual-editor-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+    }
+
+    .manual-subtab {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      padding: 0.35rem 0.8rem;
+      border-radius: 6px;
+      font-size: 0.825rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .manual-subtab:hover {
+      background: rgba(255, 255, 255, 0.16);
+      color: white;
+    }
+
+    .manual-subtab.active {
+      background: #2563eb;
+      color: white;
+      border-color: #2563eb;
+    }
+
+    .syntax-badge {
+      font-size: 0.785rem;
+      font-weight: 700;
+      padding: 0.25rem 0.65rem;
+      border-radius: 9999px;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .syntax-badge.valid {
+      background: #064e3b;
+      color: #6ee7b7;
+      border: 1px solid #059669;
+    }
+
+    .syntax-badge.invalid {
+      background: #7f1d1d;
+      color: #fca5a5;
+      border: 1px solid #dc2626;
+    }
+
+    .code-editor-wrap {
+      background: #090d16;
+      padding: 1rem;
+    }
+
+    .code-textarea {
+      width: 100%;
+      height: 480px;
+      background: transparent;
+      border: none;
+      color: #e2e8f0;
+      font-family: 'Fira Code', 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.885rem;
+      line-height: 1.6;
+      outline: none;
+      resize: vertical;
+      box-sizing: border-box;
+      white-space: pre;
+    }
+
+    .manual-editor-footer {
+      padding: 1rem 1.5rem;
+      background: #f8fafc;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-note {
+      font-size: 0.825rem;
+      color: var(--text-muted);
+    }
+
+    .footer-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    /* Floating Toast */
+    .save-toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #0f172a;
+      color: white;
+      padding: 1.1rem 1.65rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 2000;
+      transform: translateY(180%);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .save-toast.show {
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Left Sidebar Navigation -->
+  <aside class="admin-sidebar">
+    <div class="admin-brand">
+      <div class="admin-brand-icon">N</div>
+      <div class="admin-brand-text">
+        <h2>NOIES Manager</h2>
+        <span>Visual Content CMS</span>
+      </div>
+    </div>
+
+    <ul class="admin-menu">
+      <li class="admin-menu-item">
+        <a class="admin-menu-link active" data-tab="publications" onclick="switchTab('publications')">
+          <div class="left-content">
+            <i class="fas fa-book-open"></i>
+            <span>Publications</span>
+          </div>
+          <span class="menu-count-badge" id="count-publications">18</span>
+        </a>
+      </li>
+      <li class="admin-menu-item">
+        <a class="admin-menu-link" data-tab="people" onclick="switchTab('people')">
+          <div class="left-content">
+            <i class="fas fa-users"></i>
+            <span>Members & Team</span>
+          </div>
+          <span class="menu-count-badge" id="count-people">6</span>
+        </a>
+      </li>
+      <li class="admin-menu-item">
+        <a class="admin-menu-link" data-tab="projects" onclick="switchTab('projects')">
+          <div class="left-content">
+            <i class="fas fa-diagram-project"></i>
+            <span>Research Projects</span>
+          </div>
+          <span class="menu-count-badge" id="count-projects">4</span>
+        </a>
+      </li>
+      <li class="admin-menu-item">
+        <a class="admin-menu-link" data-tab="news" onclick="switchTab('news')">
+          <div class="left-content">
+            <i class="fas fa-newspaper"></i>
+            <span>News & Events</span>
+          </div>
+          <span class="menu-count-badge" id="count-news">4</span>
+        </a>
+      </li>
+      <li class="admin-menu-item">
+        <a class="admin-menu-link" data-tab="departments" onclick="switchTab('departments')">
+          <div class="left-content">
+            <i class="fas fa-layer-group"></i>
+            <span>Departments</span>
+          </div>
+          <span class="menu-count-badge" id="count-departments">5</span>
+        </a>
+      </li>
+      <li class="admin-menu-item">
+        <a class="admin-menu-link" data-tab="config" onclick="switchTab('config')">
+          <div class="left-content">
+            <i class="fas fa-sliders"></i>
+            <span>Lab Settings</span>
+          </div>
+        </a>
+      </li>
+      <li class="admin-menu-item" style="margin-top: 0.5rem; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 0.5rem;">
+        <a class="admin-menu-link" data-tab="manual-sync" onclick="switchTab('manual-sync')">
+          <div class="left-content">
+            <i class="fas fa-code" style="color: #4ade80;"></i>
+            <span>Manual Editor & Sync</span>
+          </div>
+          <span class="menu-count-badge" style="background: #10b981; color: white;">LIVE</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="admin-bottom-actions">
+      <button class="btn-download-master" onclick="exportDataFile()">
+        <i class="fas fa-download"></i> Save & Download data.js
+      </button>
+      <a href="index.html" target="_blank" class="btn-preview-link">
+        <i class="fas fa-arrow-up-right-from-square"></i> Preview Website
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Dashboard -->
+  <main class="admin-main">
+    
+    <!-- ==========================================
+         TAB 1: PUBLICATIONS
+         ========================================== -->
+    <section id="tab-publications" class="tab-view active">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>Research Publications</h1>
+          <p>Add, edit, or remove peer-reviewed conference proceedings, journal papers, preprints, and workshop contributions.</p>
+        </div>
+        <div class="view-header-actions">
+          <button class="btn-add-primary" onclick="openAddModal('publication')">
+            <i class="fas fa-plus"></i> Add New Paper
+          </button>
+          <button class="btn-export-quick" onclick="exportDataFile()">
+            <i class="fas fa-download"></i> Save data.js
+          </button>
+        </div>
+      </div>
+
+      <div class="guide-banner">
+        <div class="guide-banner-text">
+          <i class="fas fa-circle-info" style="margin-right: 0.35rem;"></i>
+          <strong>Markdown Support:</strong> All paper abstracts support manual Markdown (bold, italic, links, lists). Click <strong>"✏️ Edit Paper"</strong> to edit visually, or use the <strong>"Manual Editor & Sync"</strong> tab on the left for direct code editing!
+        </div>
+      </div>
+
+      <div class="search-filter-bar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" class="search-input" id="search-publications" placeholder="Search papers by title, author, or venue..." oninput="filterPublications()">
+        </div>
+        <div class="filter-pills">
+          <button class="filter-pill active" onclick="setPubFilter('all', this)">All</button>
+          <button class="filter-pill" onclick="setPubFilter('Conference', this)">Conferences</button>
+          <button class="filter-pill" onclick="setPubFilter('Journal', this)">Journals</button>
+          <button class="filter-pill" onclick="setPubFilter('Workshop', this)">Workshops</button>
+        </div>
+      </div>
+
+      <div id="list-publications" class="data-list"></div>
+    </section>
+
+    <!-- ==========================================
+         TAB 2: MEMBERS & PEOPLE
+         ========================================== -->
+    <section id="tab-people" class="tab-view">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>Lab Members & Leadership</h1>
+          <p>Manage faculty heads, co-founders, research scientists, PhD researchers, and assistants across all departments.</p>
+        </div>
+        <div class="view-header-actions">
+          <button class="btn-add-primary" onclick="openAddModal('person')">
+            <i class="fas fa-user-plus"></i> Add New Member
+          </button>
+          <button class="btn-export-quick" onclick="exportDataFile()">
+            <i class="fas fa-download"></i> Save data.js
+          </button>
+        </div>
+      </div>
+
+      <div class="guide-banner">
+        <div class="guide-banner-text">
+          <i class="fas fa-circle-info" style="margin-right: 0.35rem;"></i>
+          Click <strong>"✏️ Edit Member"</strong> to update biographies with rich Markdown, link Google Scholar, or assign leadership roles.
+        </div>
+      </div>
+
+      <div class="search-filter-bar">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input type="text" class="search-input" id="search-people" placeholder="Search members by name, position, or interest..." oninput="filterPeople()">
+        </div>
+        <div class="filter-pills">
+          <button class="filter-pill active" onclick="setPeopleFilter('all', this)">All</button>
+          <button class="filter-pill" onclick="setPeopleFilter('head', this)">Heads & Leadership</button>
+          <button class="filter-pill" onclick="setPeopleFilter('scientist', this)">Scientists</button>
+          <button class="filter-pill" onclick="setPeopleFilter('assistant', this)">RAs</button>
+        </div>
+      </div>
+
+      <div id="list-people" class="data-list"></div>
+    </section>
+
+    <!-- ==========================================
+         TAB 3: RESEARCH PROJECTS
+         ========================================== -->
+    <section id="tab-projects" class="tab-view">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>Research Projects</h1>
+          <p>Manage active and completed lab thrusts across continual RL, constitutional VLA, HIL digital twins, and biomechanics.</p>
+        </div>
+        <div class="view-header-actions">
+          <button class="btn-add-primary" onclick="openAddModal('project')">
+            <i class="fas fa-plus"></i> Add New Project
+          </button>
+          <button class="btn-export-quick" onclick="exportDataFile()">
+            <i class="fas fa-download"></i> Save data.js
+          </button>
+        </div>
+      </div>
+
+      <div class="guide-banner">
+        <div class="guide-banner-text">
+          <i class="fas fa-circle-info" style="margin-right: 0.35rem;"></i>
+          Click <strong>"✏️ Edit Project"</strong> to toggle between <strong>Active</strong> and <strong>Completed</strong>, update technical summaries, or add research tags.
+        </div>
+      </div>
+
+      <div id="list-projects" class="data-list"></div>
+    </section>
+
+    <!-- ==========================================
+         TAB 4: NEWS & EVENTS
+         ========================================== -->
+    <section id="tab-news" class="tab-view">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>News & Announcements</h1>
+          <p>Post updates about paper acceptances, conferences, awards, grants, and community milestones.</p>
+        </div>
+        <div class="view-header-actions">
+          <button class="btn-add-primary" onclick="openAddModal('news')">
+            <i class="fas fa-plus"></i> Post Update
+          </button>
+          <button class="btn-export-quick" onclick="exportDataFile()">
+            <i class="fas fa-download"></i> Save data.js
+          </button>
+        </div>
+      </div>
+
+      <div id="list-news" class="data-list"></div>
+    </section>
+
+    <!-- ==========================================
+         TAB 5: DEPARTMENTS
+         ========================================== -->
+    <section id="tab-departments" class="tab-view">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>Departments & Research Thrusts</h1>
+          <p>Review and edit department names, thrust leadership, mission scopes, and topics.</p>
+        </div>
+      </div>
+
+      <div id="list-departments" class="data-list"></div>
+    </section>
+
+    <!-- ==========================================
+         TAB 6: LAB SETTINGS
+         ========================================== -->
+    <section id="tab-config" class="tab-view">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>Lab Identity & Global Settings</h1>
+          <p>Configure global laboratory title, contact information, email, and social links.</p>
+        </div>
+        <div class="view-header-actions">
+          <button class="btn-add-primary" onclick="saveSiteConfig()">
+            <i class="fas fa-check"></i> Save Settings
+          </button>
+        </div>
+      </div>
+
+      <div style="background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; max-width: 800px;">
+        <div class="modal-grid">
+          <div class="form-field">
+            <label>Lab Acronym</label>
+            <input type="text" id="cfg-labName" value="NOIES">
+          </div>
+          <div class="form-field">
+            <label>Full Research Name</label>
+            <input type="text" id="cfg-fullName" value="Noesis for Observing Intelligent and Embodied Systems">
+          </div>
+          <div class="form-field grid-col-full">
+            <label>Mission Tagline</label>
+            <textarea id="cfg-tagline"></textarea>
+          </div>
+          <div class="form-field">
+            <label>Primary Contact Email</label>
+            <input type="email" id="cfg-email">
+          </div>
+          <div class="form-field">
+            <label>Physical Address / Institution</label>
+            <input type="text" id="cfg-address">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         TAB 7: MANUAL CODE & MARKDOWN EDITOR & SYNC
+         ========================================== -->
+    <section id="tab-manual-sync" class="tab-view">
+      <div class="view-header">
+        <div class="view-title">
+          <h1>Manual Editor & Real-Time Sync</h1>
+          <p>Manually type, edit, or paste structured Markdown and data. Changes synchronize with the live website in real time.</p>
+        </div>
+        <div class="view-header-actions">
+          <button class="btn-add-primary" style="background: linear-gradient(135deg, #10b981, #059669);" onclick="applyManualSync()">
+            <i class="fas fa-bolt"></i> Apply & Sync to Website
+          </button>
+          <button class="btn-export-quick" onclick="exportDataFile()">
+            <i class="fas fa-download"></i> Save data.js
+          </button>
+        </div>
+      </div>
+
+      <div class="guide-banner" style="background: #f0fdf4; border-color: #86efac; border-left-color: #10b981;">
+        <div class="guide-banner-text" style="color: #166534;">
+          <i class="fas fa-circle-check" style="margin-right: 0.35rem;"></i>
+          <strong>Two-Way Synchronization:</strong> You can edit data visually in the other tabs OR type manually here. Any Markdown in <code>abstract</code>, <code>bio</code>, <code>description</code>, or <code>summary</code> will be rendered as formatted HTML on the website. Click <strong>"Apply & Sync to Website"</strong> to apply changes instantly!
+        </div>
+      </div>
+
+      <div class="manual-editor-card">
+        <div class="manual-editor-nav">
+          <div class="manual-editor-tabs">
+            <button class="manual-subtab active" onclick="switchManualSubtab('publications', this)">📚 Publications</button>
+            <button class="manual-subtab" onclick="switchManualSubtab('people', this)">👥 Members</button>
+            <button class="manual-subtab" onclick="switchManualSubtab('projects', this)">🔬 Projects</button>
+            <button class="manual-subtab" onclick="switchManualSubtab('news', this)">📰 News</button>
+            <button class="manual-subtab" onclick="switchManualSubtab('departments', this)">🏛️ Departments</button>
+            <button class="manual-subtab" onclick="switchManualSubtab('all', this)">📦 All Data Store</button>
+          </div>
+          <div id="manualSyntaxBadge" class="syntax-badge valid"><i class="fas fa-check"></i> Valid JSON / Markdown</div>
+        </div>
+
+        <div class="code-editor-wrap">
+          <textarea id="manualCodeArea" class="code-textarea" spellcheck="false" oninput="validateManualSyntax()"></textarea>
+        </div>
+
+        <div class="manual-editor-footer">
+          <div class="footer-note">
+            <i class="fas fa-keyboard"></i> Type raw Markdown (e.g. <code>**bold**</code>, <code>*italic*</code>, <code>[link](url)</code>, <code>- list</code>) in text fields.
+          </div>
+          <div class="footer-actions">
+            <button class="btn-action-edit" onclick="resetManualEditor()"><i class="fas fa-rotate-left"></i> Revert</button>
+            <button class="btn-add-primary" style="background: #10b981;" onclick="applyManualSync()"><i class="fas fa-bolt"></i> Apply & Sync to Website</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================
+       GLOBAL DYNAMIC EDIT / ADD MODAL
+       ========================================== -->
+  <div id="adminModal" class="modal-overlay">
+    <div class="modal-container">
+      <div class="modal-header">
+        <h3 id="modalTitle"><i class="fas fa-pen-to-square"></i> Edit Details</h3>
+        <button class="btn-modal-close" onclick="closeModal()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="modal-body" id="modalBody">
+        <!-- Injected dynamically based on item type -->
+      </div>
+      <div class="modal-footer">
+        <button class="btn-modal-cancel" onclick="closeModal()">Cancel</button>
+        <button class="btn-modal-submit" id="btnModalSave" onclick="saveModalChanges()">
+          <i class="fas fa-check"></i> Save Changes
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Toast Notification -->
+  <div id="saveToast" class="save-toast">
+    <i class="fas fa-check-circle" style="color: #4ade80; font-size: 1.4rem;"></i>
+    <span id="toastMsg">Changes saved!</span>
+  </div>
+
+  <!-- Master Data Store -->
+  <script src="js/data.js"></script>
+
+  <script>
+    /* ==========================================================================
+       CMS Core Controller
+       ========================================================================== */
+    let localData = {};
+
+    // Initialize data from LocalStorage cache or window.NOIES_DATA
+    try {
+      const cached = localStorage.getItem('NOIES_LIVE_DATA');
+      if (cached) {
+        localData = JSON.parse(cached);
+      } else if (window.NOIES_DATA) {
+        localData = JSON.parse(JSON.stringify(window.NOIES_DATA));
+      } else {
+        localData = { siteConfig: {}, people: [], publications: [], projects: [], news: [], departments: [] };
+      }
+    } catch (e) {
+      localData = JSON.parse(JSON.stringify(window.NOIES_DATA || {}));
+    }
+
+    // Modal state tracking
+    let currentModalType = null;
+    let currentEditIndex = -1; // -1 means adding new item
+
+    // Filter states
+    let pubFilterType = 'all';
+    let peopleFilterType = 'all';
+
+    // Manual editor active subtab
+    let currentManualSection = 'publications';
+
+    // Department reference list
+    const DEPARTMENTS_MAP = {
+      'ml': 'Machine Learning, Perception & Embodied AI (Jakaria Habib)',
+      'robotics': 'Physics-Based Robotics and Control (Md. Basim Al Zabir Shammo)',
+      'embodied-ai': 'Embodied AI and Intelligent Systems',
+      'biomechanics': 'Computational Biomechanics and Human Movement',
+      'simulation': 'Simulation, Digital Twins and Physical Intelligence'
+    };
+
+    /* ==========================================================================
+       MARKDOWN PARSER & FORMATTER
+       ========================================================================== */
+    function parseMarkdown(md) {
+      if (!md || typeof md !== 'string') return '';
+      let s = md.trim();
+      s = s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      s = s.replace(/\*\*\*([^*]+)\*\*\*/g, '<strong><em>$1</em></strong>');
+      s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+      s = s.replace(/__([^_]+)__/g, '<strong>$1</strong>');
+      s = s.replace(/_([^_]+)_/g, '<em>$1</em>');
+      s = s.replace(/~~([^~]+)~~/g, '<del>$1</del>');
+      s = s.replace(/`([^`]+)`/g, '<code>$1</code>');
+      s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^\s\)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+      s = s.replace(/^### (.*$)/gm, '<h4>$1</h4>');
+      s = s.replace(/^## (.*$)/gm, '<h3>$1</h3>');
+      s = s.replace(/^# (.*$)/gm, '<h2>$1</h2>');
+      s = s.replace(/^\>\s+(.*)$/gm, '<blockquote>$1</blockquote>');
+      s = s.replace(/^\s*[-*]\s+(.*)$/gm, '<li>$1</li>');
+      s = s.replace(/(<li>.*<\/li>)/gms, '<ul>$1</ul>');
+      s = s.replace(/<\/ul>\s*<ul>/g, '');
+      s = s.replace(/\n\n+/g, '</p><p>');
+      s = s.replace(/\n/g, '<br>');
+      return '<p>' + s + '</p>';
+    }
+
+    // Insert Markdown syntax at textarea cursor
+    function insertMd(syntax, targetId) {
+      const el = document.getElementById(targetId);
+      if (!el) return;
+      const start = el.selectionStart;
+      const end = el.selectionEnd;
+      const val = el.value;
+      const selected = val.substring(start, end) || 'text';
+      let replacement = '';
+
+      switch (syntax) {
+        case 'bold': replacement = `**${selected}**`; break;
+        case 'italic': replacement = `*${selected}*`; break;
+        case 'heading': replacement = `### ${selected}`; break;
+        case 'link': replacement = `[${selected}](https://example.com)`; break;
+        case 'list': replacement = `\n- ${selected}`; break;
+        case 'code': replacement = `\`${selected}\``; break;
+        case 'quote': replacement = `\n> ${selected}`; break;
+        default: replacement = selected;
+      }
+
+      el.value = val.substring(0, start) + replacement + val.substring(end);
+      el.focus();
+      el.setSelectionRange(start + replacement.length, start + replacement.length);
+      updateMdPreview(targetId);
+    }
+
+    // Toggle between Write (Markdown) and Live Preview
+    function setMdView(mode, targetId, tabBtn) {
+      const inputEl = document.getElementById(targetId);
+      const previewEl = document.getElementById(targetId + '-preview');
+      if (!inputEl || !previewEl) return;
+
+      const parent = tabBtn.closest('.md-tabs');
+      if (parent) {
+        parent.querySelectorAll('.md-tab').forEach(t => t.classList.remove('active'));
+        tabBtn.classList.add('active');
+      }
+
+      if (mode === 'preview') {
+        inputEl.style.display = 'none';
+        previewEl.style.display = 'block';
+        previewEl.innerHTML = parseMarkdown(inputEl.value);
+      } else {
+        inputEl.style.display = 'block';
+        previewEl.style.display = 'none';
+        inputEl.focus();
+      }
+    }
+
+    function updateMdPreview(targetId) {
+      const previewEl = document.getElementById(targetId + '-preview');
+      const inputEl = document.getElementById(targetId);
+      if (previewEl && inputEl && previewEl.style.display === 'block') {
+        previewEl.innerHTML = parseMarkdown(inputEl.value);
+      }
+    }
+
+    // Helper to generate Markdown editor HTML box
+    function renderMarkdownEditorBox(id, label, initialValue, placeholder) {
+      return `
+        <div class="form-field grid-col-full">
+          <label>${label}</label>
+          <div class="md-editor-box">
+            <div class="md-toolbar">
+              <div class="md-tools">
+                <button type="button" class="md-btn" onclick="insertMd('bold', '${id}')" title="Bold (Ctrl+B)"><b>B</b></button>
+                <button type="button" class="md-btn" onclick="insertMd('italic', '${id}')" title="Italic (Ctrl+I)"><i>I</i></button>
+                <button type="button" class="md-btn" onclick="insertMd('heading', '${id}')" title="Heading"><b>H</b></button>
+                <button type="button" class="md-btn" onclick="insertMd('link', '${id}')" title="Insert Link"><i class="fas fa-link"></i></button>
+                <button type="button" class="md-btn" onclick="insertMd('list', '${id}')" title="Bullet List"><i class="fas fa-list-ul"></i></button>
+                <button type="button" class="md-btn" onclick="insertMd('code', '${id}')" title="Inline Code"><i class="fas fa-code"></i></button>
+                <button type="button" class="md-btn" onclick="insertMd('quote', '${id}')" title="Quote"><i class="fas fa-quote-left"></i></button>
+              </div>
+              <div class="md-tabs">
+                <button type="button" class="md-tab active" onclick="setMdView('write', '${id}', this)"><i class="fas fa-pen"></i> Write</button>
+                <button type="button" class="md-tab" onclick="setMdView('preview', '${id}', this)"><i class="fas fa-eye"></i> Preview</button>
+              </div>
+            </div>
+            <textarea id="${id}" class="md-input" placeholder="${placeholder || 'Type Markdown or plain text here...'}" oninput="updateMdPreview('${id}')">${escapeHtml(initialValue || '')}</textarea>
+            <div id="${id}-preview" class="md-preview" style="display:none;"></div>
+          </div>
+        </div>
+      `;
+    }
+
+    /* ==========================================================================
+       IMAGE UPLOADER CONTROLLER (FILE UPLOAD, CANVAS COMPRESSION, DELETE, URL)
+       ========================================================================== */
+    function renderImageUploader(fieldId, label, currentVal) {
+      const hasImg = !!(currentVal && currentVal.trim());
+      const displayVal = currentVal || '';
+      return `
+        <div class="form-field grid-col-full">
+          <label>${label}</label>
+          <div class="image-uploader-box">
+            <div class="img-upload-controls">
+              <label class="btn-file-upload">
+                <i class="fas fa-arrow-up-from-bracket"></i> Upload Image File
+                <input type="file" accept="image/*" style="display:none;" onchange="processImageFile(event, '${fieldId}')">
+              </label>
+              <button type="button" class="btn-img-delete" onclick="deleteImage('${fieldId}')" title="Delete Image">
+                <i class="fas fa-trash-can"></i> Delete Image
+              </button>
+              <input type="text" id="${fieldId}" class="img-url-input" placeholder="Or paste image URL / path (e.g. assets/hero.jpg)" value="${escapeHtml(displayVal)}" oninput="handleImageUrlInput('${fieldId}')">
+            </div>
+            <div class="img-preview-container" id="${fieldId}-preview-box">
+              ${hasImg 
+                ? `<img id="${fieldId}-preview-img" src="${escapeHtml(displayVal)}" class="img-preview-thumb" alt="Preview" onerror="this.src='assets/favicon.svg'">`
+                : `<div id="${fieldId}-placeholder" class="img-preview-placeholder"><i class="fas fa-image"></i></div>`
+              }
+              <div class="img-preview-info" id="${fieldId}-preview-info">
+                ${hasImg ? `<strong>Active Image:</strong> ${escapeHtml(displayVal.substring(0, 50))}${displayVal.length > 50 ? '...' : ''}` : 'No image selected (Default placeholder will be displayed)'}
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function processImageFile(event, fieldId) {
+      const file = event.target.files && event.target.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          // Downscale to max 800px width/height for fast load & compact localStorage footprint
+          const maxDim = 800;
+          let w = img.width;
+          let h = img.height;
+          if (w > maxDim || h > maxDim) {
+            if (w > h) {
+              h = Math.round((h * maxDim) / w);
+              w = maxDim;
+            } else {
+              w = Math.round((w * maxDim) / h);
+              h = maxDim;
+            }
+          }
+
+          const canvas = document.createElement('canvas');
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+
+          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.85);
+
+          // Update input field and live preview
+          const inputEl = document.getElementById(fieldId);
+          if (inputEl) inputEl.value = compressedDataUrl;
+
+          updateImagePreview(fieldId, compressedDataUrl, `${file.name} (~${Math.round(compressedDataUrl.length/1024)} KB)`);
+          showToast(`Image "${file.name}" uploaded and compressed!`);
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function deleteImage(fieldId) {
+      const inputEl = document.getElementById(fieldId);
+      if (inputEl) inputEl.value = '';
+
+      const previewBox = document.getElementById(fieldId + '-preview-box');
+      if (previewBox) {
+        previewBox.innerHTML = `
+          <div id="${fieldId}-placeholder" class="img-preview-placeholder"><i class="fas fa-image"></i></div>
+          <div class="img-preview-info" id="${fieldId}-preview-info">
+            Image removed. Default fallback will be displayed.
+          </div>
+        `;
+      }
+      showToast('Image deleted.');
+    }
+
+    function handleImageUrlInput(fieldId) {
+      const inputEl = document.getElementById(fieldId);
+      if (!inputEl) return;
+      const val = inputEl.value.trim();
+      if (val) {
+        updateImagePreview(fieldId, val, val);
+      } else {
+        deleteImage(fieldId);
+      }
+    }
+
+    function updateImagePreview(fieldId, src, infoText) {
+      const previewBox = document.getElementById(fieldId + '-preview-box');
+      if (!previewBox) return;
+      previewBox.innerHTML = `
+        <img id="${fieldId}-preview-img" src="${escapeHtml(src)}" class="img-preview-thumb" alt="Preview" onerror="this.src='assets/favicon.svg'">
+        <div class="img-preview-info" id="${fieldId}-preview-info">
+          <strong>Active Image:</strong> ${escapeHtml(infoText.substring(0, 60))}
+        </div>
+      `;
+    }
+
+    function syncToLiveWebsite() {
+      try {
+        localStorage.setItem('NOIES_LIVE_DATA', JSON.stringify(localData));
+        if (window.NOIES_DATA) {
+          Object.assign(window.NOIES_DATA, localData);
+        }
+      } catch (err) {
+        console.warn('Sync notice:', err);
+      }
+    }
+
+    // Tab switching
+    function switchTab(tabId) {
+      document.querySelectorAll('.admin-menu-link').forEach(link => {
+        if (link.getAttribute('data-tab') === tabId) {
+          link.classList.add('active');
+        } else {
+          link.classList.remove('active');
+        }
+      });
+
+      document.querySelectorAll('.tab-view').forEach(view => {
+        view.classList.remove('active');
+      });
+
+      const target = document.getElementById('tab-' + tabId);
+      if (target) {
+        target.classList.add('active');
+        const mainPane = document.querySelector('.admin-main');
+        if (mainPane) mainPane.scrollTop = 0;
+      }
+
+      if (tabId === 'manual-sync') {
+        loadManualEditor(currentManualSection);
+      }
+    }
+
+    function updateBadgeCounts() {
+      const pPub = document.getElementById('count-publications');
+      if (pPub) pPub.textContent = (localData.publications || []).length;
+
+      const pPeo = document.getElementById('count-people');
+      if (pPeo) pPeo.textContent = (localData.people || []).length;
+
+      const pProj = document.getElementById('count-projects');
+      if (pProj) pProj.textContent = (localData.projects || []).length;
+
+      const pNews = document.getElementById('count-news');
+      if (pNews) pNews.textContent = (localData.news || []).length;
+
+      const pDept = document.getElementById('count-departments');
+      if (pDept) pDept.textContent = (localData.departments || []).length;
+    }
+
+    /* ==========================================================================
+       MANUAL CODE & MARKDOWN SYNC TAB CONTROLLER
+       ========================================================================== */
+    function switchManualSubtab(section, btn) {
+      currentManualSection = section;
+      document.querySelectorAll('.manual-subtab').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      loadManualEditor(section);
+    }
+
+    function loadManualEditor(section) {
+      const area = document.getElementById('manualCodeArea');
+      if (!area) return;
+
+      let dataToDisplay = localData;
+      if (section === 'publications') dataToDisplay = localData.publications || [];
+      else if (section === 'people') dataToDisplay = localData.people || [];
+      else if (section === 'projects') dataToDisplay = localData.projects || [];
+      else if (section === 'news') dataToDisplay = localData.news || [];
+      else if (section === 'departments') dataToDisplay = localData.departments || [];
+      else if (section === 'all') dataToDisplay = localData;
+
+      area.value = JSON.stringify(dataToDisplay, null, 2);
+      validateManualSyntax();
+    }
+
+    function validateManualSyntax() {
+      const area = document.getElementById('manualCodeArea');
+      const badge = document.getElementById('manualSyntaxBadge');
+      if (!area || !badge) return;
+
+      try {
+        JSON.parse(area.value);
+        badge.className = 'syntax-badge valid';
+        badge.innerHTML = '<i class="fas fa-check"></i> Valid JSON / Markdown';
+      } catch (e) {
+        badge.className = 'syntax-badge invalid';
+        badge.innerHTML = '<i class="fas fa-triangle-exclamation"></i> Syntax Error in JSON';
+      }
+    }
+
+    function resetManualEditor() {
+      loadManualEditor(currentManualSection);
+      showToast('Reverted manual editor to current saved data.');
+    }
+
+    function applyManualSync() {
+      const area = document.getElementById('manualCodeArea');
+      if (!area) return;
+
+      try {
+        const parsed = JSON.parse(area.value);
+        if (currentManualSection === 'publications') localData.publications = parsed;
+        else if (currentManualSection === 'people') localData.people = parsed;
+        else if (currentManualSection === 'projects') localData.projects = parsed;
+        else if (currentManualSection === 'news') localData.news = parsed;
+        else if (currentManualSection === 'departments') localData.departments = parsed;
+        else if (currentManualSection === 'all') localData = parsed;
+
+        syncToLiveWebsite();
+        renderPublications();
+        renderPeople();
+        renderProjects();
+        renderNews();
+        renderDepartments();
+        updateBadgeCounts();
+
+        showToast('⚡ Applied & Synced! All visual cards and the live website are now updated in real time.');
+      } catch (e) {
+        alert('Invalid JSON syntax: ' + e.message + '\nPlease check formatting before syncing.');
+      }
+    }
+
+    /* ==========================================================================
+       RENDER FUNCTIONS
+       ========================================================================== */
+
+    // 1. Render Publications
+    function renderPublications() {
+      const container = document.getElementById('list-publications');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const query = (document.getElementById('search-publications')?.value || '').toLowerCase();
+
+      const items = (localData.publications || []).filter(pub => {
+        const matchesType = (pubFilterType === 'all') || 
+          (pub.type && pub.type.toLowerCase().includes(pubFilterType.toLowerCase()));
+
+        const text = `${pub.title} ${(pub.authors || []).join(' ')} ${pub.venue} ${pub.year}`.toLowerCase();
+        const matchesQuery = !query || text.includes(query);
+
+        return matchesType && matchesQuery;
+      });
+
+      if (items.length === 0) {
+        container.innerHTML = `
+          <div style="text-align: center; padding: 3rem; background: white; border-radius: 10px; border: 1px dashed #cbd5e1; color: #64748b;">
+            <i class="fas fa-file-circle-xmark" style="font-size: 2rem; margin-bottom: 0.75rem; color: #94a3b8;"></i>
+            <p style="font-weight: 600;">No publications found matching your filter.</p>
+            <button class="btn-action-edit" style="margin-top: 0.75rem;" onclick="openAddModal('publication')">Add a Publication</button>
+          </div>
+        `;
+        return;
+      }
+
+      items.forEach((pub) => {
+        const realIdx = localData.publications.indexOf(pub);
+        const card = document.createElement('div');
+        card.className = 'list-card';
+
+        let badgeClass = 'badge-blue';
+        if (pub.type === 'Journal') badgeClass = 'badge-green';
+        if (pub.type === 'Workshop') badgeClass = 'badge-purple';
+        if (pub.award && pub.award.includes('Under Review')) badgeClass = 'badge-amber';
+
+        card.innerHTML = `
+          <div class="list-card-main">
+            <div class="list-card-title-row">
+              <span class="list-card-title">${pub.title}</span>
+              <div class="list-card-badges">
+                <span class="badge badge-gray">${pub.year || '2026'}</span>
+                <span class="badge ${badgeClass}">${pub.type || 'Conference'}</span>
+                ${pub.award ? `<span class="badge badge-amber">${pub.award}</span>` : ''}
+              </div>
+            </div>
+            <div class="list-card-meta">
+              <strong>Authors:</strong> ${(pub.authors || []).join(', ')}
+            </div>
+            <div class="list-card-meta">
+              <strong>Venue:</strong> ${pub.venue || 'Under Review'}
+            </div>
+          </div>
+          <div class="list-card-actions">
+            <button class="btn-action-edit" onclick="openEditModal('publication', ${realIdx})">
+              <i class="fas fa-pen-to-square"></i> Edit Paper
+            </button>
+            <button class="btn-action-delete" onclick="deleteItem('publication', ${realIdx})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      updateBadgeCounts();
+    }
+
+    function setPubFilter(type, btn) {
+      pubFilterType = type;
+      document.querySelectorAll('#tab-publications .filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderPublications();
+    }
+
+    function filterPublications() {
+      renderPublications();
+    }
+
+    // 2. Render People
+    function renderPeople() {
+      const container = document.getElementById('list-people');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const query = (document.getElementById('search-people')?.value || '').toLowerCase();
+
+      const items = (localData.people || []).filter(p => {
+        const matchesRole = (peopleFilterType === 'all') ||
+          (peopleFilterType === 'head' && (p.role === 'department-head' || p.role === 'director')) ||
+          (peopleFilterType === 'scientist' && (p.role === 'research-scientist' || p.role === 'phd-researcher')) ||
+          (peopleFilterType === 'assistant' && (p.role === 'research-assistant' || p.role === 'assistant'));
+
+        const text = `${p.name} ${p.position} ${(p.interests || []).join(' ')} ${p.deptName || ''}`.toLowerCase();
+        const matchesQuery = !query || text.includes(query);
+
+        return matchesRole && matchesQuery;
+      });
+
+      items.forEach((person) => {
+        const realIdx = localData.people.indexOf(person);
+        const card = document.createElement('div');
+        card.className = 'list-card';
+
+        const initials = person.initials || (person.name ? person.name.split(' ').map(n=>n[0]).join('').substring(0, 2) : 'JH');
+        const deptLabel = DEPARTMENTS_MAP[person.department] || person.deptName || person.department || 'General';
+
+        let badgeStyle = 'badge-blue';
+        if (person.role === 'department-head' || person.role === 'director') badgeStyle = 'badge-purple';
+        if (person.role === 'research-assistant') badgeStyle = 'badge-green';
+
+        card.innerHTML = `
+          <div class="person-row" style="flex-grow: 1;">
+            <div class="person-avatar">${initials}</div>
+            <div class="list-card-main">
+              <div class="list-card-title-row">
+                <span class="list-card-title">${person.name}</span>
+                <span class="badge ${badgeStyle}">${person.position || 'Researcher'}</span>
+                <span class="badge badge-gray">${deptLabel}</span>
+              </div>
+              <div class="list-card-meta">
+                ${person.bio || 'Researcher at NOIES Lab'}
+              </div>
+              <div class="list-card-tags">
+                ${(person.interests || []).map(tag => `<span class="tag-item">${tag}</span>`).join('')}
+              </div>
+            </div>
+          </div>
+          <div class="list-card-actions">
+            <button class="btn-action-edit" onclick="openEditModal('person', ${realIdx})">
+              <i class="fas fa-user-pen"></i> Edit Member
+            </button>
+            <button class="btn-action-delete" onclick="deleteItem('person', ${realIdx})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      updateBadgeCounts();
+    }
+
+    function setPeopleFilter(type, btn) {
+      peopleFilterType = type;
+      document.querySelectorAll('#tab-people .filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderPeople();
+    }
+
+    function filterPeople() {
+      renderPeople();
+    }
+
+    // 3. Render Projects
+    function renderProjects() {
+      const container = document.getElementById('list-projects');
+      if (!container) return;
+      container.innerHTML = '';
+
+      (localData.projects || []).forEach((proj, idx) => {
+        const card = document.createElement('div');
+        card.className = 'list-card';
+
+        const isActive = (proj.status === 'active');
+        const statusBadge = isActive ? 
+          '<span class="badge badge-green"><i class="fas fa-circle" style="font-size:0.5rem; margin-right:3px;"></i> Active</span>' :
+          '<span class="badge badge-gray">Completed</span>';
+
+        card.innerHTML = `
+          <div class="list-card-main">
+            <div class="list-card-title-row">
+              <span class="list-card-title">${proj.title}</span>
+              ${statusBadge}
+              <span class="badge badge-blue">${proj.department || 'ML'}</span>
+            </div>
+            <div class="list-card-meta">
+              ${proj.description || ''}
+            </div>
+            <div class="list-card-tags">
+              ${(proj.tags || []).map(t => `<span class="tag-item">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="list-card-actions">
+            <button class="btn-action-edit" onclick="openEditModal('project', ${idx})">
+              <i class="fas fa-pen-to-square"></i> Edit Project
+            </button>
+            <button class="btn-action-delete" onclick="deleteItem('project', ${idx})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      updateBadgeCounts();
+    }
+
+    // 4. Render News
+    function renderNews() {
+      const container = document.getElementById('list-news');
+      if (!container) return;
+      container.innerHTML = '';
+
+      (localData.news || []).forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = 'list-card';
+
+        card.innerHTML = `
+          <div class="list-card-main">
+            <div class="list-card-title-row">
+              <span class="list-card-title">${item.title}</span>
+              <span class="badge badge-gray">${item.date || 'October 2026'}</span>
+              <span class="badge badge-purple">${item.category || 'Announcement'}</span>
+            </div>
+            <div class="list-card-meta">
+              ${item.summary || ''}
+            </div>
+          </div>
+          <div class="list-card-actions">
+            <button class="btn-action-edit" onclick="openEditModal('news', ${idx})">
+              <i class="fas fa-pen-to-square"></i> Edit News
+            </button>
+            <button class="btn-action-delete" onclick="deleteItem('news', ${idx})">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      updateBadgeCounts();
+    }
+
+    // 5. Render Departments
+    function renderDepartments() {
+      const container = document.getElementById('list-departments');
+      if (!container) return;
+      container.innerHTML = '';
+
+      (localData.departments || []).forEach((dept, idx) => {
+        const card = document.createElement('div');
+        card.className = 'list-card';
+
+        card.innerHTML = `
+          <div class="list-card-main">
+            <div class="list-card-title-row">
+              <span class="list-card-title">${dept.name}</span>
+              <span class="badge badge-blue">Head: ${dept.head || 'Lead'}</span>
+            </div>
+            <div class="list-card-meta">
+              ${dept.description || ''}
+            </div>
+            <div class="list-card-tags">
+              ${(dept.topics || []).map(t => `<span class="tag-item">${t}</span>`).join('')}
+            </div>
+          </div>
+          <div class="list-card-actions">
+            <button class="btn-action-edit" onclick="openEditModal('department', ${idx})">
+              <i class="fas fa-pen-to-square"></i> Edit Dept
+            </button>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      updateBadgeCounts();
+    }
+
+    // 6. Render Config
+    function renderConfig() {
+      const cfg = localData.siteConfig || {};
+      const elLab = document.getElementById('cfg-labName');
+      const elFull = document.getElementById('cfg-fullName');
+      const elTag = document.getElementById('cfg-tagline');
+      const elEmail = document.getElementById('cfg-email');
+      const elAddr = document.getElementById('cfg-address');
+
+      if (elLab) elLab.value = cfg.labName || 'NOIES';
+      if (elFull) elFull.value = cfg.fullName || 'Noesis for Observing Intelligent and Embodied Systems';
+      if (elTag) elTag.value = cfg.tagline || 'Advancing the scientific understanding of intelligent physical and computational systems.';
+      if (elEmail) elEmail.value = cfg.email || 'jakariahabibjim2@gmail.com';
+      if (elAddr) elAddr.value = cfg.address || 'Pabna University of Science and Technology (PUST), Bangladesh';
+    }
+
+    function saveSiteConfig() {
+      if (!localData.siteConfig) localData.siteConfig = {};
+      localData.siteConfig.labName = document.getElementById('cfg-labName').value;
+      localData.siteConfig.fullName = document.getElementById('cfg-fullName').value;
+      localData.siteConfig.tagline = document.getElementById('cfg-tagline').value;
+      localData.siteConfig.email = document.getElementById('cfg-email').value;
+      localData.siteConfig.address = document.getElementById('cfg-address').value;
+
+      syncToLiveWebsite();
+      showToast('Lab Settings updated and synced with website!');
+    }
+
+
+    /* ==========================================================================
+       MODAL CONTROLLER (OPEN / EDIT / ADD / SAVE WITH MARKDOWN INTEGRATION)
+       ========================================================================== */
+
+    function openAddModal(type) {
+      currentModalType = type;
+      currentEditIndex = -1;
+
+      const titleEl = document.getElementById('modalTitle');
+      const bodyEl = document.getElementById('modalBody');
+      const btnSave = document.getElementById('btnModalSave');
+
+      btnSave.innerHTML = `<i class="fas fa-plus"></i> Add Item`;
+
+      if (type === 'publication') {
+        titleEl.innerHTML = `<i class="fas fa-file-circle-plus"></i> Add New Research Publication`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field grid-col-full">
+              <label>Paper Title *</label>
+              <input type="text" id="m-pub-title" placeholder="e.g. Specialist Drift: Continual RL for Foundation Models" required>
+            </div>
+            <div class="form-field grid-col-full">
+              <label>Authors (Comma separated) *</label>
+              <input type="text" id="m-pub-authors" placeholder="e.g. Jakaria Habib, Md. Basim Al Zabir Shammo" required>
+            </div>
+            <div class="form-field">
+              <label>Conference / Journal Venue *</label>
+              <input type="text" id="m-pub-venue" placeholder="e.g. ICLR 2027 / IEEE RA-L / Springer Nature" required>
+            </div>
+            <div class="form-field">
+              <label>Publication Year *</label>
+              <input type="number" id="m-pub-year" value="2026" required>
+            </div>
+            <div class="form-field">
+              <label>Publication Type *</label>
+              <select id="m-pub-type">
+                <option value="Conference" selected>Conference Paper</option>
+                <option value="Journal">Journal Article</option>
+                <option value="Workshop">Workshop Paper</option>
+                <option value="Under Review">Under Review</option>
+                <option value="Preprint">Preprint</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Department</label>
+              <select id="m-pub-dept">
+                <option value="ml">Machine Learning, Perception & Embodied AI</option>
+                <option value="robotics">Physics-Based Robotics and Control</option>
+                <option value="embodied-ai">Embodied AI and Intelligent Systems</option>
+                <option value="biomechanics">Computational Biomechanics & Human Movement</option>
+                <option value="simulation">Simulation, Digital Twins & Physical Intelligence</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Award / Status Badge</label>
+              <input type="text" id="m-pub-award" placeholder="e.g. Under Review at ICLR 2027 (A*) or Scopus Q1">
+            </div>
+            <div class="form-field">
+              <label>Paper URL / OpenReview</label>
+              <input type="text" id="m-pub-link-paper" placeholder="https://openreview.net/...">
+            </div>
+            <div class="form-field">
+              <label>PDF URL</label>
+              <input type="text" id="m-pub-link-pdf" placeholder="https://arxiv.org/pdf/...">
+            </div>
+            <div class="form-field">
+              <label>GitHub Code URL</label>
+              <input type="text" id="m-pub-link-code" placeholder="https://github.com/noies-lab/...">
+            </div>
+            ${renderImageUploader('m-pub-image', 'Graphical Abstract / Figure Image (Optional)', '')}
+            ${renderMarkdownEditorBox('m-pub-abstract', 'Abstract & Contributions (Markdown Supported)', '', 'Type paper abstract... Supports **bold**, *italic*, `code`, lists, links')}
+          </div>
+        `;
+      } else if (type === 'person') {
+        titleEl.innerHTML = `<i class="fas fa-user-plus"></i> Add New Lab Member`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field">
+              <label>Full Name *</label>
+              <input type="text" id="m-peo-name" placeholder="e.g. Dr. Alex Rivera" required>
+            </div>
+            <div class="form-field">
+              <label>Position / Academic Title *</label>
+              <input type="text" id="m-peo-pos" placeholder="e.g. Postdoctoral Fellow" required>
+            </div>
+            <div class="form-field">
+              <label>Department *</label>
+              <select id="m-peo-dept">
+                <option value="ml">Machine Learning, Perception & Embodied AI (Head: Jakaria Habib)</option>
+                <option value="robotics">Physics-Based Robotics & Control (Head: Md. Basim Al Zabir Shammo)</option>
+                <option value="embodied-ai">Embodied AI & Intelligent Systems</option>
+                <option value="biomechanics">Computational Biomechanics & Movement</option>
+                <option value="simulation">Simulation, Digital Twins & Intelligence</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Role Category *</label>
+              <select id="m-peo-role">
+                <option value="director">Lab Director / Co-Founder</option>
+                <option value="department-head">Department Head</option>
+                <option value="research-scientist" selected>Research Scientist</option>
+                <option value="phd-researcher">PhD Researcher</option>
+                <option value="research-assistant">Research Assistant</option>
+              </select>
+            </div>
+            ${renderImageUploader('m-peo-image', 'Member Profile Photo (Upload or Paste URL)', '')}
+            <div class="form-field grid-col-full">
+              <label>Research Interests (Comma separated)</label>
+              <input type="text" id="m-peo-interests" placeholder="e.g. Continual RL, Optimal Control, Differentiable Physics">
+            </div>
+            ${renderMarkdownEditorBox('m-peo-bio', 'Researcher Biography (Markdown Supported)', '', 'Write biography... Supports **bold**, *italic*, links, bullet lists')}
+            <div class="form-field">
+              <label>Google Scholar Profile URL</label>
+              <input type="text" id="m-peo-scholar" placeholder="https://scholar.google.com/citations?user=...">
+            </div>
+            <div class="form-field">
+              <label>Official Email</label>
+              <input type="email" id="m-peo-email" placeholder="researcher@noies-lab.org">
+            </div>
+          </div>
+        `;
+      } else if (type === 'project') {
+        titleEl.innerHTML = `<i class="fas fa-plus"></i> Add New Research Project`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field grid-col-full">
+              <label>Project Title *</label>
+              <input type="text" id="m-proj-title" placeholder="e.g. Project SIFT: Reasoning Verification" required>
+            </div>
+            <div class="form-field">
+              <label>Department</label>
+              <select id="m-proj-dept">
+                <option value="ml">Machine Learning</option>
+                <option value="robotics">Robotics & Control</option>
+                <option value="embodied-ai">Embodied AI</option>
+                <option value="biomechanics">Biomechanics</option>
+                <option value="simulation">Simulation & Twins</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Status *</label>
+              <select id="m-proj-status">
+                <option value="active" selected>🟢 Active (Ongoing)</option>
+                <option value="completed">⚪ Completed</option>
+              </select>
+            </div>
+            ${renderImageUploader('m-proj-image', 'Project Diagram / Banner Image (Upload or Paste URL)', '')}
+            <div class="form-field grid-col-full">
+              <label>Tags (Comma separated)</label>
+              <input type="text" id="m-proj-tags" placeholder="e.g. Robotics, Optimal Control, Reinforcement Learning">
+            </div>
+            ${renderMarkdownEditorBox('m-proj-desc', 'Description & Objectives (Markdown Supported)', '', 'Describe project objectives, methodology, and setup...')}
+          </div>
+        `;
+      } else if (type === 'news') {
+        titleEl.innerHTML = `<i class="fas fa-plus"></i> Post News Update`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field grid-col-full">
+              <label>Headline / Title *</label>
+              <input type="text" id="m-news-title" placeholder="e.g. Three Flagship Papers Submitted to ICLR 2027" required>
+            </div>
+            <div class="form-field">
+              <label>Date *</label>
+              <input type="text" id="m-news-date" value="October 2026" required>
+            </div>
+            <div class="form-field">
+              <label>Category *</label>
+              <select id="m-news-cat">
+                <option value="publication">Paper Acceptance</option>
+                <option value="award">Award / Grant</option>
+                <option value="announcement" selected>Lab Announcement</option>
+                <option value="event">Conference / Event</option>
+              </select>
+            </div>
+            ${renderImageUploader('m-news-image', 'News Cover / Thumbnail Image (Optional)', '')}
+            ${renderMarkdownEditorBox('m-news-summary', 'Summary (Markdown Supported)', '', 'Announcement details...')}
+          </div>
+        `;
+      }
+
+      document.getElementById('adminModal').classList.add('open');
+    }
+
+    function openEditModal(type, idx) {
+      currentModalType = type;
+      currentEditIndex = idx;
+
+      const titleEl = document.getElementById('modalTitle');
+      const bodyEl = document.getElementById('modalBody');
+      const btnSave = document.getElementById('btnModalSave');
+
+      btnSave.innerHTML = `<i class="fas fa-check"></i> Save Changes`;
+
+      if (type === 'publication') {
+        const pub = localData.publications[idx];
+        titleEl.innerHTML = `<i class="fas fa-pen-to-square"></i> Edit Publication`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field grid-col-full">
+              <label>Paper Title *</label>
+              <input type="text" id="m-pub-title" value="${escapeHtml(pub.title || '')}" required>
+            </div>
+            <div class="form-field grid-col-full">
+              <label>Authors (Comma separated) *</label>
+              <input type="text" id="m-pub-authors" value="${escapeHtml((pub.authors || []).join(', '))}" required>
+            </div>
+            <div class="form-field">
+              <label>Conference / Journal Venue *</label>
+              <input type="text" id="m-pub-venue" value="${escapeHtml(pub.venue || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Publication Year *</label>
+              <input type="number" id="m-pub-year" value="${pub.year || 2026}" required>
+            </div>
+            <div class="form-field">
+              <label>Publication Type *</label>
+              <select id="m-pub-type">
+                <option value="Conference" ${pub.type === 'Conference' ? 'selected' : ''}>Conference Paper</option>
+                <option value="Journal" ${pub.type === 'Journal' ? 'selected' : ''}>Journal Article</option>
+                <option value="Workshop" ${pub.type === 'Workshop' ? 'selected' : ''}>Workshop Paper</option>
+                <option value="Under Review" ${pub.type === 'Under Review' ? 'selected' : ''}>Under Review</option>
+                <option value="Preprint" ${pub.type === 'Preprint' ? 'selected' : ''}>Preprint</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Department</label>
+              <select id="m-pub-dept">
+                <option value="ml" ${pub.department === 'ml' ? 'selected' : ''}>Machine Learning, Perception & Embodied AI</option>
+                <option value="robotics" ${pub.department === 'robotics' ? 'selected' : ''}>Physics-Based Robotics and Control</option>
+                <option value="embodied-ai" ${pub.department === 'embodied-ai' ? 'selected' : ''}>Embodied AI and Intelligent Systems</option>
+                <option value="biomechanics" ${pub.department === 'biomechanics' ? 'selected' : ''}>Computational Biomechanics</option>
+                <option value="simulation" ${pub.department === 'simulation' ? 'selected' : ''}>Simulation & Digital Twins</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Award / Status Badge</label>
+              <input type="text" id="m-pub-award" value="${escapeHtml(pub.award || '')}">
+            </div>
+            <div class="form-field">
+              <label>Paper URL / OpenReview</label>
+              <input type="text" id="m-pub-link-paper" value="${escapeHtml((pub.links && pub.links.paper) || '')}">
+            </div>
+            <div class="form-field">
+              <label>PDF URL</label>
+              <input type="text" id="m-pub-link-pdf" value="${escapeHtml((pub.links && pub.links.pdf) || '')}">
+            </div>
+            <div class="form-field">
+              <label>GitHub Code URL</label>
+              <input type="text" id="m-pub-link-code" value="${escapeHtml((pub.links && pub.links.code) || '')}">
+            </div>
+            ${renderImageUploader('m-pub-image', 'Graphical Abstract / Figure Image (Optional)', pub.image || '')}
+            ${renderMarkdownEditorBox('m-pub-abstract', 'Abstract & Contributions (Markdown Supported)', pub.abstract, 'Type paper abstract...')}
+          </div>
+        `;
+      } else if (type === 'person') {
+        const p = localData.people[idx];
+        titleEl.innerHTML = `<i class="fas fa-user-pen"></i> Edit Member: ${escapeHtml(p.name)}`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field">
+              <label>Full Name *</label>
+              <input type="text" id="m-peo-name" value="${escapeHtml(p.name || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Position / Academic Title *</label>
+              <input type="text" id="m-peo-pos" value="${escapeHtml(p.position || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Department *</label>
+              <select id="m-peo-dept">
+                <option value="ml" ${p.department === 'ml' ? 'selected' : ''}>Machine Learning, Perception & Embodied AI (Jakaria Habib)</option>
+                <option value="robotics" ${p.department === 'robotics' ? 'selected' : ''}>Physics-Based Robotics & Control (Basim Shammo)</option>
+                <option value="embodied-ai" ${p.department === 'embodied-ai' ? 'selected' : ''}>Embodied AI & Intelligent Systems</option>
+                <option value="biomechanics" ${p.department === 'biomechanics' ? 'selected' : ''}>Computational Biomechanics</option>
+                <option value="simulation" ${p.department === 'simulation' ? 'selected' : ''}>Simulation & Digital Twins</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Role Category *</label>
+              <select id="m-peo-role">
+                <option value="director" ${p.role === 'director' ? 'selected' : ''}>Lab Director / Co-Founder</option>
+                <option value="department-head" ${p.role === 'department-head' ? 'selected' : ''}>Department Head</option>
+                <option value="research-scientist" ${p.role === 'research-scientist' ? 'selected' : ''}>Research Scientist</option>
+                <option value="phd-researcher" ${p.role === 'phd-researcher' ? 'selected' : ''}>PhD Researcher</option>
+                <option value="research-assistant" ${p.role === 'research-assistant' ? 'selected' : ''}>Research Assistant</option>
+              </select>
+            </div>
+            ${renderImageUploader('m-peo-image', 'Member Profile Photo (Upload or Paste URL)', p.image || '')}
+            <div class="form-field grid-col-full">
+              <label>Research Interests (Comma separated)</label>
+              <input type="text" id="m-peo-interests" value="${escapeHtml((p.interests || []).join(', '))}">
+            </div>
+            ${renderMarkdownEditorBox('m-peo-bio', 'Researcher Biography (Markdown Supported)', p.bio, 'Write biography...')}
+            <div class="form-field">
+              <label>Google Scholar Profile URL</label>
+              <input type="text" id="m-peo-scholar" value="${escapeHtml((p.links && p.links.scholar) || '')}">
+            </div>
+            <div class="form-field">
+              <label>Official Email</label>
+              <input type="email" id="m-peo-email" value="${escapeHtml((p.links && p.links.email) || '')}">
+            </div>
+          </div>
+        `;
+      } else if (type === 'project') {
+        const proj = localData.projects[idx];
+        titleEl.innerHTML = `<i class="fas fa-pen-to-square"></i> Edit Project`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field grid-col-full">
+              <label>Project Title *</label>
+              <input type="text" id="m-proj-title" value="${escapeHtml(proj.title || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Department</label>
+              <select id="m-proj-dept">
+                <option value="ml" ${proj.department === 'ml' ? 'selected' : ''}>Machine Learning</option>
+                <option value="robotics" ${proj.department === 'robotics' ? 'selected' : ''}>Robotics & Control</option>
+                <option value="embodied-ai" ${proj.department === 'embodied-ai' ? 'selected' : ''}>Embodied AI</option>
+                <option value="biomechanics" ${proj.department === 'biomechanics' ? 'selected' : ''}>Biomechanics</option>
+                <option value="simulation" ${proj.department === 'simulation' ? 'selected' : ''}>Simulation & Twins</option>
+              </select>
+            </div>
+            <div class="form-field">
+              <label>Status *</label>
+              <select id="m-proj-status">
+                <option value="active" ${proj.status === 'active' ? 'selected' : ''}>🟢 Active (Ongoing)</option>
+                <option value="completed" ${proj.status === 'completed' ? 'selected' : ''}>⚪ Completed</option>
+              </select>
+            </div>
+            ${renderImageUploader('m-proj-image', 'Project Diagram / Banner Image (Upload or Paste URL)', proj.image || '')}
+            <div class="form-field grid-col-full">
+              <label>Tags (Comma separated)</label>
+              <input type="text" id="m-proj-tags" value="${escapeHtml((proj.tags || []).join(', '))}">
+            </div>
+            ${renderMarkdownEditorBox('m-proj-desc', 'Description & Objectives (Markdown Supported)', proj.description, 'Describe project...')}
+          </div>
+        `;
+      } else if (type === 'news') {
+        const item = localData.news[idx];
+        titleEl.innerHTML = `<i class="fas fa-pen-to-square"></i> Edit News`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field grid-col-full">
+              <label>Headline / Title *</label>
+              <input type="text" id="m-news-title" value="${escapeHtml(item.title || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Date *</label>
+              <input type="text" id="m-news-date" value="${escapeHtml(item.date || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Category *</label>
+              <select id="m-news-cat">
+                <option value="publication" ${item.category === 'publication' ? 'selected' : ''}>Paper Acceptance</option>
+                <option value="award" ${item.category === 'award' ? 'selected' : ''}>Award / Grant</option>
+                <option value="announcement" ${item.category === 'announcement' ? 'selected' : ''}>Lab Announcement</option>
+                <option value="event" ${item.category === 'event' ? 'selected' : ''}>Conference / Event</option>
+              </select>
+            </div>
+            ${renderImageUploader('m-news-image', 'News Cover / Thumbnail Image (Optional)', item.image || '')}
+            ${renderMarkdownEditorBox('m-news-summary', 'Summary (Markdown Supported)', item.summary, 'Announcement details...')}
+          </div>
+        `;
+      } else if (type === 'department') {
+        const dept = localData.departments[idx];
+        titleEl.innerHTML = `<i class="fas fa-pen-to-square"></i> Edit Department: ${escapeHtml(dept.name)}`;
+        bodyEl.innerHTML = `
+          <div class="modal-grid">
+            <div class="form-field grid-col-full">
+              <label>Department Name *</label>
+              <input type="text" id="m-dept-name" value="${escapeHtml(dept.name || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Department Head *</label>
+              <input type="text" id="m-dept-head" value="${escapeHtml(dept.head || '')}" required>
+            </div>
+            <div class="form-field">
+              <label>Short Name</label>
+              <input type="text" id="m-dept-short" value="${escapeHtml(dept.shortName || '')}">
+            </div>
+            ${renderImageUploader('m-dept-image', 'Department Research Banner Image (Optional)', dept.image || '')}
+            ${renderMarkdownEditorBox('m-dept-desc', 'Mission & Research Scope (Markdown Supported)', dept.description, 'Scope description...')}
+            <div class="form-field grid-col-full">
+              <label>Research Topics (Comma separated)</label>
+              <input type="text" id="m-dept-topics" value="${escapeHtml((dept.topics || []).join(', '))}">
+            </div>
+          </div>
+        `;
+      }
+
+      document.getElementById('adminModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('adminModal').classList.remove('open');
+    }
+
+    function saveModalChanges() {
+      if (currentModalType === 'publication') {
+        const title = document.getElementById('m-pub-title').value.trim();
+        const venue = document.getElementById('m-pub-venue').value.trim();
+        if (!title || !venue) {
+          alert('Please enter Paper Title and Venue.');
+          return;
+        }
+
+        const authors = document.getElementById('m-pub-authors').value.split(',').map(s=>s.trim()).filter(Boolean);
+        const year = parseInt(document.getElementById('m-pub-year').value, 10) || 2026;
+        const type = document.getElementById('m-pub-type').value;
+        const dept = document.getElementById('m-pub-dept').value;
+        const award = document.getElementById('m-pub-award').value.trim();
+        const abstract = document.getElementById('m-pub-abstract').value.trim();
+        const paperUrl = document.getElementById('m-pub-link-paper').value.trim();
+        const pdfUrl = document.getElementById('m-pub-link-pdf').value.trim();
+        const codeUrl = document.getElementById('m-pub-link-code').value.trim();
+
+        const pubImageEl = document.getElementById('m-pub-image');
+        const pubImage = pubImageEl ? pubImageEl.value.trim() : '';
+
+        const pubObj = {
+          id: (currentEditIndex >= 0) ? localData.publications[currentEditIndex].id : 'pub-' + Date.now(),
+          title: title,
+          authors: authors,
+          year: year,
+          venue: venue,
+          type: type,
+          department: dept,
+          award: award,
+          abstract: abstract,
+          image: pubImage,
+          links: {
+            paper: paperUrl || '#',
+            pdf: pdfUrl || '#',
+            code: codeUrl || ''
+          }
+        };
+
+        if (currentEditIndex >= 0) {
+          localData.publications[currentEditIndex] = pubObj;
+          showToast('Updated publication: ' + title);
+        } else {
+          localData.publications.unshift(pubObj);
+          showToast('Added new publication: ' + title);
+        }
+        syncToLiveWebsite();
+        renderPublications();
+
+      } else if (currentModalType === 'person') {
+        const name = document.getElementById('m-peo-name').value.trim();
+        const pos = document.getElementById('m-peo-pos').value.trim();
+        if (!name || !pos) {
+          alert('Please enter Full Name and Position.');
+          return;
+        }
+
+        const dept = document.getElementById('m-peo-dept').value;
+        const role = document.getElementById('m-peo-role').value;
+        const peoImageEl = document.getElementById('m-peo-image');
+        const peoImage = peoImageEl ? peoImageEl.value.trim() : '';
+        const interests = document.getElementById('m-peo-interests').value.split(',').map(s=>s.trim()).filter(Boolean);
+        const bio = document.getElementById('m-peo-bio').value.trim();
+        const scholar = document.getElementById('m-peo-scholar').value.trim();
+        const email = document.getElementById('m-peo-email').value.trim();
+
+        const initials = name.split(' ').map(n=>n[0]).join('').substring(0, 2).toUpperCase();
+
+        const peoObj = {
+          id: (currentEditIndex >= 0) ? localData.people[currentEditIndex].id : 'person-' + Date.now(),
+          name: name,
+          initials: initials,
+          position: pos,
+          role: role,
+          department: dept,
+          deptName: DEPARTMENTS_MAP[dept] || dept,
+          image: peoImage,
+          interests: interests,
+          bio: bio,
+          links: {
+            scholar: scholar || '#',
+            email: email || ''
+          }
+        };
+
+        if (currentEditIndex >= 0) {
+          localData.people[currentEditIndex] = { ...localData.people[currentEditIndex], ...peoObj };
+          showToast('Updated team member: ' + name);
+        } else {
+          localData.people.unshift(peoObj);
+          showToast('Added team member: ' + name);
+        }
+        syncToLiveWebsite();
+        renderPeople();
+
+      } else if (currentModalType === 'project') {
+        const title = document.getElementById('m-proj-title').value.trim();
+        if (!title) {
+          alert('Please enter Project Title.');
+          return;
+        }
+
+        const dept = document.getElementById('m-proj-dept').value;
+        const status = document.getElementById('m-proj-status').value;
+        const projImageEl = document.getElementById('m-proj-image');
+        const projImage = projImageEl ? projImageEl.value.trim() : '';
+        const tags = document.getElementById('m-proj-tags').value.split(',').map(s=>s.trim()).filter(Boolean);
+        const desc = document.getElementById('m-proj-desc').value.trim();
+
+        const projObj = {
+          id: (currentEditIndex >= 0) ? localData.projects[currentEditIndex].id : 'proj-' + Date.now(),
+          title: title,
+          department: dept,
+          status: status,
+          image: projImage,
+          tags: tags,
+          description: desc
+        };
+
+        if (currentEditIndex >= 0) {
+          localData.projects[currentEditIndex] = { ...localData.projects[currentEditIndex], ...projObj };
+          showToast('Updated project: ' + title);
+        } else {
+          localData.projects.unshift(projObj);
+          showToast('Added project: ' + title);
+        }
+        syncToLiveWebsite();
+        renderProjects();
+
+      } else if (currentModalType === 'news') {
+        const title = document.getElementById('m-news-title').value.trim();
+        const date = document.getElementById('m-news-date').value.trim();
+        if (!title) {
+          alert('Please enter News Title.');
+          return;
+        }
+
+        const cat = document.getElementById('m-news-cat').value;
+        const newsImageEl = document.getElementById('m-news-image');
+        const newsImage = newsImageEl ? newsImageEl.value.trim() : '';
+        const summary = document.getElementById('m-news-summary').value.trim();
+
+        const newsObj = {
+          id: (currentEditIndex >= 0) ? localData.news[currentEditIndex].id : 'news-' + Date.now(),
+          title: title,
+          date: date,
+          category: cat,
+          image: newsImage,
+          summary: summary
+        };
+
+        if (currentEditIndex >= 0) {
+          localData.news[currentEditIndex] = { ...localData.news[currentEditIndex], ...newsObj };
+          showToast('Updated news item: ' + title);
+        } else {
+          localData.news.unshift(newsObj);
+          showToast('Posted news: ' + title);
+        }
+        syncToLiveWebsite();
+        renderNews();
+
+      } else if (currentModalType === 'department') {
+        const name = document.getElementById('m-dept-name').value.trim();
+        const head = document.getElementById('m-dept-head').value.trim();
+        const shortName = document.getElementById('m-dept-short').value.trim();
+        const deptImageEl = document.getElementById('m-dept-image');
+        const deptImage = deptImageEl ? deptImageEl.value.trim() : '';
+        const desc = document.getElementById('m-dept-desc').value.trim();
+        const topics = document.getElementById('m-dept-topics').value.split(',').map(s=>s.trim()).filter(Boolean);
+
+        localData.departments[currentEditIndex].name = name;
+        localData.departments[currentEditIndex].head = head;
+        localData.departments[currentEditIndex].shortName = shortName;
+        localData.departments[currentEditIndex].image = deptImage;
+        localData.departments[currentEditIndex].description = desc;
+        localData.departments[currentEditIndex].topics = topics;
+
+        syncToLiveWebsite();
+        showToast('Updated department: ' + name);
+        renderDepartments();
+      }
+
+      closeModal();
+    }
+
+    function deleteItem(type, idx) {
+      if (confirm('Are you sure you want to delete this item?')) {
+        if (type === 'publication') {
+          localData.publications.splice(idx, 1);
+          renderPublications();
+        } else if (type === 'person') {
+          localData.people.splice(idx, 1);
+          renderPeople();
+        } else if (type === 'project') {
+          localData.projects.splice(idx, 1);
+          renderProjects();
+        } else if (type === 'news') {
+          localData.news.splice(idx, 1);
+          renderNews();
+        }
+        syncToLiveWebsite();
+        showToast('Item deleted successfully.');
+      }
+    }
+
+    /* ==========================================================================
+       EXPORT DATA.JS FILE
+       ========================================================================== */
+    function exportDataFile() {
+      const fileContent = '/**\n * NOIES Research Lab — Master Data Repository\n * Auto-generated by NOIES Visual Content Manager\n */\nwindow.NOIES_DATA = ' + JSON.stringify(localData, null, 2) + ';\n';
+      
+      const blob = new Blob([fileContent], { type: 'application/javascript;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'data.js';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+
+      showToast('Downloaded data.js! Replace js/data.js in your project to update live.');
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('saveToast');
+      const text = document.getElementById('toastMsg');
+      if (text) text.innerHTML = msg;
+      if (toast) {
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 5500);
+      }
+    }
+
+    function escapeHtml(str) {
+      return String(str || '').replace(/[&<>"']/g, function(m) {
+        return ({
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        })[m];
+      });
+    }
+
+    // Initialize Dashboard
+    document.addEventListener('DOMContentLoaded', () => {
+      renderPublications();
+      renderPeople();
+      renderProjects();
+      renderNews();
+      renderDepartments();
+      renderConfig();
+      updateBadgeCounts();
+    });
+  </script>
+</body>
+</html>

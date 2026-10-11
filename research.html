@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholarly Publications &amp; Research | Jakaria Habib</title>
+    <meta name="description" content="Peer-reviewed publications, journal articles, and conference proceedings by Jakaria Habib in Embodied AI, World Models, and Machine Learning.">
+    <meta name="author" content="Jakaria Habib">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css?v=2.2">
+    <style>
+        /* Firefox & Safari critical fallback resets */
+        img { max-width: 100%; height: auto; }
+        .brand-pust-logo { height: 42px !important; max-height: 42px !important; width: auto !important; }
+        .brand-dept-logo { width: 38px !important; height: 38px !important; max-width: 38px !important; max-height: 38px !important; object-fit: cover !important; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+    <!-- Academic Navigation Header -->
+    <header class="site-header">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <img src="assets/pust_logo.png" alt="PUST Logo" class="brand-pust-logo" width="42" height="42" style="max-height: 42px; width: auto; display: block;" title="Pabna University of Science and Technology">
+                <img src="assets/ice_logo.jpg" alt="ICE Dept Logo" class="brand-dept-logo" width="38" height="38" style="max-width: 38px; max-height: 38px; width: 38px; height: 38px; object-fit: cover; display: block;" title="Department of Information &amp; Communication Engineering">
+                <div class="brand-text-group">
+                    <span class="brand-name">Jakaria Habib</span>
+                    <span class="brand-affiliation">PUST · Department of ICE</span>
+                </div>
+            </a>
+
+            <ul class="nav-links">
+                <li class="nav-item"><a href="index.html">Home</a></li>
+                <li class="nav-item"><a href="research.html" class="active">Research</a></li>
+                <li class="nav-item"><a href="projects.html">Projects</a></li>
+                <li class="nav-item"><a href="education.html">Education</a></li>
+                <li class="nav-item"><a href="certificates.html">Certificates</a></li>
+                <li class="nav-item"><a href="cv.html">CV</a></li>
+                <li class="nav-item"><a href="contact.html">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <button class="btn-cv-pill btn-open-cv-modal" title="View CV Online (No Download Required)">
+                    <i class="fa-solid fa-eye"></i> <span>View CV</span>
+                </button>
+                <a href="CV_Jakaria_Habib.pdf" class="btn-cv-pill" target="_blank" download title="Download CV (PDF)">
+                    <i class="fa-solid fa-download"></i> <span>PDF</span>
+                </a>
+                <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Reading Theme" title="Toggle Academic Theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+                <button id="mobile-menu-btn" class="mobile-nav-toggle" aria-label="Open Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+
+        <!-- Page Header Block -->
+        <div class="page-title-block">
+            <div class="page-kicker">
+                <i class="fa-solid fa-book-bookmark"></i> Scholarly Record &amp; Peer-Reviewed Literature
+            </div>
+            <h1 class="page-title">Scholarly Publications &amp; Research</h1>
+            <p class="page-subtitle">
+                Chronological record of peer-reviewed journal articles, conference papers, and workshop proceedings in Embodied AI, Machine Learning, Computer Vision, and Applied Perception.
+            </p>
+        </div>
+
+        <!-- Menubar-Style Publication Filter Tabs -->
+        <div class="pub-menubar-container">
+            <div class="pub-menubar" role="tablist">
+                <button class="pub-menu-tab active" data-filter="all">
+                    <i class="fa-solid fa-layer-group"></i> All Publications <span class="tab-count">10</span>
+                </button>
+                <button class="pub-menu-tab" data-filter="published"><i class="fa-solid fa-circle-check" style="color: var(--univ-green);"></i> Published &amp; Accepted <span class="tab-count">6</span>
+                </button>
+                <button class="pub-menu-tab" data-filter="under-review"><i class="fa-solid fa-clock" style="color: var(--univ-gold);"></i> Under Peer Review <span class="tab-count">4</span>
+                </button>
+                <button class="pub-menu-tab" data-filter="journal">
+                    <i class="fa-solid fa-book-journal-whills"></i> Journals (Springer Nature) <span class="tab-count">3</span>
+                </button>
+                <button class="pub-menu-tab" data-filter="conference">
+                    <i class="fa-solid fa-users"></i> Conferences &amp; Workshops <span class="tab-count">7</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Publication List (Numbered 01 to 10) -->
+        <div class="pub-list" id="publicationsList">
+
+            <!-- 01: Springer Nature Q1 Journal -->
+            <article class="pub-row" data-category="journal" data-status="published" data-venue-type="journal">
+                <div class="pub-num">01</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-published"><i class="fa-solid fa-circle-check"></i> Published &amp; Indexed</span>
+                                <span class="badge-first-author"><i class="fa-solid fa-star"></i> First Author</span>
+                            </div>
+                            <h2 class="pub-title">Vision Transformer-Based Damage Assessment from Post-Disaster Satellite Imagery: An Applied Study on Hurricane Harvey</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2026</span>
+                            <div class="pub-publisher-logo-badge" title="Springer Nature">
+                                <img src="assets/logos/springer_nature.svg" alt="Springer Nature Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        <strong>Jakaria Habib</strong>, Imran Hossain, Md. Basim Al Zabir Shammo, Taz Warul Mulk, Estiyak Rubaiat
+                    </div>
+                    <div class="pub-venue">
+                        Earth Science Informatics (Springer Nature) · Scopus Q1, Clarivate Impact Factor: 4.2
+                    </div>
+                    <p class="pub-desc">
+                        A rigorous comparative benchmark evaluating Vision Transformers (ViT-B32) against convolutional baselines for post-disaster structural building damage classification across high-resolution satellite imagery. Achieves 97.85% validation accuracy under extreme class imbalance and demonstrates localized self-attention heatmaps for interpretability.
+                    </p>
+                    
+                    <div class="pub-actions">
+                        <a href="https://link.springer.com/article/10.1007/s12145-026-02142-6" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Paper (Springer)
+                        </a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="habib2026vision"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                        <a href="https://scholar.google.com/citations?user=2GSC8CkAAAAJ" target="_blank" rel="noopener" class="btn-pub-action"><i class="fa-brands fa-google-scholar"></i> Google Scholar ↗</a>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        This study presents a comparative evaluation of Vision Transformers (ViT-B32) against convolutional baselines (EfficientNet-B0) for post-disaster building damage assessment using Hurricane Harvey satellite imagery. Demonstrates superior robustness under extreme class imbalance with 97.85% accuracy and provides interpretable self-attention heatmaps for localized structural damage inspection.
+                    </div>
+                </div>
+            </article>
+
+            <!-- 02: ICLR 2027 Specialist Drift -->
+            <article class="pub-row" data-category="iclr" data-status="under-review" data-venue-type="conference">
+                <div class="pub-num">02</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-review"><i class="fa-solid fa-clock"></i> Under Peer Review</span>
+                            </div>
+                            <h2 class="pub-title">Specialist Drift: Continual RL for Capability-Preserving Foundation Model Post-Training</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2027</span>
+                            <div class="pub-publisher-logo-badge" title="ICLR">
+                                <img src="assets/logos/iclr.svg" alt="ICLR Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        Noor Islam S. Mohammad, <strong>Jakaria Habib</strong>, Md. Basim Al Zabir Shammo
+                    </div>
+                    <div class="pub-venue">
+                        International Conference on Learning Representations (ICLR 2027) · Under Review
+                    </div>
+                    <p class="pub-desc">
+                        Investigates catastrophic capability degradation (specialist drift) when fine-tuning foundational reasoning models on downstream robotic tasks. Proposes a continual reinforcement learning objective with preservation regularizers maintaining generalist reasoning while mastering specialized skills.
+                    </p>
+                    <div class="pub-actions">
+                        <a href="https://openreview.net/profile?id=~JAKARIA_HABIB1" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper">
+                            <i class="fa-solid fa-book-open"></i> Read on OpenReview ↗
+                        </a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="mohammad2026specialist"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Investigates the phenomenon of specialist drift in foundational policy post-training where fine-tuning on specialized downstream domains degrades broader generalist capabilities. Formulates a continual reinforcement learning objective with preservation regularizers that maintain foundational reasoning while achieving task mastery.
+                    </div>
+                </div>
+            </article>
+
+            <!-- 03: ICLR 2027 SIFT -->
+            <article class="pub-row" data-category="iclr" data-status="under-review" data-venue-type="conference">
+                <div class="pub-num">03</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-review"><i class="fa-solid fa-clock"></i> Under Peer Review</span>
+                            </div>
+                            <h2 class="pub-title">SIFT: Robust Meta-Faithfulness Verification of Chain-of-Thought Reasoning Under Distribution Shift</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2027</span>
+                            <div class="pub-publisher-logo-badge" title="ICLR">
+                                <img src="assets/logos/iclr.svg" alt="ICLR Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        Noor Islam S. Mohammad, Md. Basim Al Zabir Shammo, Hasan Siddiki, Mahmudul Hasan, Md. Faisal Sheikh, <strong>Jakaria Habib</strong>
+                    </div>
+                    <div class="pub-venue">
+                        International Conference on Learning Representations (ICLR 2027) · Under Review
+                    </div>
+                    <p class="pub-desc">
+                        Introduces SIFT, an automated meta-faithfulness verification protocol assessing whether generated chain-of-thought explanations accurately reflect true model decision circuits under adversarial and out-of-distribution prompts.
+                    </p>
+                    <div class="pub-actions">
+                        <a href="https://openreview.net/profile?id=~JAKARIA_HABIB1" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper">
+                            <i class="fa-solid fa-book-open"></i> Read on OpenReview ↗
+                        </a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="mohammad2026sift"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Introduces SIFT, an automated meta-faithfulness verification framework evaluating whether multi-step chain-of-thought explanations truly reflect internal model decision circuits under domain distribution shifts and adversarial perturbations.
+                    </div>
+                </div>
+            </article>
+
+            <!-- 04: NeurIPS 2026 Symmetry Budget -->
+            <article class="pub-row" data-category="workshop" data-status="published" data-venue-type="conference">
+                <div class="pub-num">04</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-published"><i class="fa-solid fa-circle-check"></i> Accepted Proceedings Track (PMLR)</span>
+                            </div>
+                            <h2 class="pub-title">The Symmetry Budget: How Much Group Structure Should a Network Architecture Assume?</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2026</span>
+                            <div class="pub-publisher-logo-badge" title="NeurIPS">
+                                <img src="assets/logos/neurips.svg" alt="NeurIPS Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        <strong>Jakaria Habib</strong>, Noor Islam S. Mohammad, Mahmudul Hasan, Md. Basim Al Zabir Shammo, Hasan Siddiki
+                    </div>
+                    <div class="pub-venue">
+                        NeurIPS 2026 Workshop on Symmetry and Geometry in Neural Representations (NeurReps Proceedings Track, to appear in PMLR)
+                    </div>
+                    <p class="pub-desc">
+                        Derives an exact analytical theory of symmetry-aware architecture selection, proving that generic symmetry defects lead to an all-or-nothing trade-off between fully equivariant and unconstrained networks, validated via synthetic &amp; nonlinear controls.
+                    </p>
+                    <div class="pub-actions">
+                        <a href="https://openreview.net/forum?id=anU8qWr9og" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper" title="Read Accepted Paper on OpenReview">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Paper (OpenReview)
+                        </a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="mohammad2026symmetry"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        A network architecture is, in large part, a symmetry assumption. We study the trade-off between approximation error and estimation error under approximate symmetry in an exactly solvable model over cyclic group signals, concluding intermediate architectures are never strictly optimal under generic defects. Accepted for presentation at NeurIPS 2026 NeurReps Workshop (Proceedings Track).
+                    </div>
+                </div>
+            </article>
+
+            <!-- 05: NeurIPS 2026 HALT Workshop -->
+            <article class="pub-row" data-category="workshop" data-status="published" data-venue-type="conference">
+                <div class="pub-num">05</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-published"><i class="fa-solid fa-circle-check"></i> Accepted Workshop Poster</span>
+                            </div>
+                            <h2 class="pub-title">HALT: Certifying Trust Horizons in Action-Conditioned Robotic World Models</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2026</span>
+                            <div class="pub-publisher-logo-badge" title="NeurIPS 2026">
+                                <img src="assets/logos/neurips.svg" alt="NeurIPS Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        <strong>Jakaria Habib</strong>, Noor Islam S. Mohammad, Md. Faisal Sheikh
+                    </div>
+                    <div class="pub-venue">
+                        NeurIPS 2026 Robotics World Modeling Workshop (RWM) · Accepted Workshop Poster
+                    </div>
+                    <p class="pub-desc">
+                        Establishes theoretical and empirical bounds for certifying temporal rollout horizons in action-conditioned generative world models, halting policy rollouts before compounding visual hallucination breaches safety critical thresholds.
+                    </p>
+                    <div class="pub-actions">
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="mohammad2026halt"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Formulates conformal prediction certificates to dynamically compute trust horizons in action-conditioned generative world models, preventing catastrophic decision failures in robotics control. Presented at NeurIPS 2026 Robotics World Modeling Workshop (RWM).
+                    </div>
+                </div>
+            </article>
+
+            <!-- 06: IEEE PECCII 2026 -->
+            <article class="pub-row" data-category="ieee" data-status="published" data-venue-type="conference">
+                <div class="pub-num">06</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-published"><i class="fa-solid fa-circle-check"></i> Published &amp; Indexed</span>
+                                <span class="badge-first-author"><i class="fa-solid fa-star"></i> First Author</span>
+                            </div>
+                            <h2 class="pub-title">A Hybrid CNN–Transformer Framework for Automated Poultry Disease Classification Using Fecal Images</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2026</span>
+                            <div class="pub-publisher-logo-badge" title="IEEE">
+                                <img src="assets/logos/ieee.svg" alt="IEEE Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        <strong>Jakaria Habib</strong>, et al.
+                    </div>
+                    <div class="pub-venue">
+                        2026 IEEE International Conference on Power, Electronics, Communications, Computing, and Intelligent Infrastructure (PECCII 2026) · IEEE Xplore
+                    </div>
+                    <p class="pub-desc">
+                        Integrates convolutional local feature extraction with transformer self-attention to classify avian pathological conditions from fecal imagery, demonstrating robust edge inference for precision agriculture.
+                    </p>
+                    <div class="pub-actions">
+                        <a href="https://ieeexplore.ieee.org/abstract/document/11661870" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Paper (IEEE Xplore)
+                        </a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="habib2026poultry"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Develops a hybrid deep neural network combining convolutional tokenizers with transformer self-attention blocks for precision multi-class poultry disease diagnosis under heterogeneous real-world farm conditions.
+                    </div>
+                </div>
+            </article>
+
+            <!-- 07: IEEE QPAIN 2025 (Oral Presentation) -->
+            <article class="pub-row" data-category="ieee" data-status="published" data-venue-type="conference">
+                <div class="pub-num">07</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-published"><i class="fa-solid fa-circle-check"></i> Published &amp; Indexed</span>
+                                <span class="badge-first-author" style="background: rgba(27, 94, 57, 0.1); color: var(--univ-green);"><i class="fa-solid fa-microphone"></i> Conference Speaker</span>
+                            </div>
+                            <h2 class="pub-title">A Machine Learning Framework for Stress Detection Using Photoplethysmography (PPG) Signals</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2025</span>
+                            <div class="pub-publisher-logo-badge" title="IEEE">
+                                <img src="assets/logos/ieee.svg" alt="IEEE Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        Md. Rashed, Md. Basim Al Zabir Shammo, Md. Imran Hossain, Md. Anwar Hossain, Lamia Islam, <strong>Jakaria Habib</strong>
+                    </div>
+                    <div class="pub-venue">
+                        2025 IEEE International Conference on Quantum Photonics, Artificial Intelligence, and Networking (QPAIN 2025) · IEEE Xplore (Paper ID: 1435)
+                    </div>
+                    <p class="pub-desc">
+                        A biomedical signal processing pipeline implementing Butterworth bandpass filtration, morphological systolic peak detection, and HRV feature extraction for multi-class psychological stress classification.
+                    </p>
+                    <div class="pub-actions">
+                        <a href="https://ieeexplore.ieee.org/abstract/document/11171913" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Paper (IEEE Xplore)
+                        </a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="rashed2025ppg"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Presents an automated machine learning framework utilizing morphological and temporal heart rate variability (HRV) metrics extracted from wearable photoplethysmography (PPG) signals to classify acute human stress states. Presented orally at IEEE QPAIN 2025.
+                    </div>
+                </div>
+            </article>
+
+            <!-- 08: IEEE WIECON-ECE 2025 -->
+            <article class="pub-row" data-category="ieee" data-status="published" data-venue-type="conference">
+                <div class="pub-num">08</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-published"><i class="fa-solid fa-circle-check"></i> Published &amp; Indexed</span>
+                                <span class="badge-first-author"><i class="fa-solid fa-star"></i> First Author</span>
+                            </div>
+                            <h2 class="pub-title">The Optimization of Violence Detection and Classification with Vision Transformer and ResNet18 Hybrid Model</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2025</span>
+                            <div class="pub-publisher-logo-badge" title="IEEE">
+                                <img src="assets/logos/ieee.svg" alt="IEEE Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        <strong>Jakaria Habib</strong>, et al.
+                    </div>
+                    <div class="pub-venue">
+                        11th IEEE Women in Engineering Conference on Electrical and Computer Engineering (WIECON-ECE 2025) · IEEE Xplore
+                    </div>
+                    <p class="pub-desc">
+                        Proposes a hybrid spatiotemporal architecture combining ResNet18 spatial feature extractors with lightweight Vision Transformer heads for real-time violence detection in automated surveillance video streams.
+                    </p>
+                    <div class="pub-actions">
+                        <a href="https://ieeexplore.ieee.org/abstract/document/11526421" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Read Paper (IEEE Xplore)
+                        </a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="habib2025violence"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Develops a hybrid ViT-ResNet18 pipeline optimized for real-time video automated violence detection with low computational latency and high classification precision across CCTV surveillance benchmarks.
+                    </div>
+                </div>
+            </article>
+
+            <!-- 09: GeoMind Journal Submission (Earth Science Informatics - Springer Nature) -->
+            <article class="pub-row" data-category="journal" data-status="under-review" data-venue-type="journal">
+                <div class="pub-num">09</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-review"><i class="fa-solid fa-clock"></i> Under Peer Review</span>
+                                <span class="badge-first-author"><i class="fa-solid fa-star"></i> First Author</span>
+                            </div>
+                            <h2 class="pub-title">GeoMind: An Autonomous Multi-Agent Framework for Verified Geospatial Analysis</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2026</span>
+                            <div class="pub-publisher-logo-badge" title="Springer Nature">
+                                <img src="assets/logos/springer_nature.svg" alt="Springer Nature Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        <strong>Jakaria Habib</strong>, Monoarul Islam Srabon, Mst Lutfun Nahar, Mariam Lutfy, Most. Amina Khatun, Md. Basim Al Zabir Shammo, Md. Atik Hasan
+                    </div>
+                    <div class="pub-venue">
+                        Earth Science Informatics (Springer Nature) · Scopus Q1 (Under Review)
+                    </div>
+                    <p class="pub-desc">
+                        Presents an autonomous LLM-driven multi-agent consensus architecture for automated spatial verification and analytical code synthesis in GIS workflows across multi-spectral satellite rasters.
+                    </p>
+                    <div class="pub-actions">
+                        <a href="https://assets-eu.researchsquare.com/files/rs-10034367/v1/cc97377b-ff1b-4ddb-b034-70ffe7101400.pdf" target="_blank" rel="noopener" class="btn-pub-action btn-read-paper">
+                            <i class="fa-solid fa-file-pdf"></i> Read Paper (Preprint PDF)
+                        </a>
+                        <a href="https://doi.org/10.21203/rs.3.rs-10034367/v1" target="_blank" rel="noopener" class="btn-pub-action"><i class="fa-solid fa-external-link"></i> Research Square Record ↗</a>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="habib2026geomind"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Presents an autonomous LLM-driven multi-agent consensus architecture for automated spatial verification and analytical code synthesis in GIS workflows, implementing cooperative agent ensembles with sandboxed Python code execution across multi-spectral satellite rasters.
+                    </div>
+                </div>
+            </article>
+
+            <!-- 10: PINN Digital Twins Journal Submission (Springer Nature) -->
+            <article class="pub-row" data-category="journal" data-status="under-review" data-venue-type="journal">
+                <div class="pub-num">10</div>
+                <div class="pub-body">
+                    <div class="pub-header">
+                        <div class="pub-title-group">
+                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem;">
+                                <span class="pub-status-badge pub-status-review"><i class="fa-solid fa-clock"></i> Under Peer Review</span>
+                                <span class="badge-first-author"><i class="fa-solid fa-star"></i> First Author</span>
+                            </div>
+                            <h2 class="pub-title">The Limits of Physics-Informed Digital Twins Under Transient Loads: An HIL Study for Micro-Mechatronics</h2>
+                        </div>
+                        <div class="pub-meta-top">
+                            <span class="pub-year-badge">2026</span>
+                            <div class="pub-publisher-logo-badge" title="Springer Nature">
+                                <img src="assets/logos/springer_nature.svg" alt="Springer Nature Logo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pub-authors">
+                        <strong>Jakaria Habib</strong>, et al.
+                    </div>
+                    <div class="pub-venue">
+                        Journal of Intelligent Manufacturing (Springer Nature) · Scopus Q1 (Under Review)
+                    </div>
+                    <p class="pub-desc">
+                        Investigates physical boundary constraints and convergence failures in physics-informed neural network (PINN) digital twin architectures under rapid transient loading in micro-mechatronic hardware-in-the-loop (HIL) setups.
+                    </p>
+                    <div class="pub-actions">
+                        <button class="btn-pub-action btn-read-disabled" title="Official publisher link will be active upon release" disabled>
+                            <i class="fa-solid fa-hourglass-half"></i> Read Paper (Pending Release)
+                        </button>
+                        <button class="btn-pub-action btn-abstract-toggle"><i class="fa-solid fa-align-left"></i> Abstract</button>
+                        <button class="btn-pub-action btn-bibtex-copy" data-bibtex="habib2026limits"><i class="fa-solid fa-quote-left"></i> Copy BibTeX</button>
+                    </div>
+                    <div class="pub-abstract-drawer">
+                        Investigates physical boundary constraints and convergence failures in physics-informed neural network digital twin architectures under rapid transient loading conditions within micro-mechatronic hardware-in-the-loop experimental testbeds.
+                    </div>
+                </div>
+            </article>
+
+        </div>
+
+    </main>
+
+    <!-- University Institutional Footer -->
+    <footer class="univ-footer">
+        <div class="univ-footer-container">
+            <div class="footer-col">
+                <h4>Jakaria Habib — Academic Portfolio</h4>
+                <p>
+                    Department of Information &amp; Communication Engineering (ICE)<br>
+                    Pabna University of Science &amp; Technology (PUST)<br>
+                    Pabna-6300, Bangladesh.
+                </p>
+                <p>
+                    <strong style="color: #ffffff;">Institutional Email:</strong><br>
+                    <a href="mailto:jakaria.210618@s.pust.ac.bd" class="footer-contact-link"><i class="fa-solid fa-envelope"></i> jakaria.210618@s.pust.ac.bd</a>
+                </p>
+                <p>
+                    <strong style="color: #ffffff;">Primary / Research Email:</strong><br>
+                    <a href="mailto:jakariahabibjim2@gmail.com" class="footer-contact-link"><i class="fa-regular fa-envelope"></i> jakariahabibjim2@gmail.com</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Portfolio Navigation</h4>
+                <div class="footer-nav-list">
+                    <a href="index.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Home</a>
+                    <a href="research.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Research &amp; Publications</a>
+                    <a href="projects.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Experimental Systems &amp; Robotics</a>
+                    <a href="education.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curriculum &amp; Coursework</a>
+                    <a href="certificates.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Verified Credentials</a>
+                    <a href="cv.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Curriculum Vitae (PDF)</a>
+                    <a href="contact.html"><i class="fa-solid fa-chevron-right" style="font-size: 0.75rem;"></i> Contact &amp; Correspondence</a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Academic Profiles</h4>
+                <div class="footer-nav-list">
+                    <a href="https://scholar.google.com/citations?user=2GSC8CkAAAAJ" target="_blank" rel="noopener"><i class="fa-brands fa-google-scholar"></i> Google Scholar Profile</a>
+                    <a href="https://openreview.net/profile?id=~JAKARIA_HABIB1" target="_blank" rel="noopener"><i class="fa-solid fa-book-open"></i> OpenReview Profile</a>
+                    <a href="https://orcid.org/0009-0009-6954-0367" target="_blank" rel="noopener"><i class="fa-brands fa-orcid"></i> ORCID Identifier</a>
+                    <a href="https://www.researchgate.net/profile/Jakaria-Habib-2" target="_blank" rel="noopener"><i class="fa-brands fa-researchgate"></i> ResearchGate</a>
+                    <a href="https://www.linkedin.com/in/jakaria-habib1/" target="_blank" rel="noopener"><i class="fa-brands fa-linkedin"></i> LinkedIn Network</a>
+                </div>
+            </div>
+        </div>
+        <div class="univ-bottom-bar">
+            <span>&copy; 2026 Jakaria Habib · Pabna University of Science &amp; Technology</span>
+            <span>All rights reserved.</span>
+        </div>
+    </footer>
+
+    <!-- Interactive Client Script -->
+    <script src="script.js?v=2.2"></script>
+
+    <!-- Interactive Full-Screen CV Modal Viewer (No Download Required) -->
+    <div id="cv-modal-overlay" class="cv-modal-overlay" role="dialog" aria-modal="true" aria-label="Curriculum Vitae Viewer">
+        <div class="cv-modal-window">
+            <div class="cv-modal-topbar">
+                <div class="cv-modal-title">
+                    <i class="fa-solid fa-file-lines" style="color: var(--univ-gold);"></i>
+                    <span>Jakaria Habib — Curriculum Vitae</span>
+                </div>
+                <div class="cv-modal-actions">
+                    <a href="CV_Jakaria_Habib.pdf" target="_blank" class="cv-modal-btn" title="Open in New Tab">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i> Open in New Tab
+                    </a>
+                    <a href="CV_Jakaria_Habib.pdf" download class="cv-modal-btn" title="Download PDF File">
+                        <i class="fa-solid fa-download"></i> Download PDF
+                    </a>
+                    <button id="cv-modal-close-btn" class="cv-modal-close" aria-label="Close CV Viewer" title="Close (Esc)">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="cv-modal-body">
+                <iframe src="CV_Jakaria_Habib.pdf#toolbar=1" title="Jakaria Habib CV Document"></iframe>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
