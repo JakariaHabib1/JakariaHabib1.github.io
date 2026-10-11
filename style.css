@@ -35,6 +35,7 @@
   --univ-navy: #1b365d;
   --univ-navy-hover: #122540;
   --univ-accent: #23527c;
+  --univ-blue: #1b365d;
   --univ-gold: #9a6f1a;
   --univ-gold-hover: #7d5913;
   --univ-crimson: #841825;
@@ -69,6 +70,7 @@
   --univ-navy: #5b92cb;
   --univ-navy-hover: #7aa7d7;
   --univ-accent: #6fa0d4;
+  --univ-blue: #5b92cb;
   --univ-gold: #d4a548;
   --univ-gold-hover: #e2ba66;
   --univ-crimson: #c44d62;
@@ -2230,3 +2232,40 @@ html, body {
     gap: 0.75rem;
   }
 }
+
+/* --------------------------------------------------------------------------
+   19. Subtle Academic Scroll Entrance Animations (Performant & Polished)
+   -------------------------------------------------------------------------- */
+.pillar-card, 
+.pub-row, 
+.cert-card, 
+.project-card, 
+.section-header-row {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.pillar-card.in-view, 
+.pub-row.in-view, 
+.cert-card.in-view, 
+.project-card.in-view, 
+.section-header-row.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Respect user preferences for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .pillar-card, 
+  .pub-row, 
+  .cert-card, 
+  .project-card, 
+  .section-header-row {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
+

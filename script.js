@@ -333,72 +333,92 @@ function initContactForm() {
 
     if (!form) return;
 
-    form.addEventListener('submit', (e) => {
-        const isNetlify = window.location.hostname.includes('netlify.app');
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         const submitBtn = form.querySelector('button[type="submit"]');
         const originalBtnHtml = submitBtn ? submitBtn.innerHTML : '';
 
-        if (isNetlify) {
-            e.preventDefault();
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
-            }
+        // Form fields
+        const nameInput = form.querySelector('[name="name"]');
+        const emailInput = form.querySelector('[name="email"]');
+        const subjectInput = form.querySelector('[name="subject"]');
+        const messageInput = form.querySelector('[name="message"]');
 
-            const formData = new FormData(form);
-            fetch('/', {
+        const name = nameInput ? nameInput.value.trim() : 'Visitor';
+        const email = emailInput ? emailInput.value.trim() : '';
+        const subject = subjectInput ? subjectInput.value.trim() : 'Academic Portfolio Inquiry';
+        const message = messageInput ? messageInput.value.trim() : '';
+
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
+        }
+
+        try {
+            // Send via FormSubmit.co AJAX endpoint directly to Gmail
+            const response = await fetch('https://formsubmit.co/ajax/jakariahabibjim2@gmail.com', {
                 method: 'POST',
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString()
-            })
-            .then(() => {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                    _subject: `[Academic Inquiry] ${subject} - from ${name}`,
+                    message: message,
+                    _template: 'table',
+                    _captcha: 'false'
+                })
+            });
+
+            const data = await response.json();
+
+            if (response.ok && (data.success === 'true' || data.success === true)) {
                 if (banner) {
                     banner.style.display = 'block';
+                    banner.innerHTML = `
+                        <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                            <i class="fa-solid fa-circle-check" style="color: #1b5e39; font-size: 1.3rem; margin-top: 2px;"></i>
+                            <div>
+                                <h3 style="font-size: 1.05rem; color: #1b5e39; margin-bottom: 0.25rem;">✔ Message Sent Successfully!</h3>
+                                <p style="font-size: 0.92rem; color: #2c4234; line-height: 1.5; margin: 0;">
+                                    Thank you, <strong>${name}</strong>! Your message has been sent directly to Jakaria's Gmail (<strong>jakariahabibjim2@gmail.com</strong>).
+                                </p>
+                            </div>
+                        </div>
+                    `;
                     banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
                 form.reset();
                 if (submitBtn) {
                     submitBtn.disabled = false;
                     submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Message Sent!';
+                    setTimeout(() => {
+                        submitBtn.innerHTML = originalBtnHtml;
+                    }, 4000);
                 }
-            })
-            .catch((error) => {
-                console.warn('Netlify AJAX dispatch error, falling back to standard submit:', error);
-                form.submit();
-            });
-        } else {
-            // Running on GitHub Pages or local static server
-            // Prevents 405 error on static hosting, displays success feedback, and provides direct mailto fallback
-            e.preventDefault();
-            const nameInput = form.querySelector('[name="name"]');
-            const emailInput = form.querySelector('[name="email"]');
-            const subjectInput = form.querySelector('[name="subject"]');
-            const messageInput = form.querySelector('[name="message"]');
-
-            const name = nameInput ? nameInput.value : 'Visitor';
-            const email = emailInput ? emailInput.value : '';
-            const subject = subjectInput ? subjectInput.value : 'Academic Portfolio Inquiry';
-            const message = messageInput ? messageInput.value : '';
-
+            } else {
+                throw new Error(data.message || 'Server returned error');
+            }
+        } catch (error) {
+            console.warn('FormSubmit AJAX dispatch failed or waiting for activation:', error);
+            // Fallback: regular submit via action URL
             if (banner) {
                 banner.style.display = 'block';
-                banner.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                banner.innerHTML = `
+                    <div style="display: flex; align-items: flex-start; gap: 0.85rem;">
+                        <i class="fa-solid fa-circle-check" style="color: #1b5e39; font-size: 1.3rem; margin-top: 2px;"></i>
+                        <div>
+                            <h3 style="font-size: 1.05rem; color: #1b5e39; margin-bottom: 0.25rem;">✔ Submitting to Jakaria's Inbox...</h3>
+                            <p style="font-size: 0.92rem; color: #2c4234; line-height: 1.5; margin: 0;">
+                                Submitting your message to <strong>jakariahabibjim2@gmail.com</strong>.
+                            </p>
+                        </div>
+                    </div>
+                `;
             }
-            if (submitBtn) {
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> Opening Mail Client...';
-            }
-
-            const mailtoUri = `mailto:jakariahabibjim2@gmail.com?subject=${encodeURIComponent(subject + ' - from ' + name)}&body=${encodeURIComponent('From: ' + name + ' (' + email + ')\n\nMessage:\n' + message)}`;
-            
-            setTimeout(() => {
-                window.location.href = mailtoUri;
-                form.reset();
-                if (submitBtn) {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnHtml;
-                }
-            }, 800);
+            form.submit();
         }
     });
 }
