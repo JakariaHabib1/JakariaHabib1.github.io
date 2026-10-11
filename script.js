@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
     init3DTilt();
     initCvModal();
     initNumberCounters();
+    initLiveSync();
 });
 
 /* --------------------------------------------------------------------------
@@ -508,3 +509,26 @@ function initNumberCounters() {
         counter.setAttribute('aria-label', String(val));
     });
 }
+
+/* --------------------------------------------------------------------------
+   12. Live Data Sync (Syncs browser-cached CMS edits if available)
+   -------------------------------------------------------------------------- */
+function initLiveSync() {
+    try {
+        const cachedRaw = localStorage.getItem('PORTFOLIO_LIVE_DATA');
+        const data = cachedRaw ? JSON.parse(cachedRaw) : (window.PORTFOLIO_DATA || null);
+        if (!data || !data.profile) return;
+
+        // Sync name if updated
+        if (data.profile.name) {
+            document.querySelectorAll('.hero-name-highlight, .univ-brand-text h1').forEach(el => {
+                if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
+                    el.textContent = data.profile.name;
+                }
+            });
+        }
+    } catch (e) {
+        // Silently skip if parse error
+    }
+}
+

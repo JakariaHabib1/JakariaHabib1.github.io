@@ -1421,6 +1421,21 @@ button {
   gap: 1rem;
 }
 
+.univ-admin-link {
+  color: #64748b;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+  margin-left: 0.5rem;
+}
+
+.univ-admin-link:hover {
+  color: var(--univ-gold);
+}
+
 @media (max-width: 860px) {
   .univ-footer-container {
     grid-template-columns: 1fr;
