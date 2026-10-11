@@ -764,23 +764,7 @@ button {
 }
 
 .pub-publisher-logo-badge {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  background: #ffffff;
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-sm);
-  padding: 0.25rem 0.6rem;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-}
-
-.pub-publisher-logo-badge img {
-  height: 26px;
-  width: auto;
-  max-width: 160px;
-  object-fit: contain;
-  display: block;
+  display: none !important;
 }
 
 .pub-authors {

@@ -517,18 +517,44 @@ function initLiveSync() {
     try {
         const cachedRaw = localStorage.getItem('PORTFOLIO_LIVE_DATA');
         const data = cachedRaw ? JSON.parse(cachedRaw) : (window.PORTFOLIO_DATA || null);
-        if (!data || !data.profile) return;
+        if (!data) return;
 
         // Sync name if updated
-        if (data.profile.name) {
+        if (data.profile && data.profile.fullName) {
             document.querySelectorAll('.hero-name-highlight, .univ-brand-text h1').forEach(el => {
                 if (el.childNodes.length === 1 && el.childNodes[0].nodeType === 3) {
-                    el.textContent = data.profile.name;
+                    el.textContent = data.profile.fullName;
                 }
             });
+        }
+
+        // Sync profile image if updated or removed
+        if (data.profile && typeof data.profile.profileImage !== 'undefined') {
+            const portraitImg = document.querySelector('.hero-portrait-img');
+            if (portraitImg) {
+                if (data.profile.profileImage) {
+                    portraitImg.src = data.profile.profileImage;
+                    portraitImg.style.display = 'block';
+                } else {
+                    portraitImg.style.display = 'none';
+                }
+            }
+        }
+
+        // Sync Home News & Highlights
+        const newsList = document.getElementById('home-news-list');
+        if (newsList && Array.isArray(data.news) && data.news.length > 0) {
+            newsList.innerHTML = data.news.map(n => {
+                const badgeHtml = n.badgeText ? `<span style="font-weight: 700; color: #ffffff; background: var(--univ-navy); padding: 0.15rem 0.55rem; border-radius: var(--radius-sm); font-size: 0.82rem; white-space: nowrap;">${n.badgeText}</span>` : '';
+                return `<li style="display: flex; align-items: flex-start; gap: 1rem; font-size: 0.95rem; line-height: 1.55;">
+                    ${badgeHtml}
+                    <div><strong>${n.title || ''}:</strong> ${n.text || ''}</div>
+                </li>`;
+            }).join('');
         }
     } catch (e) {
         // Silently skip if parse error
     }
 }
+
 

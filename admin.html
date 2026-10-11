@@ -1065,13 +1065,16 @@
             <input type="text" id="p-apsMemberId">
           </div>
           <div class="form-group">
-            <label>Profile Image (File path, URL, or Direct Upload)</label>
+            <label>Profile Image (File path, URL, Upload, or Remove)</label>
             <div style="display: flex; gap: 0.5rem; align-items: center;">
               <input type="text" id="p-profileImage" style="flex: 1;" placeholder="profile.png or https://...">
               <label class="btn-primary" style="margin: 0; padding: 0.55rem 0.9rem; cursor: pointer; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; border-radius: 6px;">
                 <i class="fa-solid fa-cloud-arrow-up"></i> Upload
                 <input type="file" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'p-profileImage')">
               </label>
+              <button type="button" onclick="clearInputField('p-profileImage')" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; padding: 0.55rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.3rem;" title="Remove profile image">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
             </div>
           </div>
           <div class="form-group">
@@ -1280,8 +1283,30 @@
             <input type="text" id="edu-syllabusPdf">
           </div>
           <div class="form-group">
-            <label>Department / ICE Logo File</label>
-            <input type="text" id="edu-logoImage">
+            <label>Department / ICE Logo File (Upload, URL, or Remove)</label>
+            <div style="display: flex; gap: 0.5rem; align-items: center;">
+              <input type="text" id="edu-logoImage" style="flex: 1;" placeholder="assets/pust_logo.png or leave empty">
+              <label class="btn-primary" style="margin: 0; padding: 0.55rem 0.9rem; cursor: pointer; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; border-radius: 6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'edu-logoImage')">
+              </label>
+              <button type="button" onclick="clearInputField('edu-logoImage')" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; padding: 0.55rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.3rem;" title="Remove logo">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Thesis Diagram / Graphic Image (Upload, URL, or Remove)</label>
+          <div style="display: flex; gap: 0.5rem; align-items: center;">
+            <input type="text" id="edu-thesisImage" style="flex: 1;" placeholder="assets/Thesis logo.png or leave empty">
+            <label class="btn-primary" style="margin: 0; padding: 0.55rem 0.9rem; cursor: pointer; font-size: 0.82rem; display: inline-flex; align-items: center; gap: 0.4rem; white-space: nowrap; border-radius: 6px;">
+              <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+              <input type="file" accept="image/*" style="display: none;" onchange="handleImageUpload(event, 'edu-thesisImage')">
+            </label>
+            <button type="button" onclick="clearInputField('edu-thesisImage')" style="background: rgba(239,68,68,0.1); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; padding: 0.55rem 0.8rem; border-radius: 6px; cursor: pointer; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.3rem;" title="Remove diagram">
+              <i class="fa-solid fa-trash-can"></i> Remove
+            </button>
           </div>
         </div>
 
@@ -1809,6 +1834,23 @@
             </div>
           </div>
           <div class="form-grid-2">
+            <div class="form-group"><label>Status Badge Text (leave empty to hide)</label><input type="text" id="m-pub-statusBadge" placeholder="e.g. Published &amp; Indexed, Accepted, Under Review"></div>
+            <div class="form-group"><label>Year Badge Text (leave empty to hide)</label><input type="text" id="m-pub-yearBadge" value="2026" placeholder="e.g. 2026"></div>
+          </div>
+          <div class="form-group">
+            <label>Publisher Logo / Sticker Image (Leave empty for clean text only)</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <input type="text" id="m-pub-publisherLogo" placeholder="assets/logos/... or leave empty" style="flex:1;">
+              <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-pub-publisherLogo')">
+              </label>
+              <button type="button" onclick="clearInputField('m-pub-publisherLogo')" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:0.55rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.3rem;" title="Remove logo">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
+            </div>
+          </div>
+          <div class="form-grid-2">
             <div class="form-group"><label><input type="checkbox" id="m-pub-firstAuthor" checked> First Author</label></div>
             <div class="form-group"><label><input type="checkbox" id="m-pub-speaker"> Conference Speaker</label></div>
           </div>
@@ -1829,13 +1871,16 @@
             <div class="form-group"><label>Icon (e.g. fa-robot, fa-dna)</label><input type="text" id="m-proj-icon" value="fa-robot"></div>
           </div>
           <div class="form-group">
-            <label>Image Path, URL, or Direct Upload</label>
+            <label>Image Path, URL, Upload, or Remove</label>
             <div style="display:flex;gap:0.5rem;align-items:center;">
               <input type="text" id="m-proj-image" value="assets/projects_img_2.jpg" style="flex:1;">
               <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
                 <i class="fa-solid fa-cloud-arrow-up"></i> Upload
                 <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-proj-image')">
               </label>
+              <button type="button" onclick="clearInputField('m-proj-image')" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:0.55rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.3rem;" title="Remove image">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
             </div>
           </div>
           <div class="form-group"><label>Description</label><textarea id="m-proj-desc" rows="3"></textarea></div>
@@ -1857,13 +1902,16 @@
           </div>
           <div class="form-group"><label>Verification ID</label><input type="text" id="m-cert-id"></div>
           <div class="form-group">
-            <label>Image File Path, URL, or Direct Upload</label>
+            <label>Image File Path, URL, Upload, or Remove</label>
             <div style="display:flex;gap:0.5rem;align-items:center;">
               <input type="text" id="m-cert-image" value="assets/certificates_img_5.jpg" style="flex:1;">
               <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
                 <i class="fa-solid fa-cloud-arrow-up"></i> Upload
                 <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-cert-image')">
               </label>
+              <button type="button" onclick="clearInputField('m-cert-image')" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:0.55rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.3rem;" title="Remove image">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
             </div>
           </div>
           <div class="form-group"><label>Description</label><textarea id="m-cert-desc" rows="3"></textarea></div>
@@ -1883,7 +1931,7 @@
         body.innerHTML = `
           <div class="form-group"><label>Headline / Title *</label><input type="text" id="m-news-title"></div>
           <div class="form-grid-2">
-            <div class="form-group"><label>Badge Text (e.g. Accepted, 2026)</label><input type="text" id="m-news-badge" value="2026"></div>
+            <div class="form-group"><label>Badge Text (e.g. Accepted, 2026 — leave blank to remove badge)</label><input type="text" id="m-news-badge" value="2026"></div>
             <div class="form-group"><label>Date</label><input type="text" id="m-news-date" value="2026"></div>
           </div>
           <div class="form-group"><label>Details / Text</label><textarea id="m-news-text" rows="3"></textarea></div>
@@ -1931,6 +1979,23 @@
             </div>
           </div>
           <div class="form-grid-2">
+            <div class="form-group"><label>Status Badge Text (leave empty to hide)</label><input type="text" id="m-pub-statusBadge" value="${escapeHtml(item.statusBadge || '')}" placeholder="e.g. Published &amp; Indexed, Accepted, Under Review"></div>
+            <div class="form-group"><label>Year Badge Text (leave empty to hide)</label><input type="text" id="m-pub-yearBadge" value="${escapeHtml(item.yearBadge || item.year || '')}" placeholder="e.g. 2026"></div>
+          </div>
+          <div class="form-group">
+            <label>Publisher Logo / Sticker Image (Leave empty for clean text only)</label>
+            <div style="display:flex;gap:0.5rem;align-items:center;">
+              <input type="text" id="m-pub-publisherLogo" value="${escapeHtml(item.publisherLogo || '')}" placeholder="Leave empty for no logo" style="flex:1;">
+              <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
+                <i class="fa-solid fa-cloud-arrow-up"></i> Upload
+                <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-pub-publisherLogo')">
+              </label>
+              <button type="button" onclick="clearInputField('m-pub-publisherLogo')" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:0.55rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.3rem;" title="Remove logo">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
+            </div>
+          </div>
+          <div class="form-grid-2">
             <div class="form-group"><label><input type="checkbox" id="m-pub-firstAuthor" ${item.isFirstAuthor ? 'checked' : ''}> First Author</label></div>
             <div class="form-group"><label><input type="checkbox" id="m-pub-speaker" ${item.isSpeaker ? 'checked' : ''}> Conference Speaker</label></div>
           </div>
@@ -1952,13 +2017,16 @@
             <div class="form-group"><label>Icon (e.g. fa-robot)</label><input type="text" id="m-proj-icon" value="${escapeHtml(item.tagIcon || '')}"></div>
           </div>
           <div class="form-group">
-            <label>Image Path, URL, or Direct Upload</label>
+            <label>Image Path, URL, Upload, or Remove</label>
             <div style="display:flex;gap:0.5rem;align-items:center;">
               <input type="text" id="m-proj-image" value="${escapeHtml(item.image || '')}" style="flex:1;">
               <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
                 <i class="fa-solid fa-cloud-arrow-up"></i> Upload
                 <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-proj-image')">
               </label>
+              <button type="button" onclick="clearInputField('m-proj-image')" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:0.55rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.3rem;" title="Remove image">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
             </div>
           </div>
           <div class="form-group"><label>Description</label><textarea id="m-proj-desc" rows="3">${escapeHtml(item.desc || '')}</textarea></div>
@@ -1981,13 +2049,16 @@
           </div>
           <div class="form-group"><label>Verification ID</label><input type="text" id="m-cert-id" value="${escapeHtml(item.credentialId || '')}"></div>
           <div class="form-group">
-            <label>Image File Path, URL, or Direct Upload</label>
+            <label>Image File Path, URL, Upload, or Remove</label>
             <div style="display:flex;gap:0.5rem;align-items:center;">
               <input type="text" id="m-cert-image" value="${escapeHtml(item.image || '')}" style="flex:1;">
               <label class="btn-primary" style="margin:0;padding:0.55rem 0.85rem;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.35rem;white-space:nowrap;border-radius:6px;">
                 <i class="fa-solid fa-cloud-arrow-up"></i> Upload
                 <input type="file" accept="image/*" style="display:none;" onchange="handleImageUpload(event, 'm-cert-image')">
               </label>
+              <button type="button" onclick="clearInputField('m-cert-image')" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:0.55rem 0.8rem;border-radius:6px;cursor:pointer;font-size:0.8rem;display:inline-flex;align-items:center;gap:0.3rem;" title="Remove image">
+                <i class="fa-solid fa-trash-can"></i> Remove
+              </button>
             </div>
           </div>
           <div class="form-group"><label>Description</label><textarea id="m-cert-desc" rows="3">${escapeHtml(item.desc || '')}</textarea></div>
@@ -2038,10 +2109,13 @@
           authors: document.getElementById('m-pub-authors').value.trim(),
           venue: document.getElementById('m-pub-venue').value.trim(),
           year: document.getElementById('m-pub-year').value.trim(),
+          yearBadge: document.getElementById('m-pub-yearBadge') ? document.getElementById('m-pub-yearBadge').value.trim() : document.getElementById('m-pub-year').value.trim(),
           category: document.getElementById('m-pub-category').value,
           status: document.getElementById('m-pub-status').value,
+          statusBadge: document.getElementById('m-pub-statusBadge') ? document.getElementById('m-pub-statusBadge').value.trim() : '',
           isFirstAuthor: document.getElementById('m-pub-firstAuthor').checked,
           isSpeaker: document.getElementById('m-pub-speaker').checked,
+          publisherLogo: document.getElementById('m-pub-publisherLogo') ? document.getElementById('m-pub-publisherLogo').value.trim() : '',
           metrics: document.getElementById('m-pub-metrics').value.trim(),
           doiUrl: document.getElementById('m-pub-doiUrl').value.trim(),
           readPaperUrl: document.getElementById('m-pub-readPaperUrl').value.trim(),
@@ -2244,6 +2318,14 @@
         }
       };
       reader.readAsDataURL(file);
+    }
+
+    function clearInputField(targetId) {
+      const target = document.getElementById(targetId);
+      if (target) {
+        target.value = '';
+        showToast('Field cleared. Click Save to apply.');
+      }
     }
 
     function escapeHtml(str) {
