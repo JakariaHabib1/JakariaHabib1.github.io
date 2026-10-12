@@ -106,22 +106,74 @@
                     </a>
                 </div>
             </div>
-        <!-- Undergraduate Research Thesis Profile Box -->
-        <div class="advisor-notice-card" id="thesis-card" style="margin-bottom: 2.5rem; border-left: 4px solid var(--univ-gold);">
-            <div style="font-size: 0.82rem; font-weight: 700; color: var(--univ-gold); text-transform: uppercase; margin-bottom: 0.35rem;">Undergraduate Research Thesis (ICE-4210)</div>
-            <h2 id="edu-thesis-title" style="font-size: 1.35rem; color: var(--univ-navy); margin-bottom: 0.4rem;">Physics-Based Musculoskeletal Simulation and Inverse Modeling for Latent Neuromuscular Delay Estimation</h2>
-            <div id="edu-thesis-advisor" style="font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin-bottom: 1rem;">
-                <strong>Advisor:</strong> Md. Imran Hossain (Assistant Professor, Department of Information &amp; Communication Engineering, PUST)
-            </div>
-            <div id="edu-thesis-summary" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; white-space: pre-line;">
-Electromechanical delay (EMD: 15–60 ms) between neural excitation and muscular force generation critically governs motor stability, yet experimental surface EMG suffers from 10–30 ms onset detection artifacts. This work establishes a data-driven inverse modeling framework in OpenSim 4.5 using the 3DGaitModel2354 lower-limb architecture, inverting Hill-type activation dynamics across 45,445 labeled observations spanning tau in [0.015, 0.060 s].
+        <!-- Undergraduate Research Thesis Showcase Card (Prominent 2-Column Academic Layout) -->
+        <div class="advisor-notice-card" id="thesis-card" style="margin-bottom: 3rem; border-left: 5px solid var(--univ-navy); background: var(--bg-card); box-shadow: 0 10px 30px rgba(27, 54, 93, 0.07); padding: 2.25rem 2.25rem 2rem 2.25rem; border-radius: var(--radius-md);">
+            <div style="display: flex; flex-wrap: wrap; gap: 2.25rem; align-items: flex-start; justify-content: space-between;">
+                
+                <!-- Left Content Column -->
+                <div style="flex: 1 1 540px; min-width: 290px;">
+                    <div style="display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 0.65rem;">
+                        <span style="display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(27, 54, 93, 0.08); color: var(--univ-navy); border: 1px solid rgba(27, 54, 93, 0.22); font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.04em;">
+                            <i class="fa-solid fa-flask" style="color: var(--univ-gold);"></i> Capstone B.Sc. Thesis (ICE-4210)
+                        </span>
+                        <span style="display: inline-flex; align-items: center; gap: 0.35rem; background: rgba(154, 111, 26, 0.1); color: var(--univ-gold); border: 1px solid rgba(154, 111, 26, 0.3); font-size: 0.8rem; font-weight: 700; padding: 0.25rem 0.65rem; border-radius: 4px;">
+                            <i class="fa-solid fa-award"></i> Department Honors Research
+                        </span>
+                    </div>
 
-Key Quantitative Findings:
-• Inverse Mapping Precision: Achieved R² > 0.998 with Mean Absolute Error MAE < 0.10 ms (1e-4 s), capturing fine-scale temporal delay accounting for less than 0.22% of total physiological variation.
-• Causal Information Hierarchy: Decomposed predictive contribution showing ~93.6% of timing information resides in muscle activation dynamics versus only ~6.4% in joint kinematics.
-• Primary Muscle Driver: Identified Rectus Femoris as the primary functional pathway (60.5% feature importance); isolated ablation induced a 20-fold error increase (R² dropping from 0.998 to 0.777).
-• Proof of Continuity: Mathematically proved the learned mapping operates as a continuous operator rather than a discrete classifier, achieving errors 50–100x lower than the fundamental discretization limit.
-• Perturbation Robustness: Validated under +7% femoral mass anatomical perturbation, confirming bounded error (|tau_hat - tau| << 0.045 s) and structural stability against biomechanical distribution shifts.
+                    <h2 id="edu-thesis-title" style="font-size: 1.55rem; color: var(--univ-navy); font-family: var(--font-serif); font-weight: 700; line-height: 1.35; margin: 0.4rem 0 0.5rem 0;">
+                        Physics-Based Musculoskeletal Simulation and Inverse Modeling for Latent Neuromuscular Delay Estimation
+                    </h2>
+
+                    <div id="edu-thesis-advisor" style="font-size: 0.96rem; color: var(--text-main); margin-bottom: 1.25rem; line-height: 1.5;">
+                        <i class="fa-solid fa-user-tie" style="color: var(--univ-navy); margin-right: 0.35rem;"></i>
+                        <strong>Advisor:</strong> Md. Imran Hossain (Assistant Professor, Department of Information &amp; Communication Engineering, PUST)
+                    </div>
+
+                    <p style="font-size: 0.94rem; color: var(--text-muted); line-height: 1.7; margin-bottom: 1.4rem;">
+                        Electromechanical delay (EMD: 15–60 ms) between neural excitation and muscular force generation critically governs human motor stability, yet experimental surface EMG suffers from 10–30 ms onset detection artifacts. This work establishes an end-to-end data-driven inverse modeling framework in Stanford OpenSim 4.5 using the 3DGaitModel2354 lower-limb architecture, inverting non-linear Thelen Hill-type activation ODEs across 45,445 labeled observations spanning \(\tau \in [0.015, 0.060\text{ s}]\).
+                    </p>
+
+                    <!-- Structured Quantitative Findings -->
+                    <div style="background: rgba(27, 54, 93, 0.03); border: 1px solid var(--border-light); border-left: 3px solid var(--univ-gold); border-radius: 6px; padding: 1.25rem 1.4rem; margin-bottom: 1.4rem;">
+                        <div style="font-size: 0.85rem; font-weight: 700; color: var(--univ-navy); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.85rem; display: flex; align-items: center; gap: 0.5rem;">
+                            <i class="fa-solid fa-chart-line" style="color: var(--univ-gold);"></i> Key Empirical Findings &amp; Quantitative Benchmarks
+                        </div>
+                        <ul style="margin: 0; padding-left: 1.25rem; font-size: 0.92rem; color: var(--text-main); line-height: 1.75; display: flex; flex-direction: column; gap: 0.55rem;">
+                            <li><strong>Inverse Mapping Precision:</strong> Achieved \(R^2 &gt; 0.998\) with Mean Absolute Error \(\text{MAE} &lt; 0.10\text{ ms}\) (\(1 \times 10^{-4}\text{ s}\)), capturing fine-scale temporal delay accounting for less than 0.22% of total physiological variation.</li>
+                            <li><strong>Causal Information Hierarchy:</strong> Decomposed predictive contribution showing \(\sim 93.6\%\) of timing information resides in muscle activation dynamics versus only \(\sim 6.4\%\) in joint kinematics.</li>
+                            <li><strong>Primary Muscle Driver (SHAP):</strong> Identified Rectus Femoris as the primary functional pathway (60.5% feature importance); isolated ablation induced a 20-fold error surge (\(R^2\) falling from 0.998 to 0.777).</li>
+                            <li><strong>Proof of Continuity:</strong> Mathematically proved the learned mapping operates as a continuous operator rather than a discrete classifier, achieving errors 50–100\(\times\) lower than the fundamental discretization limit (\(\epsilon \ll \frac{1}{2}\Delta\tau_{\min}\)).</li>
+                            <li><strong>Perturbation Robustness:</strong> Validated under \(+7\%\) femoral mass anatomical perturbation, confirming bounded error (\(|\hat{\tau} - \tau| \ll 0.045\text{ s}\)) and structural stability against biomechanical distribution shifts.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tech Badges / Methodological Pills -->
+                    <div class="project-tech-pills" style="margin-top: 0.5rem;">
+                        <span class="project-pill"><i class="fa-solid fa-code"></i> OpenSim 4.5 C-API</span>
+                        <span class="project-pill"><i class="fa-solid fa-wave-square"></i> Thelen Hill ODEs</span>
+                        <span class="project-pill"><i class="fa-solid fa-database"></i> 45,445 Gait Trials</span>
+                        <span class="project-pill"><i class="fa-solid fa-chart-simple"></i> R² &gt; 0.998</span>
+                        <span class="project-pill"><i class="fa-solid fa-stopwatch"></i> MAE &lt; 0.10 ms</span>
+                        <span class="project-pill"><i class="fa-solid fa-shield-halved"></i> Perturbation Invariance (+7%)</span>
+                    </div>
+                </div>
+
+                <!-- Right Thesis Cover Thumbnail Column -->
+                <div style="flex: 0 0 250px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; margin: 0 auto;">
+                    <a href="assets/thesis_logo.png" target="_blank" rel="noopener" title="Click to view full-resolution official thesis cover" style="display: block; position: relative; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-light); box-shadow: 0 8px 24px rgba(27, 54, 93, 0.14); transition: transform 0.25s ease, box-shadow 0.25s ease;">
+                        <img src="assets/thesis_logo.png" alt="Physics-Based Musculoskeletal Simulation Official B.Sc. Thesis Cover" style="width: 100%; max-width: 250px; height: auto; display: block; border-radius: 8px;">
+                        <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(27, 54, 93, 0.88); color: #ffffff; padding: 3px 8px; border-radius: 4px; font-size: 0.72rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; backdrop-filter: blur(4px);">
+                            <i class="fa-solid fa-magnifying-glass-plus"></i> View Cover
+                        </div>
+                    </a>
+                    <div style="margin-top: 0.85rem; text-align: center;">
+                        <div style="font-size: 0.84rem; font-weight: 700; color: var(--univ-navy);">Official B.Sc. Thesis</div>
+                        <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 0.15rem;">Dept. of ICE · Course ICE-4210</div>
+                        <div style="font-size: 0.74rem; color: var(--univ-gold); font-weight: 600; margin-top: 0.2rem;">Session 2020–2021</div>
+                    </div>
+                </div>
+
             </div>
         </div>
 

@@ -535,9 +535,22 @@ function initNumberCounters() {
    -------------------------------------------------------------------------- */
 function initLiveSync() {
     try {
-        const cachedRaw = localStorage.getItem('PORTFOLIO_LIVE_DATA');
-        const data = cachedRaw ? JSON.parse(cachedRaw) : (window.PORTFOLIO_DATA || null);
+        let data = null;
+        try {
+            const cachedRaw = localStorage.getItem('PORTFOLIO_LIVE_DATA');
+            if (cachedRaw) {
+                data = JSON.parse(cachedRaw);
+            }
+        } catch (e) {}
+        if (!data) {
+            data = window.PORTFOLIO_DATA || null;
+        }
         if (!data) return;
+
+        // Ensure deleted thesis project is never re-injected by stale browser localStorage
+        if (Array.isArray(data.projects)) {
+            data.projects = data.projects.filter(p => !(p.id === 'proj-02' && p.title && p.title.includes('OpenSim')) && !(p.title && p.title.includes('Neuromech-Sim')));
+        }
 
         // Sync name if updated
         if (data.profile && data.profile.fullName) {
@@ -622,36 +635,54 @@ function initLiveSync() {
         if (projectsGrid && Array.isArray(data.projects) && data.projects.length > 0) {
             projectsGrid.innerHTML = data.projects.map(p => `
                 <div class="project-card in-view">
-                    <div class="project-image-box">
-                        <img src="${p.image || 'assets/projects_img_2.jpg'}" alt="${p.title || 'Project'}">
-                        <span class="project-tag-overlay"><i class="fa-solid fa-microchip"></i> ${p.category || 'Engineering Prototype'}</span>
+                    <div class="project-image-box"${p.image && p.image.includes('img_research_13') ? ' style="background: #ffffff; padding: 1rem; position: relative;"' : ''}>
+                        <img src="${p.image || 'assets/projects_img_2.jpg'}" alt="${p.title || 'Project'}"${p.image && p.image.includes('img_research_13') ? ' style="object-fit: contain;"' : ''}>
+                        <span class="project-tag-overlay"${p.image && p.image.includes('img_research_13') ? ' style="background: rgba(19, 34, 56, 0.92); border-left: 3px solid var(--univ-gold);"' : ''}>
+                            <i class="fa-solid ${p.tagIcon || 'fa-microchip'}"></i> ${p.categoryTag || p.category || 'Engineering Prototype'}
+                        </span>
                     </div>
                     <div class="project-body">
                         <h2 class="project-title">${p.title || ''}</h2>
                         <p class="project-desc">${p.desc || ''}</p>
-                        ${p.highlights ? `<div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">${p.highlights}</div>` : ''}
-                        ${p.tags && p.tags.length ? `
-                            <div class="project-tags">
-                                ${p.tags.map(t => `<span class="project-tag-pill">${t}</span>`).join('')}
+                        ${p.highlights && Array.isArray(p.highlights) ? `
+                            <div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">
+                                <strong style="color: var(--text-main);">Key Highlights:</strong>
+                                <ul style="margin: 0.35rem 0 0 1.2rem; padding: 0;">
+                                    ${p.highlights.map(h => `<li>${h}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : (p.highlights ? `<div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">${p.highlights}</div>` : '')}
+                        ${(p.techPills && p.techPills.length) ? `
+                            <div class="project-tech-pills">
+                                ${p.techPills.map(t => `<span class="project-pill">${t}</span>`).join('')}
+                            </div>
+                        ` : ((p.tags && p.tags.length) ? `
+                            <div class="project-tech-pills">
+                                ${p.tags.map(t => `<span class="project-pill">${t}</span>`).join('')}
+                            </div>
+                        ` : '')}
+                        ${p.linkUrl ? `
+                            <div style="margin-top: 1.15rem;">
+                                <a href="${p.linkUrl}" target="_blank" rel="noopener" class="btn-primary-academic" style="padding: 0.48rem 0.95rem; font-size: 0.85rem; text-decoration: none; display: inline-flex; align-items: center; gap: 0.45rem;">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i> ${p.linkText || 'Read Research Preprint ↗'}
+                                </a>
                             </div>
                         ` : ''}
                     </div>
                 </div>
             `).join('');
+        }
+
         // Sync Education Thesis Block (if on education.html)
         if (data.education) {
             const thesisTitleEl = document.getElementById('edu-thesis-title');
             const thesisAdvisorEl = document.getElementById('edu-thesis-advisor');
-            const thesisSummaryEl = document.getElementById('edu-thesis-summary');
 
             if (thesisTitleEl && data.education.thesisTitle) {
                 thesisTitleEl.textContent = data.education.thesisTitle;
             }
             if (thesisAdvisorEl && data.education.thesisAdvisor) {
-                thesisAdvisorEl.innerHTML = `<strong>Advisor:</strong> ${data.education.thesisAdvisor}`;
-            }
-            if (thesisSummaryEl && data.education.thesisSummary) {
-                thesisSummaryEl.textContent = data.education.thesisSummary;
+                thesisAdvisorEl.innerHTML = `<i class="fa-solid fa-user-tie" style="color: var(--univ-navy); margin-right: 0.35rem;"></i><strong>Advisor:</strong> ${data.education.thesisAdvisor}`;
             }
         }
 
