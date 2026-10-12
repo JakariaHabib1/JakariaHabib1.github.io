@@ -572,6 +572,56 @@ function initLiveSync() {
                 </li>`;
             }).join('');
         }
+
+        // Sync Verified Credentials & Certifications
+        const certGrid = document.getElementById('certificates-grid');
+        if (certGrid && Array.isArray(data.certificates) && data.certificates.length > 0) {
+            certGrid.innerHTML = data.certificates.map(c => `
+                <div class="cert-card in-view"
+                     data-cert-img="${c.image || 'assets/certificates_img_5.jpg'}"
+                     data-cert-title="${c.title || ''}"
+                     data-cert-desc="${c.desc || ''}">
+                    <div class="cert-thumbnail-wrapper">
+                        <img src="${c.image || 'assets/certificates_img_5.jpg'}" alt="${c.title || 'Certificate'}">
+                        <div class="cert-overlay-inspect"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+                    </div>
+                    <div class="cert-info">
+                        <h3 class="cert-title">${c.title || ''}</h3>
+                        <div class="cert-issuer">${c.issuer || ''}</div>
+                        <div class="cert-meta">${c.signee ? `${c.signee} · ` : ''}${c.date || ''}</div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Re-bind lightbox to newly rendered certificates
+            if (typeof initCertificateLightbox === 'function') {
+                initCertificateLightbox();
+            }
+        }
+
+        // Sync Projects & Systems
+        const projectsGrid = document.getElementById('projects-grid');
+        if (projectsGrid && Array.isArray(data.projects) && data.projects.length > 0) {
+            projectsGrid.innerHTML = data.projects.map(p => `
+                <div class="project-card in-view">
+                    <div class="project-image-box">
+                        <img src="${p.image || 'assets/projects_img_2.jpg'}" alt="${p.title || 'Project'}">
+                        <span class="project-tag-overlay"><i class="fa-solid fa-microchip"></i> ${p.category || 'Engineering Prototype'}</span>
+                    </div>
+                    <div class="project-body">
+                        <h2 class="project-title">${p.title || ''}</h2>
+                        <p class="project-desc">${p.desc || ''}</p>
+                        ${p.highlights ? `<div style="margin: 0.85rem 0; font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">${p.highlights}</div>` : ''}
+                        ${p.tags && p.tags.length ? `
+                            <div class="project-tags">
+                                ${p.tags.map(t => `<span class="project-tag-pill">${t}</span>`).join('')}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+        }
+
     } catch (e) {
         // Silently skip if parse error
     }
