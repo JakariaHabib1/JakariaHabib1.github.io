@@ -106,6 +106,23 @@
                     </a>
                 </div>
             </div>
+        <!-- Undergraduate Research Thesis Profile Box -->
+        <div class="advisor-notice-card" id="thesis-card" style="margin-bottom: 2.5rem; border-left: 4px solid var(--univ-gold);">
+            <div style="font-size: 0.82rem; font-weight: 700; color: var(--univ-gold); text-transform: uppercase; margin-bottom: 0.35rem;">Undergraduate Research Thesis (ICE-4210)</div>
+            <h2 id="edu-thesis-title" style="font-size: 1.35rem; color: var(--univ-navy); margin-bottom: 0.4rem;">Physics-Based Musculoskeletal Simulation and Inverse Modeling for Latent Neuromuscular Delay Estimation</h2>
+            <div id="edu-thesis-advisor" style="font-size: 0.95rem; font-weight: 600; color: var(--text-main); margin-bottom: 1rem;">
+                <strong>Advisor:</strong> Md. Imran Hossain (Assistant Professor, Department of Information &amp; Communication Engineering, PUST)
+            </div>
+            <div id="edu-thesis-summary" style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.7; white-space: pre-line;">
+Electromechanical delay (EMD: 15–60 ms) between neural excitation and muscular force generation critically governs motor stability, yet experimental surface EMG suffers from 10–30 ms onset detection artifacts. This work establishes a data-driven inverse modeling framework in OpenSim 4.5 using the 3DGaitModel2354 lower-limb architecture, inverting Hill-type activation dynamics across 45,445 labeled observations spanning tau in [0.015, 0.060 s].
+
+Key Quantitative Findings:
+• Inverse Mapping Precision: Achieved R² > 0.998 with Mean Absolute Error MAE < 0.10 ms (1e-4 s), capturing fine-scale temporal delay accounting for less than 0.22% of total physiological variation.
+• Causal Information Hierarchy: Decomposed predictive contribution showing ~93.6% of timing information resides in muscle activation dynamics versus only ~6.4% in joint kinematics.
+• Primary Muscle Driver: Identified Rectus Femoris as the primary functional pathway (60.5% feature importance); isolated ablation induced a 20-fold error increase (R² dropping from 0.998 to 0.777).
+• Proof of Continuity: Mathematically proved the learned mapping operates as a continuous operator rather than a discrete classifier, achieving errors 50–100x lower than the fundamental discretization limit.
+• Perturbation Robustness: Validated under +7% femoral mass anatomical perturbation, confirming bounded error (|tau_hat - tau| << 0.045 s) and structural stability against biomechanical distribution shifts.
+            </div>
         </div>
 
         <!-- ═══════════════ COMPLETE 8-SEMESTER OFFICIAL COURSEWORK MATRIX ═══════════════ -->
@@ -975,6 +992,9 @@
             <span>All rights reserved.</span>
         </div>
     </footer>
+
+    <!-- Master Data Store -->
+    <script src="js/data.js"></script>
 
     <!-- Interactive Client Script -->
     <script src="script.js?v=2.2"></script>

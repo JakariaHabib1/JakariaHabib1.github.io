@@ -548,17 +548,35 @@ function initLiveSync() {
             });
         }
 
-        // Sync profile image if updated or removed
-        if (data.profile && typeof data.profile.profileImage !== 'undefined') {
-            const portraitImg = document.querySelector('.hero-portrait-img');
-            if (portraitImg) {
-                if (data.profile.profileImage) {
-                    portraitImg.src = data.profile.profileImage;
-                    portraitImg.style.display = 'block';
-                } else {
-                    portraitImg.style.display = 'none';
-                }
+        // Sync Profile Bio & Callout on Homepage
+        const bioContainer = document.getElementById('hero-bio-container');
+        if (bioContainer && data.profile) {
+            const bioParagraphs = Array.isArray(data.profile.bio) 
+                ? data.profile.bio.map(p => `<p>${p}</p>`).join('')
+                : (data.profile.bio ? `<p>${data.profile.bio}</p>` : '');
+            
+            const calloutHtml = data.profile.graduateCallout 
+                ? `<p style="font-weight: 600; color: var(--univ-navy); margin-top: 1rem;">${data.profile.graduateCallout}</p>` 
+                : '';
+            
+            if (bioParagraphs || calloutHtml) {
+                bioContainer.innerHTML = bioParagraphs + calloutHtml;
             }
+        }
+
+        // Sync Research Pillars on Homepage
+        const pillarsGrid = document.getElementById('home-pillars-grid');
+        if (pillarsGrid && Array.isArray(data.pillars) && data.pillars.length > 0) {
+            pillarsGrid.innerHTML = data.pillars.map(p => {
+                const colorVar = p.accentColor ? `var(--${p.accentColor})` : 'var(--univ-navy)';
+                return `
+                    <div style="background: var(--bg-card); border: 1px solid var(--border-light); border-radius: var(--radius-sm); padding: 1.5rem; border-top: 3px solid ${colorVar};">
+                        <div style="font-size: 1.25rem; color: ${colorVar}; margin-bottom: 0.75rem;"><i class="fa-solid ${p.icon || 'fa-brain'}"></i></div>
+                        <h3 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.5rem; font-family: var(--font-serif);">${p.title || ''}</h3>
+                        <p style="font-size: 0.92rem; color: var(--text-muted); line-height: 1.55; margin: 0;">${p.desc || ''}</p>
+                    </div>
+                `;
+            }).join('');
         }
 
         // Sync Home News & Highlights
@@ -620,6 +638,21 @@ function initLiveSync() {
                     </div>
                 </div>
             `).join('');
+        // Sync Education Thesis Block (if on education.html)
+        if (data.education) {
+            const thesisTitleEl = document.getElementById('edu-thesis-title');
+            const thesisAdvisorEl = document.getElementById('edu-thesis-advisor');
+            const thesisSummaryEl = document.getElementById('edu-thesis-summary');
+
+            if (thesisTitleEl && data.education.thesisTitle) {
+                thesisTitleEl.textContent = data.education.thesisTitle;
+            }
+            if (thesisAdvisorEl && data.education.thesisAdvisor) {
+                thesisAdvisorEl.innerHTML = `<strong>Advisor:</strong> ${data.education.thesisAdvisor}`;
+            }
+            if (thesisSummaryEl && data.education.thesisSummary) {
+                thesisSummaryEl.textContent = data.education.thesisSummary;
+            }
         }
 
     } catch (e) {
